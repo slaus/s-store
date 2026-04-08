@@ -13,7 +13,7 @@ const Sort = () => {
 
     return (
         <div className={styles._}>
-            Sort by:
+            Сортувати за:
             <button className={styles.dropbtn}>{sort} <BiChevronDown /></button>
             <div className={styles.content}>
                 {itemsSort.map((option) => (

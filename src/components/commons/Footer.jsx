@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <footer className={styles._}>
             <div className={styles.block}>
-                <div>{currentYear} &copy; All Right Reserved.</div>
+                <div>{currentYear} &copy; Всі права захищені. | Розробка <a href="https://site404.in.ua" target="_blank" rel="noopener noreferrer">site404.in.ua</a>.</div>
                 <div className={styles.links}>
                     <a href="#" target='_blank'>
                         <BiLogoFacebookCircle size={36} />

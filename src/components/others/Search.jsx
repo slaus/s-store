@@ -35,7 +35,7 @@ const Search = ({ setShowSearchBar }) => {
           <input
             onChange={handleChange}
             type="search"
-            placeholder="Search Product"
+            placeholder="Пошук товару"
             className={styles.input}
             value={searchValue}
           />

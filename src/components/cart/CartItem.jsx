@@ -15,7 +15,7 @@ const CartItem = ({ item }) => {
 
   const removeItemFromCart = (e) => {
     e.preventDefault();
-    showAlert("Product removed from cart!", "error");
+    showAlert("Товар видалено з кошика!", "error");
     refreshCart({ item, n: 0 });
   };
 
@@ -27,7 +27,7 @@ const CartItem = ({ item }) => {
         </div>
         <div className={styles.block}>
           <p className={styles.title}>{title}</p>
-          <p className={styles.price}>Unit Price ${offerPrice || price}</p>
+          <p className={styles.price}>Ціна за шт. {offerPrice || price} грн.</p>
           <div className={styles.btns}>
             <CounterBtn type="cart" item={item} />
           </div>

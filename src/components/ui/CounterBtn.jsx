@@ -11,13 +11,13 @@ const CounterBtn = ({ type = "default", counter = 0, item }) => {
     const addItem = (e) => {
         e.preventDefault();
         refreshCart({ item, n: counter + 1 });
-        showAlert("Product successfully added!", "success");
+        showAlert("Товар успішно додано!", "success");
     };
 
     const removeItem = (e) => {
         e.preventDefault();
         if (counter === 1) {
-            showAlert("Product removed from cart!", "error");
+            showAlert("Товар видалено з кошика!", "error");
         }
         refreshCart({ item, n: counter - 1 });
     };
@@ -39,7 +39,7 @@ const CounterBtn = ({ type = "default", counter = 0, item }) => {
     return (
         <>
             {counter === 0 ? (
-                <Button type="button" onClick={addItem}>Add to Cart</Button>
+                <Button type="button" onClick={addItem}>Додати до кошика</Button>
             ) : (
                 <div className={styles._}>
                     <button type="button" className={styles.btn} onClick={removeItem}>

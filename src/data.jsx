@@ -6,7 +6,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "apples.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "vegetable1",
@@ -15,7 +15,7 @@ export default [
       offerPrice: 3.88,
       stock: 12,
       img: "baby.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "vegetable2",
@@ -24,7 +24,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "beans.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "vegetable3",
@@ -33,7 +33,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "beans2.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "fruits2",
@@ -42,7 +42,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "berry.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "fruits3",
@@ -51,7 +51,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "berry2.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "vegetable4",
@@ -60,7 +60,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "brussels.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "vegetable5",
@@ -69,7 +69,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "carrot.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "vegetable6",
@@ -78,7 +78,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "celery.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "fruits4",
@@ -87,7 +87,7 @@ export default [
       offerPrice: 6.88,
       stock: 12,
       img: "cherry.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "meat1",
@@ -96,7 +96,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "chicken.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
     {
       id: "meat2",
@@ -105,7 +105,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "chicken2.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
     {
       id: "fruits5",
@@ -114,7 +114,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "clemen.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "meat3",
@@ -123,7 +123,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "cod.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
     {
       id: "vegetable7",
@@ -132,7 +132,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "corn.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "vegetable8",
@@ -141,7 +141,7 @@ export default [
       offerPrice: 2.5,
       stock: 12,
       img: "cucumber.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "fruits6",
@@ -150,7 +150,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "dates.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "meat4",
@@ -159,7 +159,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "fish.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
     {
       id: "meat5",
@@ -168,7 +168,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "fish2.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
     {
       id: "meat6",
@@ -177,7 +177,7 @@ export default [
       offerPrice: 3.25,
       stock: 12,
       img: "fish3.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
     {
       id: "fruits7",
@@ -186,7 +186,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "lemon.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "fruits8",
@@ -195,7 +195,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "lime.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "fruits9",
@@ -204,7 +204,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "mango.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "meat7",
@@ -213,7 +213,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "meat.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
     {
       id: "meat8",
@@ -222,7 +222,7 @@ export default [
       offerPrice: 4.0,
       stock: 12,
       img: "meat2.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
     {
       id: "meat9",
@@ -231,7 +231,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "meat3.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
     {
       id: "vegetable9",
@@ -240,7 +240,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "mix.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "fruits10",
@@ -249,7 +249,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "pears.jpg",
-      category: "fruits",
+      category: "фрукти",
     },
     {
       id: "vegetable10",
@@ -258,7 +258,7 @@ export default [
       offerPrice: 3.99,
       stock: 12,
       img: "pepper.jpg",
-      category: "vegetable",
+      category: "овочі",
     },
     {
       id: "meat10",
@@ -267,7 +267,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "salmon.jpg",
-      category: "meat",
+      category: "м'ясо",
     },
   
     {
@@ -277,7 +277,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "bread.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
     {
       id: "bakery2",
@@ -286,7 +286,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "bread2.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
     {
       id: "bakery3",
@@ -295,7 +295,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "bread3.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
     {
       id: "bakery4",
@@ -304,7 +304,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "toast.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
     {
       id: "bakery5",
@@ -313,7 +313,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "toast2.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
     {
       id: "bakery6",
@@ -322,7 +322,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "cookies.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
     {
       id: "bakery7",
@@ -331,7 +331,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "cookies2.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
     {
       id: "bakery8",
@@ -340,7 +340,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "cookies3.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
     {
       id: "bakery9",
@@ -349,7 +349,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "muffin.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
   
     {
@@ -359,7 +359,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "muffin2.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
   
     {
@@ -369,7 +369,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "muffin3.jpg",
-      category: "bakery",
+      category: "пекарня",
     },
   
     {
@@ -379,7 +379,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "tea.jpg",
-      category: "drink",
+      category: "напої",
     },
   
     {
@@ -389,7 +389,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "coffe.jpg",
-      category: "drink",
+      category: "напої",
     },
   
     {
@@ -399,7 +399,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "coffe2.jpg",
-      category: "drink",
+      category: "напої",
     },
   
     {
@@ -409,7 +409,7 @@ export default [
       offerPrice: null,
       stock: 12,
       img: "coffe3.jpg",
-      category: "drink",
+      category: "напої",
     },
   
     {
@@ -419,7 +419,7 @@ export default [
       offerPrice: 2.1,
       stock: 12,
       img: "coffe4.jpg",
-      category: "drink",
+      category: "напої",
     },
   ];
   

@@ -19,7 +19,7 @@ const Cart = ({ setShowCart }) => {
             <div className={styles._}>
                 <section className={styles.block}>
                     <div className={styles.head}>
-                        <h2 className={styles.title}>Shopping Cart</h2>
+                        <h2 className={styles.title}>Кошик для покупок</h2>
                         <button className={styles.close} onClick={hideCart}>
                             <IoCloseOutline size={34} />
                         </button>

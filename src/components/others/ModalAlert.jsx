@@ -21,9 +21,9 @@ const ModalAlert = ({ setModal }) => {
 
   return (
     <div className={styles._}>
-      <h3 className={styles.header}>Confim Order?</h3>
+      <h3 className={styles.header}>Підтверджуєте замовлення?</h3>
       <div className={styles.desc}>
-      You must confirm your order. Unconfirmed orders will be ignored.
+      Ви повинні підтвердити своє замовлення. Непідтверджені замовлення будуть проігноровані.
       </div>
       <div className={styles.footer}>
         <Button className={styles.btn} onClick={onConfirm}>

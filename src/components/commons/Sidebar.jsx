@@ -28,7 +28,7 @@ const Sidebar = ({ showSidebar, mobile }) => {
                     >
                         <div className={styles.item}>
                             {selectedCategory === '' ? <BiPlus size={26} /> : <BiMinus size={26} />}
-                            All Products
+                            Усі товари
                         </div>
                     </button>
 

@@ -18,14 +18,14 @@ const ItemsCard = ({ item }) => {
     return (
         <>
             <div className={styles._}>
-                {offerPrice && <div className={styles.sale}>SALE</div>}
+                {offerPrice && <div className={styles.sale}>Знижка</div>}
                 <div className={styles.img} onClick={openModal}>
                     <img alt={title} title={title} src={`/images/${img}`} className={styles.pict} />
                 </div>
                 <div className={styles.block}>
                     <div className={styles.prices}>
-                        <p className={styles.price}>${(offerPrice || price).toFixed(2)}</p>
-                        {offerPrice && <p className={styles.old}>${price.toFixed(2)}</p>}
+                        <p className={styles.price}>{(offerPrice || price).toFixed(2)} грн.</p>
+                        {offerPrice && <p className={styles.old}>{price.toFixed(2)} грн.</p>}
                     </div>
                     <p className={styles.title}>{title}</p>
                 </div>

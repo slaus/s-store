@@ -10,7 +10,7 @@ const Breadcrumb = () => {
         <nav className={styles._}>
             <ol className={styles.ol}>
                 <li className={styles.li}>
-                    <span className={styles.link}>All Products</span>
+                    <span className={styles.link}>Усі товари</span>
                 </li>
                 {selectedCategory &&
                     <>

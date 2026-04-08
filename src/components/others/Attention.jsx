@@ -6,8 +6,8 @@ const Attention = () => {
     return (
         <div className={styles._}>
             <BiMessageRoundedError size={46} />
-            <div className={styles.title}>No goods in the basket!</div>
-            <div className={styles.desc}>Your cart is empty. You haven't purchased anything yet.</div>
+            <div className={styles.title}>Немає товарів у кошику!</div>
+            <div className={styles.desc}>Ваш кошик порожній. Ви ще нічого не купили.</div>
         </div>
     );
 };

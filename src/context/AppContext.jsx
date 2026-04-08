@@ -156,15 +156,15 @@ export const AppProviders = ({ children }) => {
   const [items, setItems] = useState(data);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [itemsSort, setItemsSort] = useState([
-    "Default",
-    "Ascending",
-    "Descending",
-    "Title (A-Z)",
-    "Title (Z-A)",
-    "Price (Min)",
-    "Price (Max)",
+    "Замовчуванням", 
+    "Зростанням ID", 
+    "Спаданням ID", 
+    "Назвою (А-Я)", 
+    "Назвою (Я-А)", 
+    "Ціною (Мін.)", 
+    "Ціною (Макс.)",
   ]);
-  const [sort, setSort] = useState("Default");
+  const [sort, setSort] = useState("Замовчуванням");
   const [qtySelectedItems, setQtySelectedItems] = useState(0);
   const [goodsInCart, setGoodsInCart] = useState({});
   const [cartLength, setCartLength] = useState(0);

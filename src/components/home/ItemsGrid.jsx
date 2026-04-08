@@ -26,21 +26,21 @@ const ItemsGrid = () => {
 
   const sortItems = (items, itemsSort) => {
     switch (itemsSort) {
-      case "Ascending":
+      case "Зростанням ID":
         return items.slice().sort((a, b) => a.id.localeCompare(b.id));
-      case "Descending":
+      case "Спаданням ID":
         return items.slice().sort((a, b) => b.id.localeCompare(a.id));
-      case "Title (A-Z)":
+      case "Назвою (А-Я)":
         return items.slice().sort((a, b) => a.title.localeCompare(b.title));
-      case "Title (Z-A)":
+      case "Назвою (Я-А)":
         return items.slice().sort((a, b) => b.title.localeCompare(a.title));
-      case "Price (Min)":
+      case "Ціною (Мін.)":
         return items
           .slice()
           .sort(
             (a, b) => (a.offerPrice || a.price) - (b.offerPrice || b.price)
           );
-      case "Price (Max)":
+      case "Ціною (Макс.)":
         return items
           .slice()
           .sort(
@@ -62,7 +62,7 @@ const ItemsGrid = () => {
           ))}
         </div>
       ) : (
-        <div>Nothing found for the query <b>"{searchValue}"</b></div>
+        <div>За запитом <b>"{searchValue}"</b> нічого не знайдено.</div>
       )}
     </>
   );

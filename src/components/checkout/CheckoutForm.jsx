@@ -26,10 +26,10 @@ const CheckoutForm = () => {
     return (
         <>
             <div className={styles._}>
-                <h3 className={styles.title}>Your Options</h3>
+                <h3 className={styles.title}>Ваші дані</h3>
                 <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.delivery}>
-                        <div className={styles.label}>With Delivery?</div>
+                        <div className={styles.label}>Доставка по Україні?</div>
                         <SliderCheckbox />
                     </div>
                     <div className={`${styles.group} ${errors?.name ? styles.err : ''}`}>
@@ -39,7 +39,7 @@ const CheckoutForm = () => {
                         <input
                             type="text"
                             name="name"
-                            placeholder="Your Name"
+                            placeholder="Ваше ім'я та прізвище"
                             className={styles.input}
                             {...register("name", validations.name)}
                         />
@@ -56,7 +56,7 @@ const CheckoutForm = () => {
                         <input
                             type="phone"
                             name="phone"
-                            placeholder="Phone Number"
+                            placeholder="Ваш номер телефону"
                             className={styles.input}
                             {...register("phone", validations.phone)}
                         />
@@ -75,7 +75,7 @@ const CheckoutForm = () => {
                                 <input
                                     type="text"
                                     name="address"
-                                    placeholder="Your Address"
+                                    placeholder="Склад Нової Пошти"
                                     className={styles.input}
                                     {...register("address", validations.address)}
                                 />
@@ -92,7 +92,7 @@ const CheckoutForm = () => {
                                 <input
                                     type="text"
                                     name="city"
-                                    placeholder="Your City"
+                                    placeholder="Ваш населений пункт"
                                     className={styles.input}
                                     {...register("city", validations.city)}
                                 />
@@ -109,7 +109,7 @@ const CheckoutForm = () => {
                                 <input
                                     type="text"
                                     name="schedule"
-                                    placeholder="Chose a Schedule"
+                                    placeholder="Область, район"
                                     className={styles.input}
                                     {...register("schedule", validations.schedule)}
                                 />
@@ -128,7 +128,7 @@ const CheckoutForm = () => {
                         <input
                             type="text"
                             name="comment"
-                            placeholder="Extra Comment"
+                            placeholder="Додатковий коментар"
                             className={styles.input}
                             {...register("comment", validations.comment)}
                         />
@@ -138,7 +138,7 @@ const CheckoutForm = () => {
                             </p>
                         )}
                     </div>
-                    <button type="submit" className={styles.confirm}>Confirm</button>
+                    <button type="submit" className={styles.confirm}>Зробити замовлення</button>
                 </form>
             </div>
             {showModal &&

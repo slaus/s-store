@@ -8,73 +8,73 @@ export const getFormValidations = () => {
     name: {
       required: {
         value: true,
-        message: "Name is required",
+        message: "Ім'я та прізвище обов'язкові",
       },
       maxLength: {
         value: 20,
-        message: "Max Length 20 chars",
+        message: "Максимальна довжина 25 символів",
       },
       minLength: {
         value: 3,
-        message: "Min Length 3 chars",
+        message: "Мінімальна довжина 6 символи",
       },
       pattern: {
-        value: /^[A-Za-zА-Яа-яІіЇїЄє ]{3,20}$/,
-        message: "Icorrect Name",
+        value: /^[A-Za-zА-Яа-яІіЇїЄє ]{6,25}$/,
+        message: "Неправильне повне ім'я",
       },
     },
     phone: {
       required: {
         value: true,
-        message: "Phone is required",
+        message: "Номер телефону обов'язковий",
       },
       maxLength: {
         value: 20,
-        message: "Max Length 20 chars",
+        message: "Максимальна довжина 20 символів",
       },
       minLength: {
         value: 5,
-        message: "Min Length 5 chars",
+        message: "Мінімальна довжина 9 символів",
       },
       pattern: {
-        value: /^[0-9]{5,20}$/,
-        message: "Icorrect Phone",
+        value: /^[0-9]{9,20}$/,
+        message: "Неправильний номер телефон",
       },
     },
     address: {
       required: {
         value: true,
-        message: "Address is required",
+        message: "Нова Пошта обов'язкова",
       },
       maxLength: {
         value: 20,
-        message: "Max Length 20 chars",
+        message: "Максимальна довжина 20 символів",
       },
       minLength: {
-        value: 5,
-        message: "Min Length 5 chars",
+        value: 1,
+        message: "Мінімальна довжина 1 символ",
       },
       pattern: {
-        value: /^[0-9a-zA-ZА-Яа-яІіЇїЄє ]{5,20}$/,
-        message: "Icorrect Address",
+        value: /^[0-9a-zA-ZА-Яа-яІіЇїЄє ]{1,20}$/,
+        message: "Неправильний склад Нової Пошти",
       },
     },
     city: {
       required: {
         value: true,
-        message: "City is required",
+        message: "Місто або селище обов'язкове",
       },
       maxLength: {
         value: 20,
-        message: "Max Length 20 chars",
+        message: "Максимальна довжина 20 символів",
       },
       minLength: {
         value: 3,
-        message: "Min Length 3 chars",
+        message: "Мінімальна довжина 3 символи",
       },
       pattern: {
         value: /^[A-Za-zА-Яа-яІіЇїЄє ]{3,20}$/,
-        message: "Icorrect City",
+        message: "Неправильне місто або селище",
       },
     },
     schedule: {
@@ -84,17 +84,17 @@ export const getFormValidations = () => {
       // },
       maxLength: {
         value: 20,
-        message: "Max Length 20 chars",
+        message: "Максимальна довжина 20 символів",
       },
       pattern: {
         value: /^[0-9a-zA-ZА-Яа-яІіЇїЄє ]{0,20}$/,
-        message: "Icorrect Schedule",
+        message: "Неправильна область, район",
       },
     },
     comment: {
       maxLength: {
         value: 30,
-        message: "Max Length 30 chars",
+        message: "Максимальна довжина 30 символів",
       },
     },
   };
@@ -117,13 +117,13 @@ export function getWspUrl(orderData) {
     });
   }
 
-  const WSP_URL = `https://web.whatsapp.com/send/?phone=${N}&text=%2A${"Order"}%3A%2A%20${ID}%0A%0A%2A${"Client"}%3A%2A%20${name}%0A%0A%2A${"Phone"}%3A%2A%20${phone}%0A%0A%2A${
-    withDelivery ? "Address" + "%3A%2A%20" + address + " %0A%0A%2A" : ""
-  }${withDelivery ? "City" + "%3A%2A%20" + city + "%0A%0A%2A" : ""}${
-    withDelivery ? "Schedule" + "%3A%2A%20" + schedule + "%0A%0A%2A" : ""
-  }${comment ? "Comment" + "%3A%2A%20" + comment + "%0A%0A%2A" : ""}${"Items List"}%3A%2A${cartListforUrl}%0A%0A%2A${
-    withDelivery ? "Sub Total" + "%3A%2A%20$" + subTotal + " %0A%0A%2A" : ""
-  }${withDelivery ? "Delivery Fee" + "%3A%2A%20$" + shippingCost + " %0A%0A%2A" : ""}${"Total"}%3A%2A%20${total}%0A%0A`;
+  const WSP_URL = `https://web.whatsapp.com/send/?phone=${N}&text=%2A${"Замовлення"}%3A%2A%20${ID}%0A%0A%2A${"Клієнт"}%3A%2A%20${name}%0A%0A%2A${"Телефон"}%3A%2A%20${phone}%0A%0A%2A${
+    withDelivery ? "Нова_Пошта" + "%3A%2A%20" + address + " %0A%0A%2A" : ""
+  }${withDelivery ? "Місто" + "%3A%2A%20" + city + "%0A%0A%2A" : ""}${
+    withDelivery ? "Область_район" + "%3A%2A%20" + schedule + "%0A%0A%2A" : ""
+  }${comment ? "Коментар" + "%3A%2A%20" + comment + "%0A%0A%2A" : ""}${"Список_замовлення"}%3A%2A${cartListforUrl}%0A%0A%2A${
+    withDelivery ? "Підсумок" + "%3A%2A%20$" + subTotal + " %0A%0A%2A" : ""
+  }${withDelivery ? "Вартість_доставки" + "%3A%2A%20$" + shippingCost + " %0A%0A%2A" : ""}${"Загальна_сума"}%3A%2A%20${total}%0A%0A`;
 
   return WSP_URL;
 }
@@ -144,16 +144,16 @@ export async function sendTelegramOrder(orderData) {
   });
 
   const message = `
-🛒 *Order:* ${ID}
-👤 *Client:* ${name}
-📞 *Phone:* ${phone}
-${withDelivery ? `🏠 *Address:* ${address}\n🏙 *City:* ${city}\n🕐 *Schedule:* ${schedule}` : ''}
-${comment ? `💬 *Comment:* ${comment}` : ''}
-🧾 *Items:* ${cartList}
+🛒 *Замовлення:* ${ID}
+👤 *Клієнт:* ${name}
+📞 *Телефон:* ${phone}
+${withDelivery ? `🏠 *Нова Пошта:* ${address}\n🏙 *Місто:* ${city}\n🕐 *Область, район:* ${schedule}` : ''}
+${comment ? `💬 *Коментар:* ${comment}` : ''}
+🧾 *Список замовлення:* ${cartList}
 
-💰 *Subtotal:* $${subTotal}
-🚚 *Delivery Fee:* $${withDelivery ? shippingCost : 0}
-💵 *Total:* $${total}
+💰 *Підсумок:* $${subTotal}
+🚚 *Вартість доставки:* $${withDelivery ? shippingCost : 0}
+💵 *Загальна сума:* $${total}
   `;
 
   await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {

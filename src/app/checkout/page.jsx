@@ -43,7 +43,7 @@ const Checkout = () => {
                 <Header />
 
                 <Main>
-                    <h1>Checkout</h1>
+                    <h1>Оформлення замовлення</h1>
                     <Flex className="w_md col_sm" style={{alignItems:'flex-start'}}>
                         <CheckoutForm/>
                         <OrderDetails/>

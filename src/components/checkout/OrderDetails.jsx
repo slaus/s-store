@@ -15,7 +15,7 @@ const OrderDetails = () => {
 
     return (
         <div className={styles._}>
-            <h3 className={styles.title}>Your Order</h3>
+            <h3 className={styles.title}>Ваше замовлення</h3>
             <div>
                 {Object.values(cartItems).map((item) => (
                     <OrderItem key={item.id} item={item} />
@@ -24,18 +24,18 @@ const OrderDetails = () => {
             <hr className={styles.hr} />
             <div>
                 <div className={styles.item}>
-                    <p>Sub Total</p>
+                    <p>Підсумок</p>
                     <p className={styles.subtotal}>$ {subTotal}</p>
                 </div>
                 {withDelivery &&
                     <div className={styles.item}>
-                        <p>Delivery</p>
+                        <p>Нова Пошта</p>
                         <p className={styles.subtotal}>$ {withDelivery ? shippingCost : "0"}</p>
                     </div>
                 }
 
                 <div className={styles.item}>
-                    <p><b>Total</b></p>
+                    <p><b>Загальна сума</b></p>
                     <p className={styles.total}>$ {total}</p>
                 </div>
             </div>

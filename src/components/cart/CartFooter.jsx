@@ -12,7 +12,7 @@ const CartFooter = ({ goodsInCart }) => {
     return (
         <div className={styles._}>
             {cartTotal > 0 &&
-                <p className={styles.total}>Sub Total: 
+                <p className={styles.total}>Підсумок: 
                     <span className={styles.sum}>
                         ${cartTotal.toFixed(2)}
                     </span>
@@ -23,7 +23,7 @@ const CartFooter = ({ goodsInCart }) => {
                 type="button"
                 className={`${cartTotal === 0 ? styles.btn + " " + styles.disable : styles.btn}`}
                 disabled={cartTotal === 0 ? true : false}
-            >CHECKOUT</button>
+            >Оформлення</button>
         </div>
     );
 };
