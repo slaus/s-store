@@ -14,7 +14,7 @@ const CartFooter = ({ goodsInCart }) => {
             {cartTotal > 0 &&
                 <p className={styles.total}>Підсумок: 
                     <span className={styles.sum}>
-                        ${cartTotal.toFixed(2)}
+                        {cartTotal.toFixed(2)} грн.
                     </span>
                 </p>
             }

@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from "@/components/checkout/checkout-form.module.css";
-import { BiUser, BiPhone, BiMap, BiMapAlt, BiTime, BiChevronDown, BiMessage } from "react-icons/bi";
+import { BiUser, BiPhone, BiMap, BiMapAlt, BiAnchor, BiMessage } from "react-icons/bi";
 import SliderCheckbox from '@/components/ui/SliderCheckbox';
-import { useDelivery, useDeliveryFee, useFormState } from '@/context/AppContext';
+import { useDelivery, useDeliveryFee, useFormState, useOrderDetails } from '@/context/AppContext';
 import { useForm } from "react-hook-form";
 import { getFormValidations } from "../../helpers";
 import ModalAlert from "@/components/others/ModalAlert";
@@ -12,6 +12,7 @@ import Modal from '@/components/ui/Modal';
 const CheckoutForm = () => {
 
     const { setFormState } = useFormState();
+    const { cartItems } = useOrderDetails();
     const { delivery, setDelivery } = useDelivery();
     const { deliveryFee, setDeliveryFee } = useDeliveryFee();
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onTouched" });
@@ -32,7 +33,7 @@ const CheckoutForm = () => {
                         <div className={styles.label}>Доставка по Україні?</div>
                         <SliderCheckbox />
                     </div>
-                    <div className={`${styles.group} ${errors?.name ? styles.err : ''}`}>
+                    <div className={`${styles.group} ${errors?.name ? styles.err : ''} ${cartItems.length === 0 ? styles.disabled : ''}`}>
                         <div className={styles.icon}>
                             <BiUser size={24} />
                         </div>
@@ -41,6 +42,7 @@ const CheckoutForm = () => {
                             name="name"
                             placeholder="Ваше ім'я та прізвище"
                             className={styles.input}
+                            disabled={cartItems.length === 0}
                             {...register("name", validations.name)}
                         />
                         {errors?.name && (
@@ -49,7 +51,7 @@ const CheckoutForm = () => {
                             </p>
                         )}
                     </div>
-                    <div className={`${styles.group} ${errors?.phone ? styles.err : ''}`}>
+                    <div className={`${styles.group} ${errors?.phone ? styles.err : ''} ${cartItems.length === 0 ? styles.disabled : ''}`}>
                         <div className={styles.icon}>
                             <BiPhone size={24} />
                         </div>
@@ -58,6 +60,7 @@ const CheckoutForm = () => {
                             name="phone"
                             placeholder="Ваш номер телефону"
                             className={styles.input}
+                            disabled={cartItems.length === 0}
                             {...register("phone", validations.phone)}
                         />
                         {errors?.phone && (
@@ -104,7 +107,7 @@ const CheckoutForm = () => {
                             </div>
                             <div className={`${styles.group} ${errors?.schedule ? styles.err : ''}`}>
                                 <div className={styles.icon}>
-                                    <BiTime size={24} />
+                                    <BiAnchor size={24} />
                                 </div>
                                 <input
                                     type="text"
@@ -121,7 +124,7 @@ const CheckoutForm = () => {
                             </div>
                         </>
                     }
-                    <div className={`${styles.group} ${errors?.comment ? styles.err : ''}`}>
+                    <div className={`${styles.group} ${errors?.comment ? styles.err : ''}` + ` ${cartItems.length === 0 ? styles.disabled : ''}`}>
                         <div className={styles.icon}>
                             <BiMessage size={24} />
                         </div>
@@ -130,6 +133,7 @@ const CheckoutForm = () => {
                             name="comment"
                             placeholder="Додатковий коментар"
                             className={styles.input}
+                            disabled={cartItems.length === 0}
                             {...register("comment", validations.comment)}
                         />
                         {errors?.comment && (
@@ -138,7 +142,9 @@ const CheckoutForm = () => {
                             </p>
                         )}
                     </div>
-                    <button type="submit" className={styles.confirm}>Зробити замовлення</button>
+                    <button type="submit" className={styles.confirm} disabled={cartItems.length === 0}>
+                        Зробити замовлення
+                    </button>
                 </form>
             </div>
             {showModal &&

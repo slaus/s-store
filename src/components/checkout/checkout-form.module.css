@@ -1,29 +1,29 @@
 ._ {
-    width: calc(100% - 2rem);
-    height: max-content;
+    width           : calc(100% - 2rem);
+    height          : max-content;
     background-color: rgb(255, 255, 255);
-    padding: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    order: 0;
-    margin-top: 0;
+    padding         : 1rem;
+    margin-left     : 1rem;
+    margin-right    : 1rem;
+    order           : 0;
+    margin-top      : 0;
 }
 
 @media screen and (max-width: 767px) {
     ._ {
-        max-width: 500px;
-        margin-left: auto;
+        max-width   : 500px;
+        margin-left : auto;
         margin-right: auto;
-        order: 2;
+        order       : 2;
     }
 }
 
 .title {
-    font-size: 1.25rem;
+    font-size  : 1.25rem;
     line-height: 1.25;
     font-weight: 700;
-    text-align: center;
-    width: 100%;
+    text-align : center;
+    width      : 100%;
 }
 
 .form {}
@@ -33,92 +33,115 @@
 }
 
 .delivery {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: center;
-    margin-top: 1.5rem;
-    gap: 10px;
+    margin-top     : 1.5rem;
+    gap            : 10px;
 }
 
 .group {
-    display: flex;
-    position: relative;
+    display   : flex;
+    position  : relative;
     margin-top: 1.5rem;
-    position: relative;
+    position  : relative;
+}
+
+.disabled .icon svg {
+    color: #c0c0c0;
 }
 
 .icon {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: center;
-    position: absolute;
-    height: 2.5rem;
-    width: 2.5rem;
-    font-size: 1rem;
-    top: 0px;
-    z-index: 1;
-    left: 0px;
+    position       : absolute;
+    height         : 2.5rem;
+    width          : 2.5rem;
+    font-size      : 1rem;
+    top            : 0px;
+    z-index        : 1;
+    left           : 0px;
 }
 
 .icon svg {
-    color: rgb(65, 89, 114);
+    color: #5e9923;
 }
 
 .input {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    transition: 0.2s;
-    outline: none;
-    font-size: 1rem;
-    padding-left: 2.5rem;
-    padding-right: 1rem;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    border-radius: 0.25rem;
-    border: 2px solid transparent;
-    background-color: rgb(237, 242, 247);
+    width           : 100%;
+    display         : flex;
+    align-items     : center;
+    position        : relative;
+    transition      : 0.2s;
+    outline         : none;
+    font-size       : 1rem;
+    padding-left    : 2.5rem;
+    padding-right   : 1rem;
+    height          : 2.5rem;
+    line-height     : 2.5rem;
+    border-radius   : 0.25rem;
+    border          : 2px solid #5e9923;
+    background-color: #ffffff;
+}
+
+.input:disabled {
+    border-color: #c0c0c0;
+    cursor          : not-allowed;
 }
 
 .input::placeholder {
-    color: rgb(164, 185, 207);
+    color: #c0c0c0;
+}
+
+.input:focus {
+    border-color: #4c7c1b;
 }
 
 .confirm {
-    border-radius: 0.25rem;
-    font-weight: 500;
-    width: 100%;
-    display: inline-flex;
-    appearance: none;
-    align-items: center;
-    justify-content: center;
-    transition: 250ms;
-    user-select: none;
-    position: relative;
-    white-space: nowrap;
-    vertical-align: middle;
-    line-height: 1.2;
-    outline: none;
-    height: 3rem;
-    min-width: 3rem;
-    font-size: 1.125rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    background-color: rgb(56, 161, 105) !important;
-    color: rgb(255, 255, 255);
-    margin-top: 1.5rem;
-    text-transform: uppercase;
+    border-radius   : 0.25rem;
+    font-weight     : 500;
+    width           : 100%;
+    display         : inline-flex;
+    appearance      : none;
+    align-items     : center;
+    justify-content : center;
+    transition      : 250ms;
+    user-select     : none;
+    position        : relative;
+    white-space     : nowrap;
+    vertical-align  : middle;
+    line-height     : 1.2;
+    outline         : none;
+    height          : 3rem;
+    min-width       : 3rem;
+    font-size       : 1.125rem;
+    padding-left    : 1.5rem;
+    padding-right   : 1.5rem;
+    background-color: #5e9923 !important;
+    color           : #fff;
+    margin-top      : 1.5rem;
 }
+
+.confirm:disabled {
+    background-color: #c0c0c0 !important;
+    cursor          : not-allowed;
+}
+
+.confirm:hover:not(:disabled) {
+    background-color: #4c7c1b !important;
+}
+
 .err .input {
-    border-color: red;
+    border-color: #ce0015;
 }
+
 .error {
-    color: red;
-    position: absolute;
-    top: -8px;
-    left: 40px;
-    font-size: 13px;
-    padding: 0 3px;
+    color           : #ff0019;
+    position        : absolute;
+    top             : -8px;
+    left            : 40px;
+    font-size       : 13px;
+    padding         : 0 3px;
     background-color: #fff;
 }

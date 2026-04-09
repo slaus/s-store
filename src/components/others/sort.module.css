@@ -1,69 +1,79 @@
 .dropbtn {
-    border-radius: 0.25rem;
-    font-weight: 600;
-    display: inline-flex;
-    appearance: none;
-    align-items: center;
-    justify-content: space-between;
-    transition: all .3s ease;
-    user-select: none;
-    position: relative;
-    white-space: nowrap;
-    vertical-align: middle;
-    line-height: 1.2;
-    outline: none;
-    height: 2.5rem;
-    min-width: 150px;
-    font-size: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    background-color: #5e9923 !important;
-    color: #fff;
-    gap: 10px;
-    margin-left: 10px;
-  }
-  
-  ._ {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
+  border-radius   : 0.25rem;
+  font-weight     : 600;
+  display         : inline-flex;
+  appearance      : none;
+  align-items     : center;
+  justify-content : space-between;
+  transition      : all .3s ease;
+  user-select     : none;
+  position        : relative;
+  white-space     : nowrap;
+  vertical-align  : middle;
+  line-height     : 1.2;
+  outline         : none;
+  height          : 2.5rem;
+  min-width       : 150px;
+  font-size       : .9rem;
+  padding-left    : 1rem;
+  padding-right   : 1rem;
+  background-color: #5e9923 !important;
+  color           : #fff;
+  gap             : 10px;
+  margin-left     : 10px;
+}
 
-  ._:hover .content {
-    display: block;
+._ {
+  position: relative;
+  display : inline-block;
+}
+
+@media screen and (max-width: 576px) {
+  ._ {
+    display : flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
   }
-  
-  .btn {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    font-size: 0.85rem;
-    text-align: left;
-    padding-left: 35px;
-    position: relative;
-  }
-  
-  .btn:hover {
-    background-color: #e4ffc8;
-  }
-  
-  ._:hover .dropbtn {
-    background-color: #4c7c1b !important;
-  }
-  .icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-60%);
-  }
+}
+
+.content {
+  display         : none;
+  position        : absolute;
+  right           : 0;
+  background-color: #f9f9f9;
+  min-width       : 160px;
+  box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index         : 1;
+}
+
+._:hover .content {
+  display: block;
+}
+
+.btn {
+  color          : black;
+  padding        : 10px 15px;
+  text-decoration: none;
+  display        : block;
+  width          : 100%;
+  font-size      : 0.85rem;
+  text-align     : left;
+  padding-left   : 35px;
+  position       : relative;
+}
+
+.btn:hover {
+  background-color: #e4ffc8;
+}
+
+._:hover .dropbtn {
+  background-color: #4c7c1b !important;
+}
+
+.icon {
+  position : absolute;
+  left     : 10px;
+  top      : 50%;
+  transform: translateY(-60%);
+}

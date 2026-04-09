@@ -1,17 +1,26 @@
 ._ {
-    margin-top: 100px;
-    margin-left: 280px;
-    padding: 1.5rem;
-    width: calc(100% - 280px);
-    transition: all 0.3s ease 0.3s;
+    margin-top    : 100px;
+    margin-left   : 280px;
+    padding       : 1.5rem;
+    padding-bottom: 2rem;
+    width         : calc(100% - 280px);
+    transition    : all 0.3s ease 0.3s;
 }
+
+@media screen and (max-width: 991px) {
+    ._ {
+        padding: 1.5rem .5rem 1rem;
+    }
+}
+
 @media screen and (max-width: 767px) {
     ._ {
         margin-left: 0;
-        width: 100%;
+        width      : 100%;
     }
 }
+
 ._.full {
     margin-left: 0;
-    width: 100%;
+    width      : 100%;
 }

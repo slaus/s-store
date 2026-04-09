@@ -1,18 +1,18 @@
 .alert {
-    z-index: 999;
-    position: fixed;
-    bottom: -100px;
-    left: 10px;
-    background: #eee;
-    width: 250px;
-    padding: 15px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    font-size: 15px;
-    border-radius: 3px;
-    transition: all 0.5s ease;
-    opacity: 0;
+    z-index       : 999;
+    position      : fixed;
+    bottom        : -100px;
+    left          : 10px;
+    background    : #eee;
+    width         : 250px;
+    padding       : 15px;
+    display       : flex;
+    gap           : 20px;
+    align-items   : center;
+    font-size     : 15px;
+    border-radius : 3px;
+    transition    : all 0.5s ease;
+    opacity       : 0;
     pointer-events: none;
 }
 
@@ -20,45 +20,45 @@
 .alert-error,
 .alert-warning {
     pointer-events: all;
-    animation: slideInOut 3s ease forwards;
+    animation     : slideInOut 3s ease forwards;
 }
 
 .alert-success {
-    background-color: #15a737;
-    color: #fff;
-    border: 1px solid #155724;
+    background-color: #5e9923;
+    color           : #fff;
+    border          : 1px solid #4c7c1b;
 }
 
 .alert-error {
-    background-color: #ce1d2f;
-    color: #fff;
-    border: 1px solid #721c24;
+    background-color: #ff0019;
+    color           : #fff;
+    border          : 1px solid #ce0015;
 }
 
 .alert-warning {
     background-color: #cc9e13;
-    color: #fff;
-    border: 1px solid #856404;
+    color           : #fff;
+    border          : 1px solid #856404;
 }
 
 @keyframes slideInOut {
     0% {
-        bottom: -100px;
+        bottom : -100px;
         opacity: 0;
     }
 
     15% {
-        bottom: 10px;
+        bottom : 10px;
         opacity: 1;
     }
 
     90% {
-        bottom: 10px;
+        bottom : 10px;
         opacity: 1;
     }
 
     100% {
-        bottom: -100px;
+        bottom : -100px;
         opacity: 0;
     }
 }

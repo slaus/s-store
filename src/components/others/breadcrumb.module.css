@@ -11,7 +11,7 @@
 .li {
     display: inline-flex;
     align-items: center;
-    text-transform: capitalize;
+    text-transform: inherit;
 }
 .link {
     display: flex;

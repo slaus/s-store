@@ -1,89 +1,95 @@
 ._ {
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    height: 100px;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 10;
+    width           : 100%;
+    background-color: #fff;
+    padding-top     : 1.5rem;
+    padding-bottom  : 1.5rem;
+    box-shadow      : rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    height          : 100px;
+    position        : fixed;
+    top             : 0px;
+    left            : 0px;
+    z-index         : 10;
 }
+
 .block {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: space-between;
-    width: 96%;
-    margin-left: auto;
-    margin-right: auto;
+    width          : 96%;
+    margin-left    : auto;
+    margin-right   : auto;
 }
+
 .div {
-    width: 1px;
-    height: 1px;
+    width  : 1px;
+    height : 1px;
     display: block;
 }
+
 .form {
-    display: block;
-    position: relative;
-    width: 60%;
+    display      : block;
+    position     : relative;
+    width        : 60%;
     border-radius: 0.5rem;
-    border: 2px solid #2d4052;
-    outline: none;
+    outline      : none;
 }
+
 @media screen and (max-width: 1199px) {
     .form {
         width: calc(100% - 80px);
     }
 }
+
 .input {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    transition: all 0.3s ease 0.3s;
-    outline: none;
-    font-size: 1.125rem;
-    padding-left: 4rem;
-    padding-right: 1rem;
-    height: 3rem;
-    line-height: 3rem;
-    border-radius: 0.25rem;
-    border-width: 0;
-    border-style: solid;
-    border-image: initial;
-    border-color: inherit;
-    background-color: rgb(255, 255, 255);
-    appearance: textfield;
-    outline-offset: -2px;
+    width           : 100%;
+    display         : flex;
+    align-items     : center;
+    position        : relative;
+    transition      : all 0.3s ease 0.3s;
+    outline         : none;
+    font-size       : 1.125rem;
+    padding-left    : 4rem;
+    padding-right   : 1rem;
+    height          : 3rem;
+    line-height     : 3rem;
+    border-radius   : 0.25rem;
+    border          : 2px solid #5e9923;
+    background-color: #fff;
+    appearance      : textfield;
+    outline-offset  : -2px;
 }
-.input::placeholder, .input:-webkit-input-placeholder, .input:-moz-input-placeholder {
+
+.input::placeholder,
+.input:-webkit-input-placeholder,
+.input:-moz-input-placeholder {
     color: #2d4052;
-  }
+}
+
 .search {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: center;
-    position: absolute;
-    height: 3rem;
-    width: 4rem;
-    font-size: 1.125rem;
-    top: 0px;
-    z-index: 1;
-    left: 0px;
+    position       : absolute;
+    height         : 3rem;
+    width          : 4rem;
+    font-size      : 1.125rem;
+    top            : 0px;
+    z-index        : 1;
+    left           : 0px;
 }
 
 .close {
-    outline: none;
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
+    outline        : none;
+    width          : 40px;
+    height         : 40px;
+    display        : inline-flex;
+    align-items    : center;
     justify-content: center;
-    border-radius: 0.25rem;
-    transition: all 0.3s ease 0.3s;
-    flex: 0 0 auto;
+    border-radius  : 0.25rem;
+    transition     : all 0.3s ease 0.3s;
+    flex           : 0 0 auto;
 }
+
 .close:hover {
     background-color: rgba(0, 0, 0, 0.06);
 }

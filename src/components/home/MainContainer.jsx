@@ -1,4 +1,6 @@
 import React from 'react';
+import ClientOnly from "@/components/ClientOnly";
+import Loading from '@/components/ui/Loading';
 import styles from "./main-container.module.css";
 import Bread from '@/components/others/Bread';
 import ItemsGrid from './ItemsGrid';
@@ -9,7 +11,9 @@ const MainContainer = ({showSidebar}) => {
         <main className={`${showSidebar ? styles._ : styles._ + " " + styles.full}`}>
             <Banner/>
             <Bread/>
-            <ItemsGrid/>
+            <ClientOnly fallback={<Loading/>}>
+                <ItemsGrid/>
+            </ClientOnly>
         </main>
     );
 };

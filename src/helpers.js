@@ -108,22 +108,26 @@ export function getWspUrl(orderData) {
   const { cartItems, subTotal, withDelivery, shippingCost, total, formData } = orderData;
   const { name, phone, address, city, schedule, comment } = formData;
 
+  // Поточна дата у форматі "09.04.2025, 14:10"
+  const now = new Date();
+  const day = String(now.getDate()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const year = now.getFullYear();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const formattedDate = `${day}.${month}.${year}, ${hours}:${minutes}`;
+
   let cartListforUrl = "";
 
-  {
-    Object.values(cartItems).forEach((item) => {
-      const itemTotal = (item.offerPrice ? item.offerPrice * item.qty : item.price * item.qty).toFixed(2);
-      cartListforUrl += `%0A%0A - *(${item.qty})* ${item.title} --> _*$${itemTotal}*_`;
-    });
-  }
+  Object.values(cartItems).forEach((item) => {
+    const itemTotal = (item.offerPrice ? item.offerPrice * item.qty : item.price * item.qty).toFixed(2);
+    cartListforUrl += `%0A%0A - *(${item.qty})* ${item.title} --> _*${itemTotal} грн.*_`;
+  });
 
-  const WSP_URL = `https://web.whatsapp.com/send/?phone=${N}&text=%2A${"Замовлення"}%3A%2A%20${ID}%0A%0A%2A${"Клієнт"}%3A%2A%20${name}%0A%0A%2A${"Телефон"}%3A%2A%20${phone}%0A%0A%2A${
-    withDelivery ? "Нова_Пошта" + "%3A%2A%20" + address + " %0A%0A%2A" : ""
-  }${withDelivery ? "Місто" + "%3A%2A%20" + city + "%0A%0A%2A" : ""}${
-    withDelivery ? "Область_район" + "%3A%2A%20" + schedule + "%0A%0A%2A" : ""
-  }${comment ? "Коментар" + "%3A%2A%20" + comment + "%0A%0A%2A" : ""}${"Список_замовлення"}%3A%2A${cartListforUrl}%0A%0A%2A${
-    withDelivery ? "Підсумок" + "%3A%2A%20$" + subTotal + " %0A%0A%2A" : ""
-  }${withDelivery ? "Вартість_доставки" + "%3A%2A%20$" + shippingCost + " %0A%0A%2A" : ""}${"Загальна_сума"}%3A%2A%20${total}%0A%0A`;
+  const WSP_URL = `https://web.whatsapp.com/send/?phone=${N}&text=%2AДата%3A%2A%20${formattedDate}%0A%0A%2AЗамовлення%3A%2A%20${ID}%0A%0A%2AКлієнт%3A%2A%20${name}%0A%0A%2AТелефон%3A%2A%20${phone}%0A%0A%2A${withDelivery ? "Нова_Пошта" + "%3A%2A%20" + address + " склад %0A%0A%2A" : ""
+    }${withDelivery ? "Місто" + "%3A%2A%20" + city + "%0A%0A%2A" : ""}${withDelivery ? "Область_район" + "%3A%2A%20" + schedule + "%0A%0A%2A" : ""
+    }${comment ? "Коментар" + "%3A%2A%20" + comment + "%0A%0A%2A" : ""}${"Список_замовлення"}%3A%2A${cartListforUrl}%0A%0A%2A${withDelivery ? "Підсумок" + "%3A%2A%20" + subTotal + " грн.%0A%0A%2A" : ""
+    }${withDelivery ? "Вартість_доставки" + "%3A%2A%20" + shippingCost + " грн.%0A%0A%2A" : ""}${"Загальна_сума"}%3A%2A%20${total} грн.%0A%0A`;
 
   return WSP_URL;
 }
@@ -137,23 +141,33 @@ export async function sendTelegramOrder(orderData) {
   const { cartItems, subTotal, withDelivery, shippingCost, total, formData } = orderData;
   const { name, phone, address, city, schedule, comment } = formData;
 
+  const now = new Date();
+  const day = String(now.getDate()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const year = now.getFullYear();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const formattedDate = `${day}.${month}.${year}, ${hours}:${minutes}`;
+
   let cartList = '';
   Object.values(cartItems).forEach((item) => {
-    const itemTotal = (item.offerPrice ? item.offerPrice * item.qty : item.price * item.qty).toFixed(2);
-    cartList += `\n- (${item.qty}) ${item.title} --> $${itemTotal}`;
+    const itemTotal = (item.offerPrice ? item.offerPrice * item.qty : item.price * item.qty).toFixed(0);
+    cartList += `\n- (${item.qty}) ${item.title} --> ${itemTotal} грн.`;
   });
 
   const message = `
+📅 *Дата:* ${formattedDate}
 🛒 *Замовлення:* ${ID}
 👤 *Клієнт:* ${name}
-📞 *Телефон:* ${phone}
-${withDelivery ? `🏠 *Нова Пошта:* ${address}\n🏙 *Місто:* ${city}\n🕐 *Область, район:* ${schedule}` : ''}
+📞 *Телефон:* [${phone}](tel:${phone})
+${withDelivery ? `🏠 *Нова Пошта:* ${address} склад\n🏙 *Місто:* ${city}\n⚓ *Область, район:* ${schedule}` : ''}
 ${comment ? `💬 *Коментар:* ${comment}` : ''}
+
 🧾 *Список замовлення:* ${cartList}
 
-💰 *Підсумок:* $${subTotal}
-🚚 *Вартість доставки:* $${withDelivery ? shippingCost : 0}
-💵 *Загальна сума:* $${total}
+💰 *Підсумок:* ${subTotal} грн.
+🚚 *Вартість доставки:* ${withDelivery ? shippingCost : 0} грн.
+💵 *Загальна сума:* ${total} грн.
   `;
 
   await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {

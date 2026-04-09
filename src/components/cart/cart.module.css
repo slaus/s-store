@@ -52,3 +52,8 @@
     border-width: 0;
     background: transparent;
 }
+
+.close:hover svg {
+    color: #5e9923;
+    fill: #5e9923;
+}

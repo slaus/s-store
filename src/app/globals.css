@@ -88,8 +88,16 @@ a {
   transition     : all 0.3s ease 0.3s;
 }
 
-button, button svg {
-  transition     : all 0.3s ease 0.3s;
+button,
+button svg,
+a svg {
+  transition: all 0.3s ease 0.3s;
+}
+
+button:hover svg,
+a:hover svg {
+  color: #5e9923;
+  fill : #5e9923;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -32,7 +32,7 @@ const CartItem = ({ item }) => {
             <CounterBtn type="cart" item={item} />
           </div>
         </div>
-        <p className={styles.total}>${itemTotal}</p>
+        <p className={styles.total}>{itemTotal} грн.</p>
         <button
           className={styles.delete}
           onClick={removeItemFromCart}

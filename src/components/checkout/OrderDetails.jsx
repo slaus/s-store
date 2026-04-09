@@ -25,18 +25,18 @@ const OrderDetails = () => {
             <div>
                 <div className={styles.item}>
                     <p>Підсумок</p>
-                    <p className={styles.subtotal}>$ {subTotal}</p>
+                    <p className={styles.subtotal}>{subTotal} грн.</p>
                 </div>
                 {withDelivery &&
                     <div className={styles.item}>
                         <p>Нова Пошта</p>
-                        <p className={styles.subtotal}>$ {withDelivery ? shippingCost : "0"}</p>
+                        <p className={styles.subtotal}>{withDelivery ? shippingCost : "0"} грн.</p>
                     </div>
                 }
 
                 <div className={styles.item}>
                     <p><b>Загальна сума</b></p>
-                    <p className={styles.total}>$ {total}</p>
+                    <p className={styles.total}>{total} грн.</p>
                 </div>
             </div>
         </div>

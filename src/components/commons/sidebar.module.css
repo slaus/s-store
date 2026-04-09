@@ -1,32 +1,39 @@
 ._ {
-    width           : 0;
+    width              : 0;
     /* background-color: #fff; */
-    position        : fixed;
-    transform       : translateX(280px);
-    transition      : all 0.3s ease 0.3s;
-    top             : 105px;
-    padding-top     : 1.25rem;
-    padding-bottom  : 1.25rem;
-    float           : left;
+    position           : fixed;
+    transform          : translateX(280px);
+    transition         : all 0.3s ease 0.3s;
+    top                : 104px;
+    padding-top        : 1.25rem;
+    padding-bottom     : 1.25rem;
+    float              : left;
     /* height          : 100%; */
-    overflow        : hidden;
-    opacity: 0;
-    z-index: 0;
+    overflow           : hidden;
+    opacity            : 0;
+    z-index            : 0;
 }
 
 ._.open {
     transform: translateX(0px);
     width    : 280px;
-    opacity: 1;
-    z-index: 3;
+    opacity  : 1;
+    z-index  : 3;
 }
 
+@media screen and (max-width: 576px) {
+    ._.open {
+        width: calc(100% - 30px);
+    }
+}
+
+
 .radiogroup {
-    display       : flex;
-    flex-direction: column;
+    display         : flex;
+    flex-direction  : column;
     background-color: #fff;
-    border-radius: 5px;
-    overflow: hidden;
+    border-radius   : 5px;
+    overflow        : hidden;
 }
 
 .btn {
@@ -47,7 +54,7 @@
     padding-left    : 1rem;
     padding-right   : 1rem;
     background-color: #fff;
-    color           : #192633;
+    color           : #000;
     border          : 0;
     padding-top     : 1.5rem;
     padding-bottom  : 1.5rem;
@@ -69,7 +76,7 @@
     gap           : 20px;
     font-weight   : 600;
     font-size     : 1rem;
-    text-transform: capitalize;
+    text-transform: inherit;
 }
 
 .item svg {

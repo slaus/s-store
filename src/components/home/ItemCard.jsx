@@ -19,6 +19,7 @@ const ItemsCard = ({ item }) => {
         <>
             <div className={styles._}>
                 {offerPrice && <div className={styles.sale}>Знижка</div>}
+                {item.new && <div className={styles.new}>Новинка</div>}
                 <div className={styles.img} onClick={openModal}>
                     <img alt={title} title={title} src={`/images/${img}`} className={styles.pict} />
                 </div>

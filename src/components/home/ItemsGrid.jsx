@@ -62,7 +62,7 @@ const ItemsGrid = () => {
           ))}
         </div>
       ) : (
-        <div>За запитом <b>"{searchValue}"</b> нічого не знайдено.</div>
+        <div className={styles.error}>За запитом <b>"{searchValue}"</b> нічого не знайдено.</div>
       )}
     </>
   );

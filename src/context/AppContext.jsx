@@ -5,6 +5,7 @@ import React, {
   useContext,
   useCallback,
   useMemo,
+  useEffect,
 } from "react";
 import data from "../data";
 
@@ -96,7 +97,7 @@ export const useReset = () => {
 
   const reset = useCallback(() => {
     setSelectedCategory("");
-    setSort("Default");
+    setSort("Замовчуванням");
     setQtySelectedItems(0);
     setDelivery(false);
     setGoodsInCart({});
@@ -140,10 +141,10 @@ export const useOrderDetails = () => {
 
     return {
       cartItems,
-      subTotal: subTotal.toFixed(2),
+      subTotal: subTotal.toFixed(0),
       withDelivery: delivery,
-      shippingCost: shippingCost.toFixed(2),
-      total: total.toFixed(2),
+      shippingCost: shippingCost.toFixed(0),
+      total: total.toFixed(0),
       formData: formState,
     };
   }, [goodsInCart, cartTotal, delivery, deliveryFee, formState]);
@@ -153,49 +154,132 @@ export const useOrderDetails = () => {
 
 // AppProviders component to provide all contexts
 export const AppProviders = ({ children }) => {
+  // Ініціалізація товарів та фільтрів
   const [items, setItems] = useState(data);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [itemsSort, setItemsSort] = useState([
-    "Замовчуванням", 
-    "Зростанням ID", 
-    "Спаданням ID", 
-    "Назвою (А-Я)", 
-    "Назвою (Я-А)", 
-    "Ціною (Мін.)", 
+    "Замовчуванням",
+    "Зростанням ID",
+    "Спаданням ID",
+    "Назвою (А-Я)",
+    "Назвою (Я-А)",
+    "Ціною (Мін.)",
     "Ціною (Макс.)",
   ]);
   const [sort, setSort] = useState("Замовчуванням");
+
+  // Завантаження кошика з localStorage (лише goodsInCart та delivery)
+  const [goodsInCart, setGoodsInCart] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("lavka_cart");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          return parsed.goodsInCart || {};
+        } catch (e) {
+          console.error("Failed to parse cart from localStorage", e);
+        }
+      }
+    }
+    return {};
+  });
+
+  const [delivery, setDelivery] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("lavka_cart");
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          return parsed.delivery || false;
+        } catch (e) {
+          return false;
+        }
+      }
+    }
+    return false;
+  });
+
+  // Похідні стани: кількість унікальних товарів, загальна кількість одиниць, загальна сума
   const [qtySelectedItems, setQtySelectedItems] = useState(0);
-  const [goodsInCart, setGoodsInCart] = useState({});
   const [cartLength, setCartLength] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
-  const [delivery, setDelivery] = useState(false);
-  const [deliveryFee, setDeliveryFee] = useState(1.5);
+
+  // Функція перерахунку похідних величин на основі вмісту кошика
+  const recalcCartDerivatives = useCallback((cart) => {
+    const itemsArray = Object.values(cart);
+    const uniqueCount = itemsArray.length;
+    let totalUnits = 0;
+    let totalSum = 0;
+    itemsArray.forEach((item) => {
+      const qty = item.qty || 0;
+      totalUnits += qty;
+      const price = item.offerPrice || item.price;
+      totalSum += price * qty;
+    });
+    setQtySelectedItems(uniqueCount);
+    setCartLength(totalUnits);
+    setCartTotal(totalSum);
+  }, []);
+
+  // При зміні вмісту кошика перераховуємо похідні
+  useEffect(() => {
+    recalcCartDerivatives(goodsInCart);
+  }, [goodsInCart, recalcCartDerivatives]);
+
+  // Зберігаємо goodsInCart та delivery у localStorage при кожній зміні
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const toSave = {
+        goodsInCart,
+        delivery,
+      };
+      localStorage.setItem("lavka_cart", JSON.stringify(toSave));
+    }
+  }, [goodsInCart, delivery]);
+
+  // Інші стани (не зберігаються в localStorage)
+  const [deliveryFee, setDeliveryFee] = useState(80);
   const [formState, setFormState] = useState({});
   const [alert, setAlert] = useState(null);
   const [searchValue, setSearchValue] = useState("");
 
-  // Функция для показа алерта
   const showAlert = (text, type = "success") => {
     setAlert({ text, type });
-
     setTimeout(() => setAlert(null), 4000);
   };
 
   return (
     <AlertContext.Provider value={{ alert, showAlert }}>
       <ItemsContext.Provider value={{ items, setItems }}>
-        <SelectedCategoryContext.Provider value={{ selectedCategory, setSelectedCategory }}>
+        <SelectedCategoryContext.Provider
+          value={{ selectedCategory, setSelectedCategory }}
+        >
           <ItemsSortContext.Provider value={{ itemsSort, setItemsSort }}>
             <SortContext.Provider value={{ sort, setSort }}>
-              <QtySelectedItemsContext.Provider value={{ qtySelectedItems, setQtySelectedItems }}>
-                <GoodsInCartContext.Provider value={{ goodsInCart, setGoodsInCart }}>
-                  <CartLengthContext.Provider value={{ cartLength, setCartLength }}>
-                    <CartTotalContext.Provider value={{ cartTotal, setCartTotal }}>
-                      <DeliveryContext.Provider value={{ delivery, setDelivery }}>
-                        <DeliveryFeeContext.Provider value={{ deliveryFee, setDeliveryFee }}>
-                          <FormStateContext.Provider value={{ formState, setFormState }}>
-                            <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+              <QtySelectedItemsContext.Provider
+                value={{ qtySelectedItems, setQtySelectedItems }}
+              >
+                <GoodsInCartContext.Provider
+                  value={{ goodsInCart, setGoodsInCart }}
+                >
+                  <CartLengthContext.Provider
+                    value={{ cartLength, setCartLength }}
+                  >
+                    <CartTotalContext.Provider
+                      value={{ cartTotal, setCartTotal }}
+                    >
+                      <DeliveryContext.Provider
+                        value={{ delivery, setDelivery }}
+                      >
+                        <DeliveryFeeContext.Provider
+                          value={{ deliveryFee, setDeliveryFee }}
+                        >
+                          <FormStateContext.Provider
+                            value={{ formState, setFormState }}
+                          >
+                            <SearchContext.Provider
+                              value={{ searchValue, setSearchValue }}
+                            >
                               {children}
                             </SearchContext.Provider>
                           </FormStateContext.Provider>
