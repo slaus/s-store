@@ -1,59 +1,80 @@
 ._ {
-    display: flex;
-    gap: 20px;
+    display    : flex;
+    gap        : 20px;
     align-items: center;
-    width: fit-content;
+    width      : fit-content;
 }
+
+@media screen and (max-width: 991px) {
+    ._ {
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    ._ {
+        gap: 10px;
+    }
+}
+
 ._.col {
-    flex-direction: column;
+    flex-direction : column;
     justify-content: center;
-    align-items:unset;
+    align-items    : unset;
 }
+
 .w_lg {
-    width: 100%;
+    width    : 100%;
     max-width: 1199px;
-    margin: auto;
+    margin   : auto;
 }
+
 .w_md {
-    width: 100%;
+    width    : 100%;
     max-width: 991px;
-    margin: auto;
+    margin   : auto;
 }
+
 .w_sm {
-    width: 100%;
+    width    : 100%;
     max-width: 767px;
-    margin: auto;
+    margin   : auto;
 }
+
 .w_xs {
-    width: 100%;
+    width    : 100%;
     max-width: 576px;
-    margin: auto;
+    margin   : auto;
 }
+
 @media screen and (max-width: 1199px) {
     .col_lg {
-        flex-direction: column;
+        flex-direction : column;
         justify-content: center;
-        align-items:unset;
+        align-items    : unset;
     }
 }
+
 @media screen and (max-width: 991px) {
     .col_md {
-        flex-direction: column;
+        flex-direction : column;
         justify-content: center;
-        align-items:unset;
+        align-items    : unset;
     }
 }
+
 @media screen and (max-width: 767px) {
     .col_sm {
-        flex-direction: column;
+        flex-direction : column;
         justify-content: center;
-        align-items:unset;
+        align-items    : unset;
     }
 }
+
 @media screen and (max-width: 576px) {
     .col_xs {
-        flex-direction: column;
+        flex-direction : column;
         justify-content: center;
-        align-items:unset;
+        align-items    : unset;
     }
 }

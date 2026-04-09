@@ -1,41 +1,42 @@
 export const metadata = {
-  title: 'Default Page',
-  description: 'The React Framework for the Web',
-  keywords: ['Next.js', 'React', 'JavaScript'],
-  authors: [{ name: 'Slaus', url: 'https://nextjs.org'}],
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  title: {
+    default: 'Перепелиний клуб',
   },
-  metadataBase: new URL('https://polechu.com'),
-  alternates: {
-    canonical: '/',
-    languages: {
-      'en': '/en',
-      'uk': '/uk',
-    },
-  },
+  description: 'Ми даємо вам найкраще, що створила природа. Перепелина продукція. Замовляйте зі смаком!',
+  keywords: ['фермерські продукти', 'доставка їжі', 'натуральне харчування', 'м\'ясо перепелине', 'здорове харчування', 'яйця перепелині', 'делікатеси з перепелки', 'перепелина продукція'],
+  authors: [{ name: 'mister.slaus@gmail.com' }],
   openGraph: {
-    title: 'Next.js',
-    description: 'The React Framework for the Web',
-    url: 'https://nextjs.org',
-    siteName: 'Next.js',
+    title: 'Перепелиний клуб',
+    description: 'Ми даємо вам найкраще, що створила природа',
+    url: 'https://perepel-club.com',
+    siteName: 'Перепелиний клуб',
     images: [
       {
-        url: 'https://nextjs.org/og.png', // Must be an absolute URL
-        width: 800,
-        height: 600,
-      },
-      {
-        url: 'https://nextjs.org/og-alt.png', // Must be an absolute URL
-        width: 1800,
-        height: 1600,
-        alt: 'My custom alt',
+        url: '/images/banner-bg.webp',
+        width: 1200,
+        height: 630,
       },
     ],
-    locale: 'en_US',
+    locale: 'uk_UA',
     type: 'website',
   },
-  manifest: 'https://nextjs.org/manifest.json',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Перепелиний клуб',
+    description: 'Ми даємо вам найкраще, що створила природа',
+    images: ['/images/banner-bg.webp'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };

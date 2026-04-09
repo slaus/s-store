@@ -9,8 +9,6 @@ import Alert from "@/components/ui/Alert";
 import MainContainer from "@/components/home/MainContainer";
 import Cart from "@/components/cart/Cart";
 import Search from "@/components/others/Search";
-import Head from "next/head";
-import { metadata } from "./metadata";
 import Wrapper from "@/components/commons/Wrapper";
 
 export default function Home() {
@@ -53,11 +51,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-      </Head>
-
       <div className={styles.main}>
         <Header
           page="home"

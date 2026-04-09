@@ -18,7 +18,7 @@
   flex-wrap      : wrap;
   width          : 100%;
   max-width      : 1600px;
-  padding: 0 15px;
+  padding        : 0 15px;
   margin-left    : auto;
   margin-right   : auto;
 }
@@ -37,6 +37,44 @@
   display        : flex;
   justify-content: center;
   align-items    : center;
+}
+
+@media screen and (max-width: 991px) {
+  .hamburger {
+    width : 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .hamburger {
+    width : 35px;
+    height: 35px;
+  }
+}
+
+.store {
+  padding        : 0px;
+  border         : none;
+  width          : 45px;
+  height         : 45px;
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+@media screen and (max-width: 991px) {
+  .store {
+    width : 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .store {
+    width : 35px;
+    height: 35px;
+  }
 }
 
 ._ button:hover svg {
@@ -58,6 +96,20 @@
   align-items    : center;
 }
 
+@media screen and (max-width: 991px) {
+  .search {
+    width : 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .search {
+    width : 35px;
+    height: 35px;
+  }
+}
+
 .cart {
   padding        : 0px;
   width          : 45px;
@@ -66,6 +118,43 @@
   justify-content: center;
   align-items    : center;
   position       : relative;
+}
+
+@media screen and (max-width: 991px) {
+  .cart {
+    width : 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .cart {
+    width : 35px;
+    height: 35px;
+  }
+}
+
+.phone {
+  font-size      : 1.4rem;
+  font-weight    : 600;
+  text-decoration: none;
+  margin-right   : 1rem;
+}
+
+.phone:hover {
+  color: #5e9923;
+}
+
+@media screen and (max-width: 991px) {
+  .phone {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .phone {
+    font-size: 1.1rem;
+  }
 }
 
 .qty {

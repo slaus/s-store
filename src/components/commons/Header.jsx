@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import styles from './header.module.css';
 import { BiMenuAltLeft, BiSearch, BiShoppingBag, BiStoreAlt } from "react-icons/bi";
@@ -5,6 +6,8 @@ import Logo from '@/components/others/Logo';
 import Flex from '@/components/ui/Flex';
 import Link from "next/link";
 import { useQtySelectedItems } from '@/context/AppContext';
+
+const phone = process.env.NEXT_PUBLIC_PHONE;
 
 const Header = ({ page = "", setShowCart, setShowSearchBar, showSidebar, setShowSidebar }) => {
 
@@ -36,6 +39,7 @@ const Header = ({ page = "", setShowCart, setShowSearchBar, showSidebar, setShow
                 <Flex>
                     {page === 'home' ? (
                         <>
+                            <a className={styles.phone} href={`tel:${phone}`}>{phone}</a>
                             <button className={styles.search} onClick={handleShowSearchBar}>
                                 <BiSearch size={38} />
                             </button>
@@ -45,7 +49,7 @@ const Header = ({ page = "", setShowCart, setShowSearchBar, showSidebar, setShow
                             </button>
                         </>
                     ) : (
-                        <Link href="/">
+                        <Link className={styles.store} href="/">
                             <BiStoreAlt size={38} />
                         </Link>
                     )}
