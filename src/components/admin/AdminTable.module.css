@@ -1,0 +1,26 @@
+._ {
+    margin-top      : 1rem;
+    width           : 100%;
+    border-collapse : collapse;
+    border          : 1px solid #5e5e5e;
+    margin-bottom   : 2rem;
+    width           : 100%;
+    background-color: #fff;
+    border-radius   : 8px;
+    overflow        : hidden;
+    box-shadow      : rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+._ th {
+    border    : 1px solid #dddddd;
+    padding   : 10px;
+}
+
+._ td {
+    border    : 1px solid #dddddd;
+    padding   : 4px 8px;
+}
+
+._ th {
+    background-color: #e4ffc8;
+}

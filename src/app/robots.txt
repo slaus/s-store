@@ -3,3 +3,5 @@ Allow: /
 Disallow: /checkout
 Disallow: /cart
 Disallow: /api/
+Disallow: /admin
+Disallow: /api/admin

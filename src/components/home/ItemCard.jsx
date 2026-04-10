@@ -25,8 +25,8 @@ const ItemsCard = ({ item }) => {
                 </div>
                 <div className={styles.block}>
                     <div className={styles.prices}>
-                        <p className={styles.price}>{(offerPrice || price).toFixed(0)} грн.</p>
-                        {offerPrice && <p className={styles.old}>{price.toFixed(0)} грн.</p>}
+                        <p className={styles.price}>{(offerPrice || price)} грн.</p>
+                        {offerPrice && <p className={styles.old}>{price} грн.</p>}
                     </div>
                     <p className={styles.title}>{title}</p>
                 </div>

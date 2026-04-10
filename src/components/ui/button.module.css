@@ -18,6 +18,16 @@
     font-size       : 1rem;
     background-color: #5e9923 !important;
     color           : #fff;
+    max-width       : fit-content;
+    padding         : 0 20px;
+    cursor          : pointer;
+    border-width    : 0;
+}
+
+._:hover svg {
+    cursor          : pointer;
+    fill : #fff;
+    color: #fff;
 }
 
 @media screen and (max-width: 991px) {

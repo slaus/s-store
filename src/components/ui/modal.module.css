@@ -13,7 +13,7 @@
 
 .modal {
     outline         : 0px;
-    max-width       : 50vw;
+    max-width       : 40vw;
     margin          : auto;
     top             : 0px;
     width           : 100%;
@@ -33,7 +33,7 @@
 
 @media screen and (max-width: 991px) {
     .modal {
-        max-width       : calc(100% - 2rem);
+        max-width: calc(100% - 2rem);
     }
 }
 
@@ -52,6 +52,7 @@
     flex            : 0 0 auto;
     background-color: #fff !important;
     z-index         : 1;
+    cursor          : pointer;
 }
 
 .content {

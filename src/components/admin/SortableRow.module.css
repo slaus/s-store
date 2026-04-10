@@ -1,0 +1,77 @@
+.dragHandle {
+    cursor     : grab;
+    text-align : center;
+    font-size  : 1.2rem;
+    user-select: none;
+}
+
+.cell {
+    font-size : .85rem;
+    text-align: center;
+}
+
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    text-align: left;
+}
+
+.edit {
+    cursor          : pointer;
+    display         : inline-flex;
+    justify-content : center;
+    align-items     : center;
+    margin-right    : 5px;
+    border-radius   : 0.25rem;
+    transition      : all 0.3s ease 0.3s;
+    height          : 22px;
+    width           : 22px;
+    background-color: #5e9923;
+    color           : #fff;
+}
+
+.edit:hover {
+    background-color: #4e7a1c;
+    color           : #fff;
+}
+
+.edit:hover svg {
+    color: #fff;
+    fill : #fff;
+}
+
+.delete {
+    cursor          : pointer;
+    display         : inline-flex;
+    justify-content : center;
+    align-items     : center;
+    margin-right    : 5px;
+    border-radius   : 0.25rem;
+    transition      : all 0.3s ease 0.3s;
+    height          : 22px;
+    width           : 22px;
+    background-color: #ff0019;
+    color           : #fff;
+}
+
+.delete:hover {
+    background-color: #ce0015;
+    color           : #fff;
+}
+
+.delete:hover svg {
+    color: #fff;
+    fill : #fff;
+}
+
+.ok,
+.new {
+    color: #5e9923;
+}
+
+.action {
+    color: #ff0019;
+}
+
+.img {
+    cursor: pointer;
+}
