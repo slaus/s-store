@@ -21,7 +21,7 @@ const ItemsCard = ({ item }) => {
                 {offerPrice && <div className={styles.sale}>Знижка</div>}
                 {item.new && <div className={styles.new}>Новинка</div>}
                 <div className={styles.img} onClick={() => img && openModal()}>
-                    <img alt={title} title={title} src={`/images/${img || 'no-photo.jpg'}`} className={styles.pict} />
+                    <img alt={title} title={title} src={img || '/images/no-photo.jpg'} className={styles.pict} />
                 </div>
                 <div className={styles.block}>
                     <div className={styles.prices}>
@@ -37,7 +37,7 @@ const ItemsCard = ({ item }) => {
             {isModalOpen &&
                 <Overlay>
                     <Modal setIsModalOpen={setIsModalOpen}>
-                        <img alt={title} title={title} src={`/images/${img}`} />
+                        <img alt={title} title={title} src={img} />
                     </Modal>
                 </Overlay>
             }

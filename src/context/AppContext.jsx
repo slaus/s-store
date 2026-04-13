@@ -7,7 +7,6 @@ import React, {
   useMemo,
   useEffect,
 } from "react";
-import data from "../data";
 
 // Contexts
 const ItemsContext = createContext();
@@ -78,7 +77,7 @@ export const useRefreshCart = () => {
       setQtySelectedItems,
       setCartLength,
       setCartTotal,
-    ]
+    ],
   );
 
   return { refreshCart };
@@ -155,7 +154,17 @@ export const useOrderDetails = () => {
 // AppProviders component to provide all contexts
 export const AppProviders = ({ children }) => {
   // Ініціалізація товарів та фільтрів
-  const [items, setItems] = useState(data);
+  const [items, setItems] = useState([]);
+  const [loadingItems, setLoadingItems] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then(setItems)
+      .catch(console.error)
+      .finally(() => setLoadingItems(false));
+  }, []);
+  
   const [selectedCategory, setSelectedCategory] = useState("");
   const [itemsSort, setItemsSort] = useState([
     "Замовчуванням",

@@ -4,6 +4,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import styles from "./SortableRow.module.css";
 import { BiEdit, BiTrash, BiCheck, BiImage } from "react-icons/bi";
+import ModalPortal from "@/components/ui/ModalPortal";
 import Overlay from "@/components/others/Overlay";
 import Modal from "@/components/ui/Modal";
 import { useAlert } from "@/context/AppContext";
@@ -84,15 +85,17 @@ export default function SortableRow({ product, onEdit, onDelete }) {
       </tr>
 
       {isModalOpen && (
-        <Overlay>
-          <Modal setIsModalOpen={setIsModalOpen}>
-            <img
-              alt={product.title}
-              title={product.title}
-              src={`/images/${product.img}`}
-            />
-          </Modal>
-        </Overlay>
+        <ModalPortal>
+          <Overlay>
+            <Modal setIsModalOpen={setIsModalOpen}>
+              <img
+                alt={product.title}
+                title={product.title}
+                src={product.img}
+              />
+            </Modal>
+          </Overlay>
+        </ModalPortal>
       )}
     </>
   );

@@ -14,7 +14,7 @@ import Overlay from "@/components/others/Overlay";
 import AdminTable from "@/components/admin/AdminTable";
 import ProductForm from "@/components/admin/ProductForm";
 import Button from "@/components/ui/Button";
-import { BiPlus} from "react-icons/bi";
+import { BiPlus } from "react-icons/bi";
 
 function AdminContent() {
   const searchParams = useSearchParams();
@@ -42,7 +42,7 @@ function AdminContent() {
       return;
     }
 
-    fetch(`/api/admin?token=${token}`)
+    fetch(`/api/admin?token=${token}`, { cache: 'no-store' })
       .then((res) => {
         if (res.status === 401) {
           router.replace("/");
@@ -59,7 +59,13 @@ function AdminContent() {
       .catch(() => router.replace("/"));
   }, [token, router]);
 
-  const handleDragEnd = (event) => {
+  const refreshProducts = async () => {
+    const res = await fetch(`/api/admin?token=${token}`, { cache: 'no-store' });
+    const data = await res.json();
+    setProducts(data);
+  };
+
+  const handleDragEnd = async (event) => {
     const { active, over } = event;
     if (active.id !== over.id) {
       const oldIndex = products.findIndex((p) => p.id === active.id);
@@ -67,6 +73,7 @@ function AdminContent() {
       const newProducts = arrayMove(products, oldIndex, newIndex);
       setProducts(newProducts);
       saveOrder(newProducts);
+      await refreshProducts();
     }
   };
 
@@ -118,6 +125,7 @@ function AdminContent() {
     });
     if (res.ok) {
       setProducts(products.filter((p) => p.id !== id));
+      await refreshProducts();
     } else {
       alert("Помилка видалення");
     }
@@ -131,8 +139,8 @@ function AdminContent() {
     fd.append("file", file);
     const res = await fetch("/api/upload", { method: "POST", body: fd });
     if (res.ok) {
-      const { filename } = await res.json();
-      setFormData({ ...formData, img: filename });
+      const { url } = await res.json();
+      setFormData({ ...formData, img: url });
     } else alert("Помилка завантаження");
     setUploading(false);
   };
@@ -150,6 +158,7 @@ function AdminContent() {
       if (res.ok) {
         const saved = await res.json();
         setProducts([...products, saved]);
+        await refreshProducts();
         closeModal();
       } else {
         const err = await res.text();
@@ -165,13 +174,14 @@ function AdminContent() {
         let updated;
         try {
           updated = await res.json();
+          await refreshProducts();
         } catch (e) {
           console.error("Помилка парсингу JSON", e);
           alert("Помилка: некоректна відповідь сервера");
           return;
         }
         setProducts((prev) =>
-          prev.map((p) => (p.id === editingId ? updated : p))
+          prev.map((p) => (p.id === editingId ? updated : p)),
         );
         closeModal();
       } else {
@@ -185,7 +195,9 @@ function AdminContent() {
   return (
     <>
       <h1>Адмінка товарів</h1>
-      <Button type="button" onClick={openModalForAdd}><BiPlus size={18} /> Додати товар</Button>
+      <Button type="button" onClick={openModalForAdd}>
+        <BiPlus size={18} /> Додати товар
+      </Button>
 
       {loading ? (
         <Loading />
