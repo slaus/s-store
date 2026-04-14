@@ -62,7 +62,7 @@ export default function Home() {
 
         {showSearchBar && <Search setShowSearchBar={setShowSearchBar} />}
         <Wrapper>
-          <Sidebar showSidebar={showSidebar} mobile={mobile} />
+          <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} mobile={mobile} />
           <Main>
             <MainContainer showSidebar={showSidebar} />
           </Main>

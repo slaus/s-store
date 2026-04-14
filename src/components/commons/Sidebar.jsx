@@ -3,18 +3,23 @@ import styles from "./sidebar.module.css";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { useItems, useSelectedCategory } from '@/context/AppContext';
 
-const Sidebar = ({ showSidebar, mobile }) => {
-
+const Sidebar = ({ showSidebar, mobile, setShowSidebar }) => {
     const { items } = useItems();
     const { selectedCategory, setSelectedCategory } = useSelectedCategory();
     const uniqueCategories = [...new Set(items.map(item => item.category))];
 
     const handleClick = (category) => {
         setSelectedCategory(category);
+        if (mobile) {
+            setShowSidebar(false);
+        }
     };
 
     const handleShowAll = () => {
         setSelectedCategory('');
+        if (mobile) {
+            setShowSidebar(false);
+        }
     };
 
     return (
@@ -47,7 +52,7 @@ const Sidebar = ({ showSidebar, mobile }) => {
                     ))}
                 </div>
             </aside>
-            {mobile && showSidebar && <div className={styles.overlay}></div>}
+            {mobile && showSidebar && <div className={styles.overlay} onClick={() => setShowSidebar(false)}></div>}
         </>
     );
 };

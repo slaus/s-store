@@ -37,12 +37,19 @@
   display        : flex;
   justify-content: center;
   align-items    : center;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 991px) {
   .hamburger {
     width : 40px;
     height: 40px;
+    border-radius: 3px;
+
+    svg {
+      width : 24px;
+      height: 24px;
+    }
   }
 }
 
@@ -61,12 +68,20 @@
   display        : flex;
   justify-content: center;
   align-items    : center;
+  border-radius: 5px;
+  background: #f0f0f0;
 }
 
 @media screen and (max-width: 991px) {
   .store {
     width : 40px;
     height: 40px;
+    border-radius: 3px;
+
+    svg {
+      width : 24px;
+      height: 24px;
+    }
   }
 }
 
@@ -94,12 +109,19 @@
   display        : flex;
   justify-content: center;
   align-items    : center;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 991px) {
   .search {
     width : 40px;
     height: 40px;
+    border-radius: 3px;
+
+    svg {
+      width : 24px;
+      height: 24px;
+    }
   }
 }
 
@@ -118,12 +140,19 @@
   justify-content: center;
   align-items    : center;
   position       : relative;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 991px) {
   .cart {
     width : 40px;
     height: 40px;
+    border-radius: 3px;
+
+    svg {
+      width : 24px;
+      height: 24px;
+    }
   }
 }
 
