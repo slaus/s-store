@@ -50,13 +50,10 @@ export const useRefreshCart = () => {
       const currentCart = { ...goodsInCart };
 
       if (n === 1) {
-        // Add item to cart
         currentCart[item.id] = { ...item, qty: 1 };
-      } else if (n > 0 && n <= item.stock) {
-        // Update item quantity in cart
+      } else if (n > 1) {
         currentCart[item.id] = { ...item, qty: n };
       } else if (n < 1) {
-        // Remove item from cart
         delete currentCart[item.id];
       }
 
@@ -67,9 +64,9 @@ export const useRefreshCart = () => {
         total += actualPrice * item.qty;
       });
 
-      setGoodsInCart(currentCart); // Update cart state
-      setQtySelectedItems(cartToArray.length); // Update cart length
-      setCartTotal(total); // Update cart total
+      setGoodsInCart(currentCart);
+      setQtySelectedItems(cartToArray.length);
+      setCartTotal(total);
     },
     [
       goodsInCart,
@@ -153,7 +150,6 @@ export const useOrderDetails = () => {
 
 // AppProviders component to provide all contexts
 export const AppProviders = ({ children }) => {
-  // Ініціалізація товарів та фільтрів
   const [items, setItems] = useState([]);
   const [loadingItems, setLoadingItems] = useState(true);
 
