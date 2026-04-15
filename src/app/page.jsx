@@ -60,7 +60,7 @@ export default function Home() {
           setShowSidebar={setShowSidebar}
         />
 
-        {showSearchBar && <Search setShowSearchBar={setShowSearchBar} />}
+        <Search showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar} />
         <Wrapper>
           <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} mobile={mobile} />
           <Main>

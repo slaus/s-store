@@ -4,7 +4,7 @@ import { BiSearch } from "react-icons/bi";
 import { IoCloseOutline } from "react-icons/io5";
 import { useSearch } from "@/context/AppContext";
 
-const Search = ({ setShowSearchBar }) => {
+const Search = ({ showSearchBar, setShowSearchBar }) => {
   const { searchValue, setSearchValue } = useSearch();
 
   const handleSubmit = (e) => {
@@ -28,7 +28,7 @@ const Search = ({ setShowSearchBar }) => {
   };
 
   return (
-    <div className={styles._}>
+    <div className={`${styles._} ${showSearchBar ? styles.show : ""}`}>
       <div className={styles.block}>
         <div className={styles.div}></div>
         <form className={styles.form} onSubmit={handleSubmit}>

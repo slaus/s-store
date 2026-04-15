@@ -37,13 +37,13 @@
   display        : flex;
   justify-content: center;
   align-items    : center;
-  border-radius: 5px;
+  border-radius  : 5px;
 }
 
 @media screen and (max-width: 991px) {
   .hamburger {
-    width : 40px;
-    height: 40px;
+    width        : 40px;
+    height       : 40px;
     border-radius: 3px;
 
     svg {
@@ -68,14 +68,14 @@
   display        : flex;
   justify-content: center;
   align-items    : center;
-  border-radius: 5px;
-  background: #f0f0f0;
+  border-radius  : 5px;
+  background     : #f0f0f0;
 }
 
 @media screen and (max-width: 991px) {
   .store {
-    width : 40px;
-    height: 40px;
+    width        : 40px;
+    height       : 40px;
     border-radius: 3px;
 
     svg {
@@ -109,13 +109,13 @@
   display        : flex;
   justify-content: center;
   align-items    : center;
-  border-radius: 5px;
+  border-radius  : 5px;
 }
 
 @media screen and (max-width: 991px) {
   .search {
-    width : 40px;
-    height: 40px;
+    width        : 40px;
+    height       : 40px;
     border-radius: 3px;
 
     svg {
@@ -140,13 +140,13 @@
   justify-content: center;
   align-items    : center;
   position       : relative;
-  border-radius: 5px;
+  border-radius  : 5px;
 }
 
 @media screen and (max-width: 991px) {
   .cart {
-    width : 40px;
-    height: 40px;
+    width        : 40px;
+    height       : 40px;
     border-radius: 3px;
 
     svg {
@@ -200,6 +200,24 @@
   justify-content : center;
   align-items     : center;
   position        : absolute;
-  top             : 0px;
+  top             : -10px;
   left            : -10px;
+}
+
+@media screen and (max-width: 991px) {
+  .qty {
+    width    : 1.2rem;
+    height   : 1.2rem;
+    top      : -5px;
+    left     : -5px;
+    font-size: 0.72rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .qty {
+    width    : 1rem;
+    height   : 1rem;
+    font-size: 0.7rem;
+  }
 }

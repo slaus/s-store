@@ -66,9 +66,9 @@
 }
 
 .title {
-    font-size     : 0.875rem;
+    font-size        : 0.875rem;
     /* text-transform: capitalize; */
-    min-height    : 42px;
+    min-height       : 42px;
 }
 
 .sale {
@@ -100,12 +100,15 @@
     color           : #fff;
     position        : absolute;
     top             : 1rem;
-    left           : 1.15rem;
+    left            : 1.15rem;
 }
 
 .btns {
-    width      : 75%;
-    line-height: 40px;
-    height     : 2.5rem;
-    min-width  : 2.5rem;
+    width          : 75%;
+    line-height    : 40px;
+    height         : 2.5rem;
+    min-width      : 2.5rem;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
 }
