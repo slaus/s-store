@@ -3,8 +3,10 @@ import styles from "./cart-item.module.css";
 import { IoCloseOutline } from "react-icons/io5";
 import CounterBtn from "../ui/CounterBtn";
 import { useGoodsInCart, useRefreshCart, useAlert } from "@/context/AppContext";
+import { useTranslations } from 'next-intl';
 
 const CartItem = ({ item }) => {
+  const t = useTranslations('cart');
   const { showAlert } = useAlert();
 
   const { title, price, img, offerPrice, qty } = item;
@@ -15,7 +17,7 @@ const CartItem = ({ item }) => {
 
   const removeItemFromCart = (e) => {
     e.preventDefault();
-    showAlert("Товар видалено з кошика!", "error");
+    showAlert(t('removed'), "error");
     refreshCart({ item, n: 0 });
   };
 
@@ -27,12 +29,12 @@ const CartItem = ({ item }) => {
         </div>
         <div className={styles.block}>
           <p className={styles.title}>{title}</p>
-          <p className={styles.price}>Ціна за шт. {offerPrice || price} грн.</p>
+          <p className={styles.price}>{t('item_price')} {offerPrice || price} {t('currency')}</p>
           <div className={styles.btns}>
             <CounterBtn type="cart" item={item} />
           </div>
         </div>
-        <p className={styles.total}>{itemTotal} грн.</p>
+        <p className={styles.total}>{itemTotal} {t('currency')}</p>
         <button
           className={styles.delete}
           onClick={removeItemFromCart}

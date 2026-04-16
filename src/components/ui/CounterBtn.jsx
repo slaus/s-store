@@ -3,21 +3,24 @@ import styles from "./counter-btn.module.css";
 import { BiPlus, BiMinus } from "react-icons/bi";
 import Button from '../ui/Button';
 import { useRefreshCart,useAlert } from '@/context/AppContext';
+import { useTranslations } from 'next-intl';
 
 const CounterBtn = ({ type = "default", counter = 0, item }) => {
+    const t = useTranslations('common');
+    const a = useTranslations('alert');
     const { refreshCart } = useRefreshCart();
     const { showAlert } = useAlert();
 
     const addItem = (e) => {
         e.preventDefault();
         refreshCart({ item, n: counter + 1 });
-        showAlert("Товар успішно додано!", "success");
+        showAlert(a('added'), "success");
     };
 
     const removeItem = (e) => {
         e.preventDefault();
         if (counter === 1) {
-            showAlert("Товар видалено з кошика!", "error");
+            showAlert(a('removed'), "error");
         }
         refreshCart({ item, n: counter - 1 });
     };
@@ -39,7 +42,7 @@ const CounterBtn = ({ type = "default", counter = 0, item }) => {
     return (
         <>
             {counter === 0 ? (
-                <Button type="button" onClick={addItem}>Додати до кошика</Button>
+                <Button type="button" onClick={addItem}>{t('add_to_cart')}</Button>
             ) : (
                 <div className={styles._}>
                     <button type="button" className={styles.btn} onClick={removeItem}>

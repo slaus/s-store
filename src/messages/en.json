@@ -1,0 +1,116 @@
+{
+  "site": {
+    "name": "Quail Club"
+  },
+  "metadata": {
+    "title": "Quail Club",
+    "description": "We give you the best that nature has created...",
+    "keywords": "farm products,food delivery,...",
+    "ogTitle": "Quail Club",
+    "ogDescription": "We give you the best that nature has created",
+    "siteName": "Quail Club",
+    "twitterTitle": "Quail Club",
+    "twitterDescription": "We give you the best that nature has created"
+  },
+  "common": {
+    "loading": "Loading...",
+    "phone": "Phone:",
+    "search": "Product search",
+    "cart": "Cart",
+    "products": "Products",
+    "add_to_cart": "Add to cart",
+    "out_of_stock": "Out of stock",
+    "currency": "uah."
+  },
+  "product": {
+    "not_found": "Nothing found for query <b>\"{search}\"</b>.",
+    "all": "All products",
+    "sort": "Sort by:",
+    "default": "Default",
+    "asc_id": "By ID ascending",
+    "desc_id": "By ID descending",
+    "asc_name": "By Name (A-Z)",
+    "desc_name": "By Name (Z-A)",
+    "asc_price": "By Price (Min.)",
+    "desc_price": "By Price (Max.)"
+  },
+  "alert": {
+    "added": "Product successfully added!",
+    "updated": "Product successfully updated!",
+    "removed": "Product removed from cart!"
+  },
+  "admin": {
+    "add": "Add new product",
+    "edit": "Edit product",
+    "show": "Show on the site?",
+    "new": "Add to new products?"
+  },
+  "form": {
+    "currency": "uah.",
+    "item_id": "Product item (unique)",
+    "item_id_error": "Item required",
+    "item_name": "Product name",
+    "item_name_error": "Product name required",
+    "item_price": "Price",
+    "item_price_error": "Write the price of the product",
+    "item_offer": "Promotional price, if any",
+    "item_offer_error": "Promotional price cannot exceed the regular price!",
+    "item_category": "Category (e.g. fresh meat)",
+    "item_category_error": "Category required",
+    "delete_photo": "Delete photo",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "cart": {
+    "no_item": "No items in cart!",
+    "no_item_desc": "Your cart is empty. You haven't purchased anything yet.",
+    "checkout": "Checkout",
+    "shoping_cart": "Shoping cart",
+    "removed": "Item removed from cart!",
+    "item_price": "Price per unit",
+    "subtotal": "Subtotal:",
+    "currency": "uah"
+  },
+  "checkout": {
+    "title": "Ordering",
+    "name": "Your name and surname",
+    "stock": "Nova Poshta warehouse",
+    "city": "Your settlement",
+    "area": "Region, district",
+    "comment": "Additional comment",
+    "checkout": "Place an order",
+    "agree": "Confirm order?",
+    "agree_desc": "You must confirm your order. Unconfirmed orders will be ignored.",
+    "yes": "Yes",
+    "order": "Your order",
+    "subtotal": "Summary:",
+    "currency": "uah",
+    "delivery": "Nova Poshta:",
+    "is_delivery": "Delivery in Ukraine?",
+    "total": "Total amount:",
+    "your_data": "Your data",
+    "removed": "Item removed from cart!",
+    "item_price": "Price per unit"
+  },
+  "validation": {
+    "name": "First and last name are required",
+    "name_max": "Maximum length 30 characters",
+    "name_min": "Minimum length 5 characters",
+    "name_pattern": "Enter first and last name separated by a space",
+    "phone": "Phone number is required",
+    "phone_max": "Maximum length 13 characters",
+    "phone_min": "Minimum length 13 characters",
+    "phone_pattern": "Number must be in the format +38XXXXXXXXXX",
+    "delivery": "Nova Poshta is required",
+    "delivery_max": "Maximum length 20 characters",
+    "delivery_min": "Minimum length 1 character",
+    "delivery_pattern": "Incorrect composition of Nova Poshta",
+    "city": "City or town is required",
+    "city_max": "Maximum length 20 characters",
+    "city_min": "Minimum length 3 characters",
+    "city_pattern": "Invalid city or town",
+    "schedule_max": "Maximum length 20 characters",
+    "schedule_pattern": "Invalid region, district",
+    "comment_max": "Maximum length 30 characters"
+  }
+}

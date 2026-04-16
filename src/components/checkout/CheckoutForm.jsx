@@ -19,8 +19,13 @@ import { getFormValidations } from "../../helpers";
 import ModalAlert from "@/components/others/ModalAlert";
 import Overlay from "@/components/others/Overlay";
 import Modal from "@/components/ui/Modal";
+import { useTranslations } from 'next-intl';
 
 const CheckoutForm = () => {
+  const t = useTranslations('checkout');
+  const v = useTranslations('validation');
+  const validations = getFormValidations(v);
+
   const { setFormState } = useFormState();
   const { cartItems } = useOrderDetails();
   const { delivery, setDelivery } = useDelivery();
@@ -36,14 +41,12 @@ const CheckoutForm = () => {
     formState: { errors },
   } = useForm({ mode: "onTouched" });
 
-  const validations = getFormValidations();
   register("phone", validations.phone);
 
   useEffect(() => {
     setChecked(delivery);
   }, [delivery]);
 
-  // Фокус: встановлюємо +380, якщо поле порожнє
   const handlePhoneFocus = () => {
     if (!phoneDisplay || phoneDisplay === "+380") {
       setPhoneDisplay("+380");
@@ -51,17 +54,13 @@ const CheckoutForm = () => {
     }
   };
 
-  // Зміна: форматування номера
   const handlePhoneChange = (e) => {
     let input = e.target.value;
-    // Видаляємо всі нецифри
     let digits = input.replace(/\D/g, "");
     
-    // Якщо номер починається з 380, видаляємо цей префікс (щоб не дублювати)
     if (digits.startsWith("380")) {
       digits = digits.slice(3);
     }
-    // Обмежуємо 9 цифрами
     if (digits.length > 9) digits = digits.slice(0, 9);
     
     const formatted = `+380${digits}`;
@@ -70,10 +69,8 @@ const CheckoutForm = () => {
     trigger("phone");
   };
 
-  // Втрата фокусу: можна залишити як є, або прибрати неповний номер
   const handlePhoneBlur = () => {
     trigger("phone");
-    // Якщо номер неповний (менше 12 символів), можна показати помилку
   };
 
   const [showModal, setModal] = useState(false);
@@ -91,10 +88,10 @@ const CheckoutForm = () => {
   return (
     <>
       <div className={styles._}>
-        <h3 className={styles.title}>Ваші дані</h3>
+        <h3 className={styles.title}>{t('your_data')}</h3>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.delivery}>
-            <div className={styles.label}>Доставка по Україні?</div>
+            <div className={styles.label}>{t('is_delivery')}</div>
             <SliderCheckbox checked={checked} toggleChecked={toggleChecked} />
           </div>
 
@@ -104,7 +101,7 @@ const CheckoutForm = () => {
             </div>
             <input
               type="text"
-              placeholder="Ваше ім'я та прізвище"
+              placeholder={t('name')}
               className={styles.input}
               disabled={cartItems.length === 0}
               {...register("name", validations.name)}
@@ -137,7 +134,7 @@ const CheckoutForm = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Склад Нової Пошти"
+                  placeholder={t('stock')}
                   className={styles.input}
                   {...register("address", validations.address)}
                 />
@@ -149,7 +146,7 @@ const CheckoutForm = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Ваш населений пункт"
+                  placeholder={t('city')}
                   className={styles.input}
                   {...register("city", validations.city)}
                 />
@@ -161,7 +158,7 @@ const CheckoutForm = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Область, район"
+                  placeholder={t('area')}
                   className={styles.input}
                   {...register("schedule", validations.schedule)}
                 />
@@ -176,7 +173,7 @@ const CheckoutForm = () => {
             </div>
             <input
               type="text"
-              placeholder="Додатковий коментар"
+              placeholder={t('comment')}
               className={styles.input}
               disabled={cartItems.length === 0}
               {...register("comment", validations.comment)}
@@ -185,7 +182,7 @@ const CheckoutForm = () => {
           </div>
 
           <button type="submit" className={styles.confirm} disabled={cartItems.length === 0}>
-            Зробити замовлення
+            {t('checkout')}
           </button>
         </form>
       </div>

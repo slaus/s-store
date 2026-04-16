@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import styles from "@/app/page.module.css";
+import styles from "./page.module.css";
 import Header from "@/components/commons/Header";
 import Sidebar from "@/components/commons/Sidebar";
 import Main from "@/components/commons/Main";

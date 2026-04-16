@@ -4,8 +4,10 @@ import Overlay from '@/components/others/Overlay';
 import Modal from '@/components/ui/Modal';
 import CounterBtn from '@/components/ui/CounterBtn';
 import { useIsInCart  } from '@/context/AppContext';
+import { useTranslations } from 'next-intl';
 
 const ItemsCard = ({ item }) => {
+    const t = useTranslations('common');
 
     const { title, price, img, offerPrice } = item;
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,8 +27,8 @@ const ItemsCard = ({ item }) => {
                 </div>
                 <div className={styles.block}>
                     <div className={styles.prices}>
-                        <p className={styles.price}>{(offerPrice || price)} грн.</p>
-                        {offerPrice && <p className={styles.old}>{price} грн.</p>}
+                        <p className={styles.price}>{(offerPrice || price)} {t('currency')}</p>
+                        {offerPrice && <p className={styles.old}>{price} {t('currency')}</p>}
                     </div>
                     <p className={styles.title}>{title}</p>
                 </div>
@@ -34,7 +36,7 @@ const ItemsCard = ({ item }) => {
                     {item.visible ? (
                         <CounterBtn item={item} counter={quantityInCart} />
                     ) : (
-                        <p className={styles.empty}>Немає у наявності</p>
+                        <p className={styles.empty}>{t('out_of_stock')}</p>
                     )}
                     
                 </div>

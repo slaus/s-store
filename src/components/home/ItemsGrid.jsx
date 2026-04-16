@@ -9,8 +9,10 @@ import {
   useSort,
   useSearch,
 } from "@/context/AppContext";
+import { useTranslations } from "next-intl";
 
 const ItemsGrid = () => {
+  const t = useTranslations('product');
   const { items, loadingItems } = useItems();
   const { sort } = useSort();
   const { selectedCategory } = useSelectedCategory();
@@ -29,17 +31,17 @@ const ItemsGrid = () => {
 
   const sortItems = (itemsToSort, sortType) => {
     switch (sortType) {
-      case "Зростанням ID":
+      case t('asc_id'):
         return itemsToSort.slice().sort((a, b) => a.id.localeCompare(b.id));
-      case "Спаданням ID":
+      case t('desc_id'):
         return itemsToSort.slice().sort((a, b) => b.id.localeCompare(a.id));
-      case "Назвою (А-Я)":
+      case t('asc_name'):
         return itemsToSort.slice().sort((a, b) => a.title.localeCompare(b.title));
-      case "Назвою (Я-А)":
+      case t('desc_name'):
         return itemsToSort.slice().sort((a, b) => b.title.localeCompare(a.title));
-      case "Ціною (Мін.)":
+      case t('asc_price'):
         return itemsToSort.slice().sort((a, b) => (a.offerPrice || a.price) - (b.offerPrice || b.price));
-      case "Ціною (Макс.)":
+      case t('desc_price'):
         return itemsToSort.slice().sort((a, b) => (b.offerPrice || b.price) - (a.offerPrice || a.price));
       default:
         return itemsToSort;
@@ -58,7 +60,10 @@ const ItemsGrid = () => {
         </div>
       ) : (
         <div className={styles.error}>
-          За запитом&nbsp;<b>"{searchValue}"</b>&nbsp;нічого не знайдено.
+          {t.rich('not_found', {
+            search: searchValue,
+            b: (chunks) => <b style={{margin: '0 5px'}}>{chunks}</b>
+          })}
         </div>
       )}
     </>

@@ -2,8 +2,10 @@ import React from 'react';
 import styles from "@/components/checkout/order-details.module.css";
 import { useOrderDetails, useDelivery, useDeliveryFee } from '@/context/AppContext';
 import OrderItem from '@/components/checkout/OrderItem';
+import { useTranslations } from 'next-intl';
 
 const OrderDetails = () => {
+    const t = useTranslations('checkout');
 
     const { cartItems, subTotal, withDelivery, shippingCost, total } = useOrderDetails();
     const { delivery, setDelivery } = useDelivery();
@@ -15,7 +17,7 @@ const OrderDetails = () => {
 
     return (
         <div className={styles._}>
-            <h3 className={styles.title}>Ваше замовлення</h3>
+            <h3 className={styles.title}>{t('order')}</h3>
             <div>
                 {Object.values(cartItems).map((item) => (
                     <OrderItem key={item.id} item={item} />
@@ -24,19 +26,19 @@ const OrderDetails = () => {
             <hr className={styles.hr} />
             <div>
                 <div className={styles.item}>
-                    <p>Підсумок</p>
-                    <p className={styles.subtotal}>{subTotal} грн.</p>
+                    <p>{t('subtotal')}</p>
+                    <p className={styles.subtotal}>{subTotal} {t('currency')}</p>
                 </div>
                 {withDelivery &&
                     <div className={styles.item}>
-                        <p>Нова Пошта</p>
-                        <p className={styles.subtotal}>{withDelivery ? shippingCost : "0"} грн.</p>
+                        <p>{t('delivery')}</p>
+                        <p className={styles.subtotal}>{withDelivery ? shippingCost : "0"} {t('currency')}</p>
                     </div>
                 }
 
                 <div className={styles.item}>
-                    <p><b>Загальна сума</b></p>
-                    <p className={styles.total}>{total} грн.</p>
+                    <p><b>{t('total')}</b></p>
+                    <p className={styles.total}>{total} {t('currency')}</p>
                 </div>
             </div>
         </div>

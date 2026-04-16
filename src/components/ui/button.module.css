@@ -40,3 +40,8 @@
 ._:hover {
     background-color: #4c7c1b;
 }
+
+
+.transparent, .transparent:hover {
+    background: transparent;
+}

@@ -3,8 +3,10 @@ import styles from "./search.module.css";
 import { BiSearch } from "react-icons/bi";
 import { IoCloseOutline } from "react-icons/io5";
 import { useSearch } from "@/context/AppContext";
+import { useTranslations } from "next-intl";
 
 const Search = ({ showSearchBar, setShowSearchBar }) => {
+  const t = useTranslations('common');
   const { searchValue, setSearchValue } = useSearch();
 
   const handleSubmit = (e) => {
@@ -35,7 +37,7 @@ const Search = ({ showSearchBar, setShowSearchBar }) => {
           <input
             onChange={handleChange}
             type="search"
-            placeholder="Пошук товару"
+            placeholder={t('search')}
             className={styles.input}
             value={searchValue}
           />

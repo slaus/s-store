@@ -3,81 +3,81 @@ import { nanoid } from "nanoid";
 //fetcher
 export const fetcher = (url) => fetch(url).then((r) => r.json());
 
-export const getFormValidations = () => {
+export const getFormValidations = (v) => {
   return {
     name: {
       required: {
         value: true,
-        message: "Ім'я та прізвище обов'язкові",
+        message: v('name'),
       },
       maxLength: {
         value: 30,
-        message: "Максимальна довжина 30 символів",
+        message: v('name_max'),
       },
       minLength: {
         value: 5,
-        message: "Мінімальна довжина 5 символів",
+        message: v('name_min'),
       },
       pattern: {
         value: /^[A-Za-zА-Яа-яІіЇїЄє]{2,}(?:\s+[A-Za-zА-Яа-яІіЇїЄє]{2,})+$/,
-        message: "Введіть ім'я та прізвище через пробіл",
+        message: v('name_pattern'),
       },
     },
     phone: {
       required: {
         value: true,
-        message: "Номер телефону обов'язковий",
+        message: v('phone'),
       },
       maxLength: {
         value: 13,
-        message: "Максимальна довжина 13 символів",
+        message: v('phone_max'),
       },
       minLength: {
         value: 13,
-        message: "Мінімальна довжина 13 символів",
+        message: v('phone_min'),
       },
       phone: {
-        required: { value: true, message: "Номер телефону обов'язковий" },
+        required: { value: true, message: v('phone') },
         pattern: {
           value: /^\+380\d{9}$/,
-          message: "Номер має бути у форматі +38XXXXXXXXXX",
+          message: v('phone_pattern'),
         },
       },
     },
     address: {
       required: {
         value: true,
-        message: "Нова Пошта обов'язкова",
+        message: v('delivery'),
       },
       maxLength: {
         value: 20,
-        message: "Максимальна довжина 20 символів",
+        message: v('delivery_max'),
       },
       minLength: {
         value: 1,
-        message: "Мінімальна довжина 1 символ",
+        message: v('delivery_min'),
       },
       pattern: {
         value: /^[0-9a-zA-ZА-Яа-яІіЇїЄє ]{1,20}$/,
-        message: "Неправильний склад Нової Пошти",
+        message: v('delivery_pattern'),
       },
     },
     city: {
       required: {
         value: true,
-        message: "Місто або селище обов'язкове",
+        message: v('city'),
       },
       maxLength: {
         value: 20,
-        message: "Максимальна довжина 20 символів",
+        message: v('city_max'),
       },
       minLength: {
         value: 3,
-        message: "Мінімальна довжина 3 символи",
+        message: v('city_min'),
       },
       pattern: {
         value: /^[A-Za-zА-Яа-яІіЇїЄє ]{3,20}$/,
-        message: "Неправильне місто або селище",
+        message: v('city_pattern'),
       },
     },
     schedule: {
@@ -87,17 +87,17 @@ export const getFormValidations = () => {
       // },
       maxLength: {
         value: 20,
-        message: "Максимальна довжина 20 символів",
+        message: v('schedule_max'),
       },
       pattern: {
         value: /^[0-9a-zA-ZА-Яа-яІіЇїЄє ]{0,20}$/,
-        message: "Неправильна область, район",
+        message: v('schedule_pattern'),
       },
     },
     comment: {
       maxLength: {
         value: 30,
-        message: "Максимальна довжина 30 символів",
+        message: v('comment_max'),
       },
     },
   };

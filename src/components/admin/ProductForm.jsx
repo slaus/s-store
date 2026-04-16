@@ -16,6 +16,7 @@ import {
   BiHide,
 } from "react-icons/bi";
 import SliderCheckbox from "@/components/ui/SliderCheckbox";
+import { useTranslations } from 'next-intl';
 
 export default function ProductForm({
   editingId,
@@ -26,6 +27,9 @@ export default function ProductForm({
   uploading,
   onImageUpload,
 }) {
+  const a = useTranslations('alert');
+  const h = useTranslations('admin');
+  const f = useTranslations('form');
   const [loading, setLoading] = useState(false);
   const [checkedNew, setCheckedNew] = useState(formData.new);
   const [checkedVisible, setCheckedVisible] = useState(formData.visible !== undefined ? formData.visible : true);
@@ -68,7 +72,7 @@ export default function ProductForm({
     setLoading(true);
     await onSave();
     showAlert(
-      editingId === "new" ? "Товар успішно додано!" : "Товар успішно оновлено!",
+      editingId === "new" ? a('added') : a('updated'),
       "success"
     );
     setLoading(false);
@@ -81,18 +85,18 @@ export default function ProductForm({
   return (
     <form onSubmit={handleSubmit} className={styles._}>
       <h2 className={styles.title}>
-        {editingId === "new" ? "Додати новий товар" : "Редагування товару"}
+        {editingId === "new" ? h('add') : h('edit')}
       </h2>
 
       <div className={styles.checkbox}>
         <div className={styles.label}>
-          Показувати на сайті?
+          {h('show')}
         </div>
         <SliderCheckbox checked={checkedVisible} toggleChecked={toggleVisible} />
       </div>
 
       <div className={styles.checkbox}>
-        <div className={styles.label}>Новинка?</div>
+        <div className={styles.label}>{h('new')}</div>
         <SliderCheckbox checked={checkedNew} toggleChecked={toggleNew} />
       </div>
       
@@ -103,14 +107,14 @@ export default function ProductForm({
         <input
           type="text"
           name="id"
-          placeholder="ID товару (унікальний)"
+          placeholder={f('item_id')}
           className={styles.input}
           value={formData.id}
           onChange={(e) => handleFieldChange("id", e.target.value)}
           disabled={editingId !== "new"}
         />
         {submitted && editingId === "new" && (!formData.id || formData.id.trim() === "") && (
-          <p className={styles.error}>ID обов'язковий</p>
+          <p className={styles.error}>{f('item_id_error')}</p>
         )}
       </div>
 
@@ -121,13 +125,13 @@ export default function ProductForm({
         <input
           type="text"
           name="title"
-          placeholder="Назва товару"
+          placeholder={f('item_name')}
           className={styles.input}
           value={formData.title}
           onChange={(e) => handleFieldChange("title", e.target.value)}
         />
         {submitted && (!formData.title || formData.title.trim() === "") && (
-          <p className={styles.error}>Назва обов'язкова</p>
+          <p className={styles.error}>{f('item_name_error')}</p>
         )}
       </div>
 
@@ -138,7 +142,7 @@ export default function ProductForm({
         <input
           type="number"
           name="price"
-          placeholder="Ціна (грн.)"
+          placeholder={`${f('item_price')} (${f('currency')})`}
           className={styles.input}
           value={formData.price === 0 ? "" : formData.price}
           onChange={(e) => {
@@ -147,7 +151,7 @@ export default function ProductForm({
           }}
         />
         {submitted && (formData.price === undefined || formData.price === "" || formData.price <= 0) && (
-          <p className={styles.error}>Напишіть ціну товару</p>
+          <p className={styles.error}>{f('item_price_error')}</p>
         )}
       </div>
 
@@ -158,7 +162,7 @@ export default function ProductForm({
         <input
           type="number"
           name="offerPrice"
-          placeholder="Акційна ціна (грн.) – залиште порожнім, якщо немає"
+          placeholder={`${f('item_offer')} (${f('currency')})`}
           className={styles.input}
           value={formData.offerPrice || ""}
           onChange={(e) => {
@@ -176,7 +180,7 @@ export default function ProductForm({
           }}
         />
         {formData.offerPrice && formData.price && formData.offerPrice > formData.price && (
-          <p className={styles.error}>Акційна ціна не може перевищувати звичайну!</p>
+          <p className={styles.error}>{f('item_offer_error')}</p>
         )}
       </div>
 
@@ -203,13 +207,13 @@ export default function ProductForm({
         <input
           type="text"
           name="category"
-          placeholder="Категорія (наприклад, Свіже м'ясо)"
+          placeholder={f('item_category')}
           className={styles.input}
           value={formData.category}
           onChange={(e) => handleFieldChange("category", e.target.value)}
         />
         {submitted && (!formData.category || formData.category.trim() === "") && (
-          <p className={styles.error}>Категорія обов'язкова</p>
+          <p className={styles.error}>{f('item_category_error')}</p>
         )}
       </div>
 
@@ -222,12 +226,12 @@ export default function ProductForm({
             disabled={uploading}
             className={styles.fileInput}
           />
-          {uploading && <span className={styles.uploading}> Завантаження...</span>}
+          {uploading && <span className={styles.uploading}>{t('loading')}</span>}
           {formData.img && (
             <div className={styles.currentImage}>
               <span>{formData.img}</span>
               <Button
-                title="Видалити фото"
+                title={f('delete_photo')}
                 type="button"
                 onClick={() => handleFieldChange("img", "")}
                 className={styles.delete}
@@ -241,10 +245,10 @@ export default function ProductForm({
 
       <div className={styles.actions}>
         <Button type="submit" disabled={loading}>
-          <BiSave size={20} /> {loading ? "Збереження..." : "Зберегти"}
+          <BiSave size={20} /> {f('save')}
         </Button>
         <Button type="button" onClick={onCancel} className={styles.cancel}>
-          Скасувати
+          {f('cancel')}
         </Button>
       </div>
     </form>

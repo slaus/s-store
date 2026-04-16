@@ -1,14 +1,17 @@
 import React from "react";
+import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import Button from "@/components/ui/Button";
 import styles from "./modal.module.css";
-// import { getWspUrl } from "../../helpers";
 import { sendTelegramOrder } from '../../helpers';
 import { useOrderDetails, useReset } from '@/context/AppContext';
 
 const ModalAlert = ({ setModal }) => {
+  const t = useTranslations('checkout');
+  const router = useRouter();
+  const locale = useLocale();
   const orderData = useOrderDetails();
   const reset = useReset();
-  // console.log("Order Details ", orderData);
 
   const onConfirm = async () => {
     // const WSP_URL = getWspUrl(orderData);
@@ -16,18 +19,16 @@ const ModalAlert = ({ setModal }) => {
     await sendTelegramOrder(orderData);
     setModal(false);
     reset();
-    window.location.href = "/";
+    router.push(`/${locale}`);
   };
 
   return (
     <div className={styles._}>
-      <h3 className={styles.header}>Підтверджуєте замовлення?</h3>
-      <div className={styles.desc}>
-      Ви повинні підтвердити своє замовлення. Непідтверджені замовлення будуть проігноровані.
-      </div>
+      <h3 className={styles.header}>{t('agree')}</h3>
+      <div className={styles.desc}>{t('agree_desc')}</div>
       <div className={styles.footer}>
         <Button className={styles.btn} onClick={onConfirm}>
-          Yes
+          {t('yes')}
         </Button>
       </div>
     </div>

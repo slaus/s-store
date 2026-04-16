@@ -1,8 +1,12 @@
+'use client';
 import React from 'react';
 import styles from './loading.module.css';
+import { useTranslations } from 'next-intl';
 
 const Loading = () => {
-  return <div className={styles._}>Завантаження даних...</div>;
+  const t = useTranslations('common');
+
+  return <div className={styles._}>{t('loading')}</div>;
 };
 
 export default Loading;

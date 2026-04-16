@@ -8,11 +8,13 @@ import Header from "@/components/commons/Header";
 import Main from "@/components/commons/Main";
 import Footer from "@/components/commons/Footer";
 import Flex from "@/components/ui/Flex";
-import styles from "@/app/page.module.css";
+import styles from "../page.module.css";
 import CheckoutForm from "@/components/checkout/CheckoutForm";
 import OrderDetails from "@/components/checkout/OrderDetails";
+import { useTranslations } from "next-intl";
 
 const Checkout = () => {
+  const t = useTranslations('checkout');
   const { qtySelectedItems } = useQtySelectedItems();
   const { goodsInCart } = useGoodsInCart();
 
@@ -22,7 +24,7 @@ const Checkout = () => {
         <Header />
 
         <Main>
-          <h1>Оформлення замовлення</h1>
+          <h1>{t('title')}</h1>
           <Flex className="w_md col_sm" style={{ alignItems: "flex-start" }}>
             <ClientOnly fallback={<Loading />}>
               <CheckoutForm />

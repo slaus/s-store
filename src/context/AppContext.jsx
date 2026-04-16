@@ -7,6 +7,7 @@ import React, {
   useMemo,
   useEffect,
 } from "react";
+import { useTranslations } from "next-intl";
 
 // Contexts
 const ItemsContext = createContext();
@@ -93,7 +94,7 @@ export const useReset = () => {
 
   const reset = useCallback(() => {
     setSelectedCategory("");
-    setSort("Замовчуванням");
+    setSort(t('default'));
     setQtySelectedItems(0);
     setDelivery(false);
     setGoodsInCart({});
@@ -149,6 +150,8 @@ export const useOrderDetails = () => {
 
 // AppProviders component
 export const AppProviders = ({ children }) => {
+  const t = useTranslations('product');
+
   const [items, setItems] = useState([]);
   const [loadingItems, setLoadingItems] = useState(true);
 
@@ -186,15 +189,15 @@ export const AppProviders = ({ children }) => {
   // Інші стани
   const [selectedCategory, setSelectedCategory] = useState("");
   const [itemsSort, setItemsSort] = useState([
-    "Замовчуванням",
-    "Зростанням ID",
-    "Спаданням ID",
-    "Назвою (А-Я)",
-    "Назвою (Я-А)",
-    "Ціною (Мін.)",
-    "Ціною (Макс.)",
+    t('default'),
+    t('asc_id'),
+    t('desc_id'),
+    t('asc_name'),
+    t('desc_name'),
+    t('asc_price'),
+    t('desc_price'),
   ]);
-  const [sort, setSort] = useState("Замовчуванням");
+  const [sort, setSort] = useState(t('default'));
 
   // Кошик
   const [goodsInCart, setGoodsInCart] = useState(() => {

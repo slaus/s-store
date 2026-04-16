@@ -2,8 +2,10 @@ import React from 'react';
 import styles from "./sidebar.module.css";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { useItems, useSelectedCategory } from '@/context/AppContext';
+import { useTranslations } from 'next-intl';
 
 const Sidebar = ({ showSidebar, mobile, setShowSidebar }) => {
+    const t = useTranslations('product');
     const { items } = useItems();
     const { selectedCategory, setSelectedCategory } = useSelectedCategory();
     const uniqueCategories = [...new Set(items.map(item => item.category))];
@@ -33,7 +35,7 @@ const Sidebar = ({ showSidebar, mobile, setShowSidebar }) => {
                     >
                         <div className={styles.item}>
                             {selectedCategory === '' ? <BiPlus size={26} /> : <BiMinus size={26} />}
-                            Усі товари
+                            {t('all')}
                         </div>
                     </button>
 
