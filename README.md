@@ -36,6 +36,7 @@ This project is fully multilingual and uses **next-intl** for internationalizati
 Adding a new language requires **only 3 simple steps** – no code changes other than updating the locales array.
 
 ### Project structure for i18n
+```text
 src/
 ├── config/
 │ └── locales.js # Array of supported locales + default locale
@@ -48,6 +49,7 @@ public/
 ├── uk.png # Flag icon for Ukrainian
 ├── en.png # Flag icon for English
 └── ... # Add new flag image here
+```
 
 ### How to add a new language (e.g., German `de`)
 
