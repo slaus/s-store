@@ -1,24 +1,35 @@
+import { locales, defaultLocale } from '@/config/locales';
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 
 export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  const locales = ['uk', 'en'];
-  const defaultLocale = 'uk';
 
-  const pathnameHasLocale = locales.some(
-    locale => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
+  if (
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/admin') ||
+    pathname.startsWith('/_next') ||
+    pathname.includes('.')
+  ) {
+    return NextResponse.next();
+  }
 
-  if (!pathnameHasLocale && !pathname.startsWith('/api') && !pathname.startsWith('/admin') && !pathname.startsWith('/_next') && !pathname.includes('.')) {
-    const newUrl = new URL(`/${defaultLocale}${pathname}`, request.url);
-    return NextResponse.redirect(newUrl);
+  const isSingleLocale = locales.length === 1; 
+
+  if (isSingleLocale) {
+    const localePrefixPattern = new RegExp(`^/(${locales.join('|')})(/|$)`);
+    if (localePrefixPattern.test(pathname)) {
+      const newPathname = pathname.replace(localePrefixPattern, '/');
+      const url = request.nextUrl.clone();
+      url.pathname = newPathname;
+      return NextResponse.redirect(url);
+    }
   }
 
   const handleI18n = createMiddleware({
     locales,
     defaultLocale,
-    localePrefix: 'always',
+    localePrefix: isSingleLocale ? 'as-needed' : 'always',
   });
 
   return handleI18n(request);

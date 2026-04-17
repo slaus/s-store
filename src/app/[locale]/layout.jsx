@@ -29,7 +29,7 @@ export default async function LocaleLayout({ children, params }) {
   const t = await getTranslations({ locale, namespace: 'site' });
   
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  const phone = process.env.NEXT_PUBLIC_PHONE;
+  const phone = process.env.NEXT_PUBLIC_PHONE || "+380XXXXXXXXX";
   const facebook = process.env.NEXT_PUBLIC_FACEBOOK_URL;
   const instagram = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
 

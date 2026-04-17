@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 
 const facebook = process.env.NEXT_PUBLIC_FACEBOOK_URL;
 const instagram = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
-const phone = process.env.NEXT_PUBLIC_PHONE;
+const phone = process.env.NEXT_PUBLIC_PHONE || "+380XXXXXXXXX";
 const telegram = process.env.NEXT_PUBLIC_TELEGRAM_URL;
 const viber = process.env.NEXT_PUBLIC_VIBER_URL;
 

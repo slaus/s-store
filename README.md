@@ -29,6 +29,34 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+
+## Multilingual Setup (i18n)
+
+This project is fully multilingual and uses **next-intl** for internationalization.  
+Adding a new language requires **only 3 simple steps** – no code changes other than updating the locales array.
+
+### Project structure for i18n
+src/
+├── config/
+│ └── locales.js # Array of supported locales + default locale
+├── messages/ # Translation files
+│ ├── uk.json # Ukrainian translations
+│ ├── en.json # English translations
+│ └── ... # Add new language file here
+public/
+└── images/
+├── uk.png # Flag icon for Ukrainian
+├── en.png # Flag icon for English
+└── ... # Add new flag image here
+
+### How to add a new language (e.g., German `de`)
+
+1. **Add the locale to the config**  
+   Edit `src/config/locales.js`:
+   ```js
+   export const locales = ['uk', 'en', 'de'];
+   export const defaultLocale = 'uk';
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
