@@ -15,7 +15,7 @@ import {
   useOrderDetails,
 } from "@/context/AppContext";
 import { useForm } from "react-hook-form";
-import { getFormValidations } from "../../helpers";
+import { getFormValidations } from "../../utils/helpers";
 import ModalAlert from "@/components/others/ModalAlert";
 import Overlay from "@/components/others/Overlay";
 import Modal from "@/components/ui/Modal";

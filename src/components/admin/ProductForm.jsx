@@ -61,7 +61,7 @@ export default function ProductForm({
     setSubmitted(true);
 
     let hasError = false;
-    if (editingId === "new" && (!formData.id || formData.id.trim() === "")) hasError = true;
+    // if (editingId === "new" && (!formData.id || formData.id.trim() === "")) hasError = true;
     if (!formData.title || formData.title.trim() === "") hasError = true;
     if (formData.price === undefined || formData.price === "" || formData.price <= 0) hasError = true;
     if (!formData.category || formData.category.trim() === "") hasError = true;
@@ -113,9 +113,9 @@ export default function ProductForm({
           onChange={(e) => handleFieldChange("id", e.target.value)}
           disabled={editingId !== "new"}
         />
-        {submitted && editingId === "new" && (!formData.id || formData.id.trim() === "") && (
+        {/* {submitted && editingId === "new" && (!formData.id || formData.id.trim() === "") && (
           <p className={styles.error}>{f('item_id_error')}</p>
-        )}
+        )} */}
       </div>
 
       <div className={`${styles.group} ${submitted && (!formData.title || formData.title.trim() === "") ? styles.err : ""}`}>

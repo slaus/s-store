@@ -1,25 +1,22 @@
-import { getProducts } from '@/lib/blob';
+import { getProducts } from '@/utils/db';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const _ = searchParams.get('_');
-
   try {
-    const products = await getProducts();
-    return new Response(JSON.stringify(products), {
-      status: 200,
+    const { searchParams } = new URL(request.url);
+    const limit = parseInt(searchParams.get('limit') || '100');
+    const skip = parseInt(searchParams.get('skip') || '0');
+    const visibleOnly = searchParams.get('visible') !== 'false';
+
+    const filters = visibleOnly ? { visible: true } : {};
+    const products = await getProducts(filters, { limit, skip });
+
+    return NextResponse.json(products, {
       headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
-        'Pragma': 'no-cache',
-        'Expires': '0',
-        'Surrogate-Control': 'no-store',
-        'CDN-Cache-Control': 'no-store',
-        'Vercel-CDN-Cache-Control': 'no-store',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
       },
     });
   } catch (error) {

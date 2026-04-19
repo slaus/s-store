@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Button from "@/components/ui/Button";
 import styles from "./modal.module.css";
-import { sendTelegramOrder } from '../../helpers';
+import { sendTelegramOrder } from '../../utils/helpers';
 import { useOrderDetails, useReset } from '@/context/AppContext';
 
 const ModalAlert = ({ setModal }) => {

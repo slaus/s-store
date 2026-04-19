@@ -40,10 +40,26 @@
     "removed": "Product removed from cart!"
   },
   "admin": {
+    "title": "Product admin",
+    "no_sort": "Unable to save product order",
     "add": "Add new product",
     "edit": "Edit product",
-    "show": "Show on the site?",
-    "new": "Add to new products?"
+    "show": "Show on site?",
+    "delete": "Delete product?",
+    "delete_error": "Delete error",
+    "upload_error": "Upload error",
+    "add_error": "Add error: ",
+    "update_error": "Update error: ",
+    "server_error": "Error: incorrect server response",
+    "new": "Add to new products?",
+    "name": "Product name",
+    "price": "Price",
+    "offer": "Promotion",
+    "last": "New",
+    "visible": "Visibility",
+    "category": "Category",
+    "image": "Photo",
+    "actions": "Actions"
   },
   "form": {
     "currency": "uah.",

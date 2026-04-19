@@ -15,8 +15,10 @@ import AdminTable from "@/components/admin/AdminTable";
 import ProductForm from "@/components/admin/ProductForm";
 import Button from "@/components/ui/Button";
 import { BiPlus } from "react-icons/bi";
+import { useTranslations } from "next-intl";
 
 function AdminContent() {
+  const t = useTranslations('admin');
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get("token");
@@ -60,7 +62,6 @@ function AdminContent() {
       });
   }, [token, router]);
 
-  // Функція-помічник
   const notifyCatalogUpdate = () => {
     const timestamp = Date.now().toString();
     localStorage.setItem("products_last_update", timestamp);
@@ -98,7 +99,7 @@ function AdminContent() {
       body: JSON.stringify({ products: orderedProducts }),
     });
     if (!res.ok) {
-      alert("Не вдалося зберегти порядок товарів");
+      alert(t('no_sort'));
     } else {
       notifyCatalogUpdate();
     }
@@ -121,15 +122,15 @@ function AdminContent() {
   };
 
   const openModalForEdit = (product) => {
-  setEditingId(product.id);
-  setFormData({
-    ...product,
-    offerPrice: product.offerPrice || "",
-    new: product.new || false,
-    visible: product.visible !== undefined ? product.visible : true,
-  });
-  setIsModalOpen(true);
-};
+    setEditingId(product.id);
+    setFormData({
+      ...product,
+      offerPrice: product.offerPrice || "",
+      new: product.new || false,
+      visible: product.visible !== undefined ? product.visible : true,
+    });
+    setIsModalOpen(true);
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -137,7 +138,7 @@ function AdminContent() {
   };
 
   const handleDelete = async (id) => {
-    if (!confirm("Видалити товар?")) return;
+    if (!confirm(t('delete'))) return false;
     const res = await fetch(`/api/admin?token=${token}&id=${id}`, {
       method: "DELETE",
     });
@@ -145,8 +146,10 @@ function AdminContent() {
       setProducts(products.filter((p) => p.id !== id));
       await refreshProducts();
       notifyCatalogUpdate();
+      return true;
     } else {
-      alert("Помилка видалення");
+      alert(t('delete_error'));
+      return false;
     }
   };
 
@@ -160,7 +163,7 @@ function AdminContent() {
     if (res.ok) {
       const { url } = await res.json();
       setFormData({ ...formData, img: url });
-    } else alert("Помилка завантаження");
+    } else alert(t('upload_error'));
     setUploading(false);
   };
 
@@ -182,7 +185,7 @@ function AdminContent() {
         closeModal();
       } else {
         const err = await res.text();
-        alert("Помилка додавання: " + err);
+        alert(t('add_error') + err);
       }
     } else {
       const res = await fetch(`/api/admin?token=${token}`, {
@@ -198,7 +201,7 @@ function AdminContent() {
           notifyCatalogUpdate();
         } catch (e) {
           console.error("Помилка парсингу JSON", e);
-          alert("Помилка: некоректна відповідь сервера");
+          alert(t('server_error'));
           return;
         }
         setProducts((prev) =>
@@ -207,17 +210,17 @@ function AdminContent() {
         closeModal();
       } else {
         const errText = await res.text();
-        console.error("Помилка оновлення:", errText);
-        alert("Помилка оновлення: " + errText);
+        console.error("Помилка оновлення: ", errText);
+        alert(t('update_error') + errText);
       }
     }
   };
 
   return (
     <>
-      <h1>Адмінка товарів</h1>
+      <h1>{t('title')}</h1>
       <Button type="button" onClick={openModalForAdd}>
-        <BiPlus size={18} /> Додати товар
+        <BiPlus size={18} /> {t('add')}
       </Button>
 
       {loading ? (

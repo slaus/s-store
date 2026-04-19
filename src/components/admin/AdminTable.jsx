@@ -14,14 +14,21 @@ import {
 } from "@dnd-kit/sortable";
 import SortableRow from "./SortableRow";
 import styles from "./AdminTable.module.css";
+import { useTranslations } from "next-intl";
 
 export default function AdminTable({ products, onEdit, onDelete, onDragEnd }) {
+  const t = useTranslations('admin');
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
+
+  const validProducts = products.filter(p => p.id);
+  if (validProducts.length !== products.length) {
+    console.warn('Обнаружены товары без id:', products.filter(p => !p.id));
+  }
 
   return (
     <DndContext
@@ -30,7 +37,7 @@ export default function AdminTable({ products, onEdit, onDelete, onDragEnd }) {
       onDragEnd={onDragEnd}
     >
       <SortableContext
-        items={products.map((p) => p.id)}
+        items={validProducts.map((p) => p.id)}
         strategy={verticalListSortingStrategy}
       >
         <table className={styles._}>
@@ -38,21 +45,20 @@ export default function AdminTable({ products, onEdit, onDelete, onDragEnd }) {
             <tr>
               <th>🟰</th>
               <th>ID</th>
-              <th>Назва</th>
-              <th>Ціна</th>
-              <th>Акція</th>
-              <th>Новинка</th>
-              <th>Видимість</th>
-              {/* <th>Залишок</th> */}
-              <th>Категорія</th>
-              <th>Фото</th>
-              <th>Дії</th>
+              <th>{t('name')}</th>
+              <th>{t('price')}</th>
+              <th>{t('offer')}</th>
+              <th>{t('last')}</th>
+              <th>{t('visible')}</th>
+              <th>{t('category')}</th>
+              <th>{t('image')}</th>
+              <th>{t('actions')}</th>
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {validProducts.map((product, index) => (
               <SortableRow
-                key={product.id}
+                key={product.id || `key-${index}`}
                 product={product}
                 onEdit={onEdit}
                 onDelete={onDelete}

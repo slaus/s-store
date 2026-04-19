@@ -7,7 +7,7 @@ export default async function middleware(request: NextRequest) {
 
   if (
     pathname.startsWith('/api') ||
-    pathname.startsWith('/admin') ||
+    // pathname.startsWith('/admin') ||
     pathname.startsWith('/_next') ||
     pathname.includes('.')
   ) {
@@ -36,5 +36,5 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|admin|_next|.*\\..*).*)'],
+  matcher: ['/((?!api|_next|.*\\..*).*)'],
 };

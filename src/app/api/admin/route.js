@@ -1,7 +1,7 @@
-import { getProducts, saveProducts, uploadImage, deleteImageByUrl } from '@/lib/blob';
+import { getProducts, createProduct, updateProduct, deleteProduct, uploadImage, deleteImage } from '@/utils/db';
 import { NextResponse } from 'next/server';
+import { ObjectId } from 'mongodb';
 
-// Забороняємо кешування на рівні Next.js
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
@@ -13,131 +13,102 @@ function checkToken(req) {
   return token === ADMIN_TOKEN;
 }
 
-// Допоміжні функції для додавання заголовків no-cache
 function jsonResponse(data, status = 200) {
   return NextResponse.json(data, {
     status,
     headers: {
       'Cache-Control': 'no-store, no-cache, max-age=0, must-revalidate',
-      'Pragma': 'no-cache',
     },
   });
 }
 
 function textResponse(message, status) {
-  return new Response(message, {
-    status,
-    headers: {
-      'Cache-Control': 'no-store, no-cache, max-age=0, must-revalidate',
-      'Pragma': 'no-cache',
-    },
-  });
+  return new Response(message, { status });
 }
 
 export async function GET(req) {
-  if (!checkToken(req)) {
-    return textResponse('Неавторизовано', 401);
-  }
+  if (!checkToken(req)) return textResponse('Неавторизовано', 401);
   try {
-    const products = await getProducts();
+    const products = await getProducts({}, { limit: 1000 });
     return jsonResponse(products);
   } catch (error) {
-    console.error('GET помилка:', error);
+    console.error('GET admin error:', error);
     return textResponse('Помилка читання даних', 500);
   }
 }
 
 export async function POST(req) {
-  if (!checkToken(req)) {
-    return textResponse('Неавторизовано', 401);
-  }
+  if (!checkToken(req)) return textResponse('Неавторизовано', 401);
   try {
     const newProduct = await req.json();
-    const products = await getProducts();
+    // Генерируем id, если нет (раньше было Date.now())
     if (!newProduct.id) newProduct.id = Date.now().toString();
-    products.push(newProduct);
-    await saveProducts(products);
-    return jsonResponse(newProduct, 201);
+    const result = await createProduct(newProduct);
+    return jsonResponse(result, 201);
   } catch (error) {
-    console.error('POST помилка:', error);
+    console.error('POST admin error:', error);
     return textResponse('Помилка додавання', 500);
   }
 }
 
 export async function PUT(req) {
-  if (!checkToken(req)) {
-    return textResponse('Неавторизовано', 401);
-  }
+  if (!checkToken(req)) return textResponse('Неавторизовано', 401);
 
   const url = new URL(req.url);
   const action = url.searchParams.get('action');
 
   try {
-    let products = await getProducts();
-
     if (action === 'reorder') {
+      // Для сортировки – можно обновлять порядок товаров (если нужно)
       const { products: newProducts } = await req.json();
       if (!newProducts || !Array.isArray(newProducts)) {
-        return textResponse('Відсутній або недійсний масив продуктів', 400);
+        return textResponse('Некоректний масив товарів', 400);
       }
-      await saveProducts(newProducts);
+      // Обновляем порядок (например, поле order)
+      const collection = (await import('@/utils/db')).then(m => m.getCollection('products'));
+      for (let i = 0; i < newProducts.length; i++) {
+        await (await collection).updateOne(
+          { _id: new ObjectId(newProducts[i]._id) },
+          { $set: { order: i } }
+        );
+      }
       return jsonResponse({ success: true });
     }
 
     const updatedProduct = await req.json();
-    const { id } = updatedProduct;
-    if (!id) return textResponse('Відсутній id', 400);
+    const { _id, id, img: newImg, ...updateData } = updatedProduct;
+    if (!_id && !id) return textResponse('Відсутній id', 400);
 
-    const index = products.findIndex(p => p.id === id);
-    if (index === -1) return textResponse('Не знайдено', 404);
+    // Получаем старый товар, чтобы удалить старое изображение
+    const oldProduct = await (await import('@/utils/db')).getProductById(_id || id);
+    if (!oldProduct) return textResponse('Товар не знайдено', 404);
 
-    const oldProduct = products[index];
-    const oldImg = oldProduct.img;
-    const newImg = updatedProduct.img;
-
-    if (oldImg && (newImg === undefined || newImg === "" || newImg !== oldImg)) {
-      if (oldImg.startsWith('http')) {
-        await deleteImageByUrl(oldImg);
-      } else {
-        console.warn(`Старе зображення "${oldImg}" не є Blob URL – не видаляємо автоматично`);
-      }
+    // Если изображение изменилось, удаляем старое из GridFS
+    if (oldProduct.img && newImg && oldProduct.img !== newImg) {
+      await deleteImage(oldProduct.img);
     }
 
-    const merged = { ...oldProduct, ...updatedProduct };
-    if (merged.offerPrice === null) delete merged.offerPrice;
-
-    products[index] = merged;
-    await saveProducts(products);
-    return jsonResponse(products[index]);
+    // Обновляем
+    await updateProduct(_id || id, { ...updateData, img: newImg });
+    return jsonResponse({ success: true });
   } catch (error) {
-    console.error('PUT помилка:', error);
+    console.error('PUT admin error:', error);
     return textResponse('Помилка оновлення', 500);
   }
 }
 
 export async function DELETE(req) {
-  if (!checkToken(req)) {
-    return textResponse('Неавторизовано', 401);
-  }
+  if (!checkToken(req)) return textResponse('Неавторизовано', 401);
 
   const url = new URL(req.url);
   const id = url.searchParams.get('id');
   if (!id) return textResponse('Відсутній id', 400);
 
   try {
-    let products = await getProducts();
-    const productToDelete = products.find(p => p.id === id);
-    if (!productToDelete) return textResponse('Не знайдено', 404);
-
-    if (productToDelete.img && productToDelete.img.startsWith('http')) {
-      await deleteImageByUrl(productToDelete.img);
-    }
-
-    const newProducts = products.filter(p => p.id !== id);
-    await saveProducts(newProducts);
+    await deleteProduct(id);
     return jsonResponse({ success: true });
   } catch (error) {
-    console.error('DELETE помилка:', error);
+    console.error('DELETE admin error:', error);
     return textResponse('Помилка видалення', 500);
   }
 }
