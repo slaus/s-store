@@ -1,6 +1,6 @@
 "use client";
 import { Suspense, useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, useParams } from "next/navigation";
 import { arrayMove } from "@dnd-kit/sortable";
 import styles from "./page.module.css";
 import Header from "@/components/commons/Header";
@@ -16,25 +16,38 @@ import ProductForm from "@/components/admin/ProductForm";
 import Button from "@/components/ui/Button";
 import { BiPlus } from "react-icons/bi";
 import { useTranslations } from "next-intl";
+import { locales, defaultLocale } from "@/config/locales";
+
+// Создаём пустой мультиязычный объект
+const createEmptyMultilang = () => {
+  const obj = {};
+  locales.forEach(loc => { obj[loc] = ""; });
+  return obj;
+};
 
 function AdminContent() {
   const t = useTranslations('admin');
   const searchParams = useSearchParams();
   const router = useRouter();
+  const params = useParams();
+  const currentLocale = params?.locale || defaultLocale;
   const token = searchParams.get("token");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({
-    id: "",
-    title: "",
+    sku: "",
+    title: createEmptyMultilang(),
+    description: createEmptyMultilang(),
+    metaTitle: createEmptyMultilang(),
+    metaDescription: createEmptyMultilang(),
+    metaKeywords: createEmptyMultilang(),
     price: 0,
-    offerPrice: "",
-    new: false,
-    stock: 0,
-    img: "",
-    category: "",
+    salePrice: null,
+    isNew: false,
     visible: true,
+    category: createEmptyMultilang(),
+    img: "",
   });
   const [uploading, setUploading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,12 +60,10 @@ function AdminContent() {
 
     fetch(`/api/admin?token=${token}`, { cache: "no-store" })
       .then((res) => {
-        console.log("Status:", res.status);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
       .then((data) => {
-        console.log("Отримано товарів:", data?.length);
         setProducts(data);
         setLoading(false);
       })
@@ -69,7 +80,7 @@ function AdminContent() {
       new StorageEvent("storage", {
         key: "products_last_update",
         newValue: timestamp,
-      }),
+      })
     );
   };
 
@@ -82,8 +93,8 @@ function AdminContent() {
   const handleDragEnd = async (event) => {
     const { active, over } = event;
     if (active.id !== over.id) {
-      const oldIndex = products.findIndex((p) => p.id === active.id);
-      const newIndex = products.findIndex((p) => p.id === over.id);
+      const oldIndex = products.findIndex((p) => p.sku === active.id);
+      const newIndex = products.findIndex((p) => p.sku === over.id);
       const newProducts = arrayMove(products, oldIndex, newIndex);
       setProducts(newProducts);
       saveOrder(newProducts);
@@ -108,26 +119,37 @@ function AdminContent() {
   const openModalForAdd = () => {
     setEditingId("new");
     setFormData({
-      id: "",
-      title: "",
+      sku: "",
+      title: createEmptyMultilang(),
+      description: createEmptyMultilang(),
+      metaTitle: createEmptyMultilang(),
+      metaDescription: createEmptyMultilang(),
+      metaKeywords: createEmptyMultilang(),
+      category: createEmptyMultilang(),
       price: 0,
-      offerPrice: "",
-      new: false,
-      stock: 0,
-      img: "",
-      category: "",
+      salePrice: null,
+      isNew: false,
       visible: true,
+      img: "",
     });
     setIsModalOpen(true);
   };
 
   const openModalForEdit = (product) => {
-    setEditingId(product.id);
+    setEditingId(product.sku);
     setFormData({
-      ...product,
-      offerPrice: product.offerPrice || "",
-      new: product.new || false,
+      sku: product.sku,
+      title: product.title || createEmptyMultilang(),
+      description: product.description || createEmptyMultilang(),
+      metaTitle: product.metaTitle || createEmptyMultilang(),
+      metaDescription: product.metaDescription || createEmptyMultilang(),
+      metaKeywords: product.metaKeywords || createEmptyMultilang(),
+      category: product.category || createEmptyMultilang(),
+      price: product.price,
+      salePrice: product.salePrice || null,
+      isNew: product.isNew || false,
       visible: product.visible !== undefined ? product.visible : true,
+      img: product.images?.[0] || "",
     });
     setIsModalOpen(true);
   };
@@ -137,13 +159,13 @@ function AdminContent() {
     setEditingId(null);
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (sku) => {
     if (!confirm(t('delete'))) return false;
-    const res = await fetch(`/api/admin?token=${token}&id=${id}`, {
+    const res = await fetch(`/api/admin?token=${token}&sku=${sku}`, {
       method: "DELETE",
     });
     if (res.ok) {
-      setProducts(products.filter((p) => p.id !== id));
+      setProducts(products.filter((p) => p.sku !== sku));
       await refreshProducts();
       notifyCatalogUpdate();
       return true;
@@ -168,8 +190,23 @@ function AdminContent() {
   };
 
   const handleSave = async () => {
-    const payload = { ...formData };
-    if (payload.offerPrice === "") payload.offerPrice = null;
+    // Подготавливаем payload в соответствии со схемой MongoDB
+    const payload = {
+      sku: formData.sku || undefined,
+      title: formData.title,
+      description: formData.description,
+      metaTitle: formData.metaTitle,
+      metaDescription: formData.metaDescription,
+      metaKeywords: formData.metaKeywords,
+      price: formData.price,
+      salePrice: formData.salePrice,
+      isNew: formData.isNew,
+      visible: formData.visible,
+      category: formData.category,
+      images: formData.img ? [formData.img] : [],
+    };
+    if (payload.salePrice === "" || payload.salePrice === null) delete payload.salePrice;
+    if (!payload.sku) delete payload.sku;
 
     if (editingId === "new") {
       const res = await fetch(`/api/admin?token=${token}`, {
@@ -191,26 +228,14 @@ function AdminContent() {
       const res = await fetch(`/api/admin?token=${token}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...payload, id: editingId }),
+        body: JSON.stringify({ ...payload, sku: editingId }),
       });
       if (res.ok) {
-        let updated;
-        try {
-          updated = await res.json();
-          await refreshProducts();
-          notifyCatalogUpdate();
-        } catch (e) {
-          console.error("Помилка парсингу JSON", e);
-          alert(t('server_error'));
-          return;
-        }
-        setProducts((prev) =>
-          prev.map((p) => (p.id === editingId ? updated : p)),
-        );
+        await refreshProducts();
+        notifyCatalogUpdate();
         closeModal();
       } else {
         const errText = await res.text();
-        console.error("Помилка оновлення: ", errText);
         alert(t('update_error') + errText);
       }
     }
@@ -231,6 +256,7 @@ function AdminContent() {
           onEdit={openModalForEdit}
           onDelete={handleDelete}
           onDragEnd={handleDragEnd}
+          locale={currentLocale}
         />
       )}
 

@@ -20,7 +20,9 @@
     "products": "Products",
     "add_to_cart": "Add to cart",
     "out_of_stock": "Out of stock",
-    "currency": "uah."
+    "currency": "uah.",
+    "new": "New",
+    "discount": "Discount"
   },
   "product": {
     "not_found": "Nothing found for query <b>\"{search}\"</b>.",
@@ -41,11 +43,14 @@
   },
   "admin": {
     "title": "Product admin",
+    "no_product_title": "Sorry, no products found.",
+    "no_product": "Add your first product to your online store.",
     "no_sort": "Unable to save product order",
     "add": "Add new product",
     "edit": "Edit product",
     "show": "Show on site?",
     "delete": "Delete product?",
+    "success": "Product successfully deleted!",
     "delete_error": "Delete error",
     "upload_error": "Upload error",
     "add_error": "Add error: ",
@@ -59,7 +64,12 @@
     "visible": "Visibility",
     "category": "Category",
     "image": "Photo",
-    "actions": "Actions"
+    "actions": "Actions",
+    "currency": "uah.",
+    "seo": "SEO",
+    "general": "General",
+    "desc": "Description",
+    "images": "Images"
   },
   "form": {
     "currency": "uah.",
@@ -73,6 +83,7 @@
     "item_offer_error": "Promotional price cannot exceed the regular price!",
     "item_category": "Category (e.g. fresh meat)",
     "item_category_error": "Category required",
+    "item_desc": "Product description",
     "delete_photo": "Delete photo",
     "save": "Save",
     "cancel": "Cancel"

@@ -9,7 +9,7 @@ export async function POST(req) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
     const fileId = await uploadImage(buffer, file.name, file.type);
-    return NextResponse.json({ url: `/api/images/${fileId}` }); // возвращаем URL для доступа
+    return NextResponse.json({ url: `/api/images/${fileId}` });
   } catch (error) {
     console.error('Upload error:', error);
     return new Response('Upload failed', { status: 500 });

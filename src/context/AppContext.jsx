@@ -8,8 +8,8 @@ import React, {
   useEffect,
 } from "react";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 
-// Contexts
 const ItemsContext = createContext();
 const SelectedCategoryContext = createContext();
 const ItemsSortContext = createContext();
@@ -24,7 +24,6 @@ const FormStateContext = createContext();
 const AlertContext = createContext();
 const SearchContext = createContext();
 
-// Custom hooks
 export const useItems = () => useContext(ItemsContext);
 export const useSelectedCategory = () => useContext(SelectedCategoryContext);
 export const useItemsSort = () => useContext(ItemsSortContext);
@@ -39,7 +38,6 @@ export const useFormState = () => useContext(FormStateContext);
 export const useAlert = () => useContext(AlertContext);
 export const useSearch = () => useContext(SearchContext);
 
-// Hook for refreshing the cart state
 export const useRefreshCart = () => {
   const { goodsInCart, setGoodsInCart } = useGoodsInCart();
   const { setQtySelectedItems } = useQtySelectedItems();
@@ -49,13 +47,14 @@ export const useRefreshCart = () => {
   const refreshCart = useCallback(
     ({ item, n }) => {
       const currentCart = { ...goodsInCart };
+      const key = item.sku;
 
       if (n === 1) {
-        currentCart[item.id] = { ...item, qty: 1 };
+        currentCart[key] = { ...item, qty: 1 };
       } else if (n > 1) {
-        currentCart[item.id] = { ...item, qty: n };
+        currentCart[key] = { ...item, qty: n };
       } else if (n < 1) {
-        delete currentCart[item.id];
+        delete currentCart[key];
       }
 
       const cartToArray = Object.values(currentCart);
@@ -81,7 +80,6 @@ export const useRefreshCart = () => {
   return { refreshCart };
 };
 
-// Reset
 export const useReset = () => {
   const { setSelectedCategory } = useSelectedCategory();
   const { setSort } = useSort();
@@ -91,10 +89,11 @@ export const useReset = () => {
   const { setCartLength } = useCartLength();
   const { setCartTotal } = useCartTotal();
   const { setFormState } = useFormState();
+  const t = useTranslations("product");
 
   const reset = useCallback(() => {
     setSelectedCategory("");
-    setSort(t('default'));
+    setSort(t("default"));
     setQtySelectedItems(0);
     setDelivery(false);
     setGoodsInCart({});
@@ -110,18 +109,17 @@ export const useReset = () => {
     setCartLength,
     setCartTotal,
     setFormState,
+    t,
   ]);
 
   return reset;
 };
 
-// Hook for checking if an item is in the cart
 export const useIsInCart = (item) => {
   const { goodsInCart } = useGoodsInCart();
-  return goodsInCart[item.id] ? goodsInCart[item.id].qty : 0;
+  return goodsInCart[item.sku] ? goodsInCart[item.sku].qty : 0;
 };
 
-// Hook for getting order details
 export const useOrderDetails = () => {
   const { goodsInCart } = useGoodsInCart();
   const { cartTotal } = useCartTotal();
@@ -148,17 +146,17 @@ export const useOrderDetails = () => {
   return orderDetails;
 };
 
-// AppProviders component
 export const AppProviders = ({ children }) => {
-  const t = useTranslations('product');
+  const params = useParams();
+  const locale = params?.locale || "uk";
+  const t = useTranslations("product");
 
   const [items, setItems] = useState([]);
   const [loadingItems, setLoadingItems] = useState(true);
 
-  // Функція завантаження товарів
   const loadProducts = useCallback(() => {
     setLoadingItems(true);
-    fetch(`/api/products?_=${Date.now()}`, { cache: "no-store" })
+    fetch(`/api/products?lang=${locale}&_=${Date.now()}`, { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -168,14 +166,12 @@ export const AppProviders = ({ children }) => {
         console.error("Failed to load products", err);
         setLoadingItems(false);
       });
-  }, []);
+  }, [locale]);
 
-  // Первинне завантаження
   useEffect(() => {
     loadProducts();
-  }, [loadProducts]);
+  }, [locale, loadProducts]);
 
-  // Слухаємо подію 'storage' для оновлення каталогу з інших вкладок (адмінки)
   useEffect(() => {
     const handleStorageChange = (e) => {
       if (e.key === "products_last_update") {
@@ -184,22 +180,21 @@ export const AppProviders = ({ children }) => {
     };
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
-  }, [loadProducts]);
+  }, [locale, loadProducts]);
 
-  // Інші стани
   const [selectedCategory, setSelectedCategory] = useState("");
   const [itemsSort, setItemsSort] = useState([
-    t('default'),
-    t('asc_id'),
-    t('desc_id'),
-    t('asc_name'),
-    t('desc_name'),
-    t('asc_price'),
-    t('desc_price'),
+    t("default"),
+    t("asc_id"),
+    t("desc_id"),
+    t("asc_name"),
+    t("desc_name"),
+    t("asc_price"),
+    t("desc_price"),
   ]);
-  const [sort, setSort] = useState(t('default'));
+  const [sort, setSort] = useState(t("default"));
 
-  // Кошик
+  // Инициализация корзины из localStorage
   const [goodsInCart, setGoodsInCart] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("lavka_cart");
@@ -214,6 +209,41 @@ export const AppProviders = ({ children }) => {
     }
     return {};
   });
+
+  // СИНХРОНИЗАЦИЯ КОРЗИНЫ С АКТУАЛЬНЫМИ ТОВАРАМИ (после объявления goodsInCart)
+  useEffect(() => {
+    if (items.length === 0) return;
+    setGoodsInCart((prevCart) => {
+      let newCart = { ...prevCart };
+      let changed = false;
+      Object.keys(newCart).forEach((sku) => {
+        const freshItem = items.find((i) => i.sku === sku);
+        if (freshItem) {
+          const old = newCart[sku];
+          if (
+            old.title !== freshItem.title ||
+            old.price !== freshItem.price ||
+            old.offerPrice !== freshItem.offerPrice ||
+            old.img !== (freshItem.img || freshItem.images?.[0] || "")
+          ) {
+            newCart[sku] = {
+              ...old,
+              sku: freshItem.sku,
+              title: freshItem.title,
+              price: freshItem.price,
+              offerPrice: freshItem.offerPrice,
+              img: freshItem.img || freshItem.images?.[0] || "",
+            };
+            changed = true;
+          }
+        } else {
+          delete newCart[sku];
+          changed = true;
+        }
+      });
+      return changed ? newCart : prevCart;
+    });
+  }, [items]);
 
   const [delivery, setDelivery] = useState(() => {
     if (typeof window !== "undefined") {

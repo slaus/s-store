@@ -15,7 +15,7 @@ const CartList = () => {
             ) : (
                 <div className={styles._}>
                     {Object.values(goodsInCart).map(item => (
-                        <CartItem item={item} key={item.id} />
+                        <CartItem item={item} key={item.sku} />
                     ))}
                 </div>
             )}

@@ -24,7 +24,7 @@ const ItemsGrid = () => {
 
   const filteredItems = items
     // .filter((item) => (item.visible !== undefined ? item.visible : true))
-    .filter((item) => !selectedCategory || item.category === selectedCategory)
+    .filter((item) => !selectedCategory || (item.category === selectedCategory))
     .filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase())
     );
@@ -55,7 +55,7 @@ const ItemsGrid = () => {
       {sortedItems.length > 0 ? (
         <div className={styles._}>
           {sortedItems.map((item) => (
-            <ItemsCard item={item} key={item.id} />
+            <ItemsCard item={item} key={item.sku} />
           ))}
         </div>
       ) : (

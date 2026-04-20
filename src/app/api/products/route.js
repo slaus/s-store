@@ -5,19 +5,21 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const locale = searchParams.get('lang') || 'uk';
+  const limit = parseInt(searchParams.get('limit') || '100');
+  const skip = parseInt(searchParams.get('skip') || '0');
+  const visibleOnly = searchParams.get('visible') !== 'false';
+
   try {
-    const { searchParams } = new URL(request.url);
-    const limit = parseInt(searchParams.get('limit') || '100');
-    const skip = parseInt(searchParams.get('skip') || '0');
-    const visibleOnly = searchParams.get('visible') !== 'false';
-
     const filters = visibleOnly ? { visible: true } : {};
-    const products = await getProducts(filters, { limit, skip });
-
-    return NextResponse.json(products, {
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-      },
+    const products = await getProducts(locale, filters, { limit, skip });
+    const withImg = products.map(p => ({
+      ...p,
+      img: p.images?.[0] || ''
+    }));
+    return NextResponse.json(withImg, {
+      headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' },
     });
   } catch (error) {
     console.error('Error fetching products:', error);
