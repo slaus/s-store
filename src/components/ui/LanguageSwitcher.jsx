@@ -2,8 +2,8 @@
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { locales } from '@/config/locales';
-import styles from './ui/button.module.css';
-import Button from './ui/Button';
+import styles from '@/components/ui/button.module.css';
+import Button from '@/components/ui/Button';
 import Image from 'next/image';
 
 export default function LanguageSwitcher() {

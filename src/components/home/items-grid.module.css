@@ -3,7 +3,7 @@
     grid-gap             : 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     margin-top           : 2rem;
-    transition           : all 0.3s ease 0.3s;
+    transition           : var(--transition);
 }
 
 @media screen and (max-width: 1499px) {
@@ -25,7 +25,7 @@
     width: 100%;
     height: auto;
     padding: 0.8rem;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-card);
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     border-radius: 0.25rem;

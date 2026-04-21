@@ -1,6 +1,6 @@
 ._ {
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-card);
     padding: 1.5rem 1rem;
     position: absolute;
     bottom: 0px;
@@ -27,7 +27,7 @@
     appearance: none;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease 0.3s;
+    transition: var(--transition);
     user-select: none;
     position: relative;
     white-space: nowrap;
@@ -39,18 +39,18 @@
     font-size: 1.125rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    background-color: #5e9923;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-card);
     border-width: 0;
     cursor: pointer;
 }
 .btn:hover {
-    background-color: #4c7c1b;
+    background-color: var(--color-primary-dark);
 }
 .disable {
     opacity: .5;
 }
 .disable:hover {
-    background-color: #5e9923;
+    background-color: var(--color-primary);
     cursor:default;
 }

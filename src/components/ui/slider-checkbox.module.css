@@ -1,26 +1,26 @@
 .slider {
   width           : 34px;
   height          : 20px;
-  background-color: #ccc;
+  background-color: var(--color-bg-light);
   border-radius   : 34px;
   position        : relative;
   cursor          : pointer;
-  transition      : all 0.3s ease .3s;
+  transition      : var(--transition);
 }
 
 .slider.checked {
-  background-color: #5e9923;
+  background-color: var(--color-primary);
 }
 
 .circle {
   width           : 16px;
   height          : 16px;
-  background-color: #fff;
+  background-color: var(--color-card);
   border-radius   : 50%;
   position        : absolute;
   top             : 2px;
   left            : 2px;
-  transition      : left 0.3s;
+  transition      : var(--transition);
 }
 
 .slider.checked .circle {

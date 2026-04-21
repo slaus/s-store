@@ -8,6 +8,7 @@ import { AppProviders } from "@/context/AppContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import { generateMetadata, viewport } from "../metadata";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const inter = Inter({ subsets: ["cyrillic"] });
 
@@ -50,6 +51,17 @@ export default async function LocaleLayout({ children, params }) {
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                let theme = localStorage.getItem('theme');
+                if (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
+                if (theme === 'dark') document.documentElement.classList.add('dark');
+              } catch(e) {}
+            `,
+          }}
+        />
         <Script
           id="json-ld"
           type="application/ld+json"
@@ -57,11 +69,11 @@ export default async function LocaleLayout({ children, params }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <NextIntlClientProvider messages={messages} locale={locale}>
-          <Providers>
-            <AppProviders>
-              {children}
-            </AppProviders>
-          </Providers>
+          <ThemeProvider>
+            <Providers>
+              <AppProviders>{children}</AppProviders>
+            </Providers>
+          </ThemeProvider>
         </NextIntlClientProvider>
         <SpeedInsights />
       </body>

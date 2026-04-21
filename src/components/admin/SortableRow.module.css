@@ -22,21 +22,21 @@
     align-items     : center;
     margin          : 0 .4rem;
     border-radius   : 0.25rem;
-    transition      : all 0.3s ease 0.3s;
+    transition      : var(--transition);
     height          : 22px;
     width           : 22px;
-    background-color: #5e9923;
-    color           : #fff;
+    background-color: var(--color-primary);
+    color           : var(--color-card);
 }
 
 .edit:hover {
-    background-color: #4e7a1c;
-    color           : #fff;
+    background-color: var(--color-primary);
+    color           : var(--color-card);
 }
 
 .edit:hover svg {
-    color: #fff;
-    fill : #fff;
+    color: var(--color-card);
+    fill : var(--color-card);
 }
 
 .delete {
@@ -46,46 +46,46 @@
     align-items     : center;
     margin          : 0 .4rem;
     border-radius   : 0.25rem;
-    transition      : all 0.3s ease 0.3s;
+    transition      : var(--transition);
     height          : 22px;
     width           : 22px;
-    background-color: #ff0019;
-    color           : #fff;
+    background-color: var(--color-error);
+    color           : var(--color-card);
 }
 
 .delete:hover {
-    background-color: #ce0015;
-    color           : #fff;
+    background-color: var(--color-error-dark);
+    color           : var(--color-card);
 }
 
 .delete:hover svg {
-    color: #fff;
-    fill : #fff;
+    color: var(--color-card);
+    fill : var(--color-card);
 }
 
 .ok,
 .new {
-    color: #5e9923;
+    color: var(--color-primary);
 }
 
 .hide {
-    color: #ff0019;
+    color: var(--color-error);
 }
 
 .hide svg {
-    color: #ff0019;
-    fill : #ff0019;
+    color: var(--color-error);
+    fill : var(--color-error);
 }
 
 .action {
-    color: #ff0019;
+    color: var(--color-error);
 }
 
 .img {
     cursor    : pointer;
-    transition: all .3s ease .3s;
+    transition: var(--transition);
 }
 
 .img:hover {
-    color: #5e9923
+    color: var(--color-primary)
 }

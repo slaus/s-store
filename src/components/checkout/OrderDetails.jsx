@@ -20,7 +20,7 @@ const OrderDetails = () => {
             <h3 className={styles.title}>{t('order')}</h3>
             <div>
                 {Object.values(cartItems).map((item) => (
-                    <OrderItem key={item.id} item={item} />
+                    <OrderItem key={item.sku} item={item} />
                 ))}
             </div>
             <hr className={styles.hr} />

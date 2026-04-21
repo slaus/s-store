@@ -5,24 +5,24 @@
     border          : 1px solid #5e5e5e;
     margin-bottom   : 2rem;
     width           : 100%;
-    background-color: #fff;
+    background-color: var(--color-card);
     border-radius   : 8px;
     overflow        : hidden;
     box-shadow      : rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
 ._ th {
-    border    : 1px solid #dddddd;
+    border    : 1px solid var(--color-bg);
     padding   : 10px;
 }
 
 ._ td {
-    border    : 1px solid #dddddd;
+    border    : 1px solid var(--color-bg);
     padding   : 4px 8px;
 }
 
 ._ th {
-    background-color: #e4ffc8;
+    background-color: var(--color-primary-light);
 }
 
 .error {
@@ -34,7 +34,7 @@
     width: 100%;
     height: auto;
     padding: 1rem;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-card);
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     border-radius: 0.25rem;

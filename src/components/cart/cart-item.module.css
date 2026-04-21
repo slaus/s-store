@@ -7,7 +7,7 @@
     border-top     : 1px solid #2d405224;
     padding-top    : 0.5rem;
     padding-bottom : 0.5rem;
-    transition     : all .3s ease .3s;
+    transition     : var(--transition);
 }
 
 .img {
@@ -52,7 +52,7 @@
     align-items      : center;
     justify-content  : center;
     border-radius    : 0.25rem;
-    transition       : all 0.3s ease 0.3s;
+    transition       : var(--transition);
     flex             : 0 0 auto;
     position         : absolute;
     top              : 10px;
@@ -65,7 +65,7 @@
 }
 
 ._:hover .delete {
-    color  : #ff0019;
+    color  : var(--color-error);
     opacity: 1;
 }
 

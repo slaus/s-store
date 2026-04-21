@@ -1,7 +1,7 @@
 ._ {
     width           : calc(100% - 2rem);
     height          : max-content;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-card);
     padding         : 1rem;
     margin-left     : 1rem;
     margin-right    : 1rem;
@@ -48,7 +48,7 @@
 }
 
 .disabled .icon svg {
-    color: #c0c0c0;
+    color: var(--color-bg);
 }
 
 .icon {
@@ -65,7 +65,7 @@
 }
 
 .icon svg {
-    color: #5e9923;
+    color: var(--color-primary);
 }
 
 .input {
@@ -73,7 +73,7 @@
     display         : flex;
     align-items     : center;
     position        : relative;
-    transition      : 0.2s;
+    transition      : var(--transition);
     outline         : none;
     font-size       : 1rem;
     padding-left    : 2.5rem;
@@ -81,21 +81,21 @@
     height          : 2.5rem;
     line-height     : 2.5rem;
     border-radius   : 0.25rem;
-    border          : 2px solid #5e9923;
-    background-color: #ffffff;
+    border          : 2px solid var(--color-primary);
+    background-color: var(--color-card);
 }
 
 .input:disabled {
-    border-color: #c0c0c0;
+    border-color: var(--color-bg);
     cursor          : not-allowed;
 }
 
 .input::placeholder {
-    color: #c0c0c0;
+    color: var(--color-bg);
 }
 
 .input:focus {
-    border-color: #4c7c1b;
+    border-color: var(--color-primary-dark);
 }
 
 .confirm {
@@ -106,7 +106,7 @@
     appearance      : none;
     align-items     : center;
     justify-content : center;
-    transition      : 250ms;
+    transition      : var(--transition);
     user-select     : none;
     position        : relative;
     white-space     : nowrap;
@@ -118,30 +118,30 @@
     font-size       : 1.125rem;
     padding-left    : 1.5rem;
     padding-right   : 1.5rem;
-    background-color: #5e9923 !important;
-    color           : #fff;
+    background-color: var(--color-primary) !important;
+    color           : var(--color-card);
     margin-top      : 1rem;
 }
 
 .confirm:disabled {
-    background-color: #c0c0c0 !important;
+    background-color: var(--color-bg) !important;
     cursor          : not-allowed;
 }
 
 .confirm:hover:not(:disabled) {
-    background-color: #4c7c1b !important;
+    background-color: var(--color-primary-dark) !important;
 }
 
 .err .input {
-    border-color: #ce0015;
+    border-color: var(--color-error-dark);
 }
 
 .error {
-    color           : #ff0019;
+    color           : var(--color-error);
     position        : absolute;
     top             : -8px;
     left            : 40px;
     font-size       : 13px;
     padding         : 0 3px;
-    background-color: #fff;
+    background-color: var(--color-card);
 }

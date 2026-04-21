@@ -50,6 +50,8 @@ const ItemsGrid = () => {
 
   const sortedItems = sortItems(filteredItems, sort);
 
+  console.log(sortedItems);
+
   return (
     <>
       {sortedItems.length > 0 ? (

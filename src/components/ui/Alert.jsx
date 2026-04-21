@@ -7,7 +7,7 @@ const Alert = () => {
 
   if (!alert) return null;
 
-  const alertClass = `${styles.alert} ${styles[`alert-${alert.type}`]}`;
+  const alertClass = `${styles._} ${styles[`${alert.type}`]}`;
 
   return (
     <div className={alertClass}>

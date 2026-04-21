@@ -7,7 +7,7 @@
     align-items     : center;
     justify-content : center;
     gap             : 10px;
-    transition      : all 0.3s ease 0.3s;
+    transition      : var(--transition);
     user-select     : none;
     position        : relative;
     white-space     : nowrap;
@@ -15,33 +15,89 @@
     line-height     : 1.2;
     outline         : none;
     height          : 40px;
-    min-width       : 3rem;
+    min-width       : 40px;
     font-size       : 1rem;
-    background-color: #5e9923;
-    color           : #fff;
+    background-color: var(--color-primary);
+    color           : var(--color-card);
     max-width       : 220px;
-    padding         : 0 20px;
+    padding         : 0 10px;
     cursor          : pointer;
     border-width    : 0;
+    position        : relative;
+    overflow        : hidden;
 }
 
 ._:hover svg {
     cursor: pointer;
-    fill  : #fff;
-    color : #fff;
+    fill  : var(--color-card);
+    color : var(--color-card);
 }
 
 @media screen and (max-width: 991px) {
     ._ {
         font-size: 0.85rem;
+        height   : 35px;
+        min-width: 2.5rem;
     }
 }
 
 ._:hover {
-    background-color: #4c7c1b;
+    background-color: var(--color-primary-dark);
 }
 
+._.btn {
+    background: var(--color-bg-light);
+    color     : var(--color-text);
+    padding   : 0;
+}
 
-.transparent, .transparent:hover {
+._.btn:hover {
+    background: var(--color-card);
+    color     : var(--color-text);
+}
+
+._.btn svg {
+    color: var(--color-text);
+    fill : var(--color-text);
+}
+
+._.btn:hover svg {
+    color: var(--color-primary-dark);
+    fill : var(--color-primary-dark);
+}
+
+._.transparent {
     background: transparent;
+    border-radius: 50%;
+    padding   : 0;
+}
+
+._.transparent:hover {
+    background: var(--color-bg-light);
+}
+
+._.transparent svg {
+    color: var(--color-text);
+    fill : var(--color-text);
+}
+
+._.transparent:hover svg {
+    color: var(--color-primary-dark);
+    fill : var(--color-primary-dark);
+}
+
+.qty {
+    display         : flex;
+    font-size       : 0.71rem;
+    border-radius   : 50%;
+    white-space     : nowrap;
+    background-color: var(--color-error);
+    color           : var(--color-card);
+    width           : 15px;
+    height          : 15px;
+    justify-content : center;
+    align-items     : center;
+    position        : absolute;
+    top             : 4px;
+    left            : 4px;
 }

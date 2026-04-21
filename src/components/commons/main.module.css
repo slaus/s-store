@@ -10,5 +10,5 @@
     margin-top   : 120px;
     text-align   : center;
     margin-bottom: 30px;
-    color        : #4c7c1b
+    color        : var(--color-primary-dark);
 }

@@ -1,20 +1,19 @@
 ._ {
     display    : flex;
-    gap        : 20px;
+    gap        : 5px;
     align-items: center;
     width      : fit-content;
 }
 
 @media screen and (max-width: 991px) {
     ._ {
-        gap: 15px;
+        gap: 10px;
     }
 }
 
-@media screen and (max-width: 576px) {
-    ._ {
-        gap: 10px;
-    }
+._.w-100 {
+    flex: 1;
+    width: 100%;
 }
 
 ._.col {

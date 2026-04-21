@@ -1,64 +1,65 @@
-.alert {
+._ {
     z-index       : 999;
     position      : fixed;
-    bottom        : -100px;
-    left          : 10px;
+    top        : -100%;
+    right         : 15px;
     background    : #eee;
-    width         : 250px;
+    width         : 260px;
     padding       : 15px;
     display       : flex;
     gap           : 20px;
     align-items   : center;
     font-size     : 15px;
     border-radius : 3px;
-    transition    : all 0.5s ease;
+    transition    : var(--transition);
     opacity       : 0;
     pointer-events: none;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1);
 }
 
-.alert-success,
-.alert-error,
-.alert-warning {
+.success,
+.error,
+.warning {
     pointer-events: all;
     animation     : slideInOut 3s ease forwards;
 }
 
-.alert-success {
-    background-color: #5e9923;
-    color           : #fff;
-    border          : 1px solid #4c7c1b;
+.success {
+    background-color: var(--color-primary);
+    color           : var(--color-card);
+    border          : 1px solid var(--color-primary-dark);
 }
 
-.alert-error {
-    background-color: #ff0019;
-    color           : #fff;
-    border          : 1px solid #ce0015;
+.error {
+    background-color: var(--color-error);
+    color           : var(--color-card);
+    border          : 1px solid var(--color-error-dark);
 }
 
-.alert-warning {
-    background-color: #cc9e13;
-    color           : #fff;
-    border          : 1px solid #856404;
+.warning {
+    background-color: var(--color-warning);
+    color           : var(--color-card);
+    border          : 1px solid var(--color-warning-dark);
 }
 
 @keyframes slideInOut {
     0% {
-        bottom : -100px;
+        top : -100%;
         opacity: 0;
     }
 
     15% {
-        bottom : 10px;
+        top : 25px;
         opacity: 1;
     }
 
-    90% {
-        bottom : 10px;
+    85% {
+        top : 25px;
         opacity: 1;
     }
 
     100% {
-        bottom : -100px;
+        top : -100%;
         opacity: 0;
     }
 }

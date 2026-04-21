@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import styles from "./header.module.css";
 import {
   BiMenuAltLeft,
   BiSearch,
@@ -9,10 +8,14 @@ import {
 } from "react-icons/bi";
 import Logo from "@/components/others/Logo";
 import Flex from "@/components/ui/Flex";
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { useQtySelectedItems } from "@/context/AppContext";
-import LanguageSwitcher from "../LanguageSwitcher";
-import { useLocale } from "next-intl"; // импортируем хук локали
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import { useLocale } from "next-intl";
+import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import Button from "@/components/ui/Button";
+import styles from "./header.module.css";
+import buttons from "@/components/ui/button.module.css";
 
 const phone = process.env.NEXT_PUBLIC_PHONE;
 
@@ -24,7 +27,8 @@ const Header = ({
   setShowSidebar,
 }) => {
   const { qtySelectedItems } = useQtySelectedItems();
-  const locale = useLocale(); // получаем текущую локаль
+  const router = useRouter();
+  const locale = useLocale();
 
   const handleShowCart = () => {
     setShowCart(true);
@@ -41,33 +45,35 @@ const Header = ({
   return (
     <header className={styles._}>
       <div className={styles.block}>
-        <Flex>
-          {page === "home" && (
-            <button className={styles.hamburger} onClick={hideShowSidebar}>
-              <BiMenuAltLeft size={38} />
-            </button>
-          )}
+        <Flex className="w-100">
           <Logo />
-        </Flex>
-        <Flex>
           <a className={styles.phone} href={`tel:${phone}`}>
             {phone}
           </a>
-          <LanguageSwitcher />
+        </Flex>
+        <Flex>
           {page === "home" ? (
             <>
-              <button className={styles.search} onClick={handleShowSearchBar}>
-                <BiSearch size={38} />
-              </button>
-              <button className={styles.cart} onClick={handleShowCart}>
-                <BiShoppingBag size={38} />
-                <div className={styles.qty}>{qtySelectedItems}</div>
-              </button>
+              <LanguageSwitcher />
+              <ThemeSwitcher />
+              <Button className={buttons.transparent} onClick={handleShowSearchBar}>
+                <BiSearch size={28} />
+              </Button>
+              <Button className={buttons.transparent} onClick={handleShowCart}>
+                <BiShoppingBag size={26} />
+                <div className={buttons.qty}>{qtySelectedItems}</div>
+              </Button>
+              <Button className={buttons.transparent} onClick={hideShowSidebar}>
+                <BiMenuAltLeft size={29} />
+              </Button>
             </>
           ) : (
-            <Link className={styles.store} href={`/${locale}`}>
-              <BiStoreAlt size={38} />
-            </Link>
+            <Button
+              className={buttons.transparent}
+              onClick={() => router.push(`/${locale}`)}
+            >
+              <BiStoreAlt size={26} />
+            </Button>
           )}
         </Flex>
       </div>

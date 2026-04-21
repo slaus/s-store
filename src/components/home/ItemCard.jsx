@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 
 const ItemsCard = ({ item }) => {
     const t = useTranslations('common');
-    const { title, price, offerPrice, images, sku, visible, isNew } = item;
+    const { title, price, salePrice, images, sku, visible, isNew } = item;
     const imgUrl = images?.[0] || '/images/no-photo.jpg';
     const [isModalOpen, setIsModalOpen] = useState(false);
     const quantityInCart = useIsInCart(item);
@@ -18,15 +18,15 @@ const ItemsCard = ({ item }) => {
     return (
         <>
             <div className={styles._}>
-                {offerPrice && <div className={styles.sale}>{t('discount')}</div>}
+                {salePrice && <div className={styles.sale}>{t('discount')}</div>}
                 {isNew && <div className={styles.new}>{t('new')}</div>}
                 <div className={styles.img} onClick={() => imgUrl && openModal()}>
                     <img alt={title} title={title} src={imgUrl} className={`${styles.pict} ${!visible ? styles.hidden : ""}`} />
                 </div>
                 <div className={styles.block}>
                     <div className={styles.prices}>
-                        <p className={styles.price}>{(offerPrice || price)} {t('currency')}</p>
-                        {offerPrice && <p className={styles.old}>{price} {t('currency')}</p>}
+                        <p className={styles.price}>{(salePrice || price)} {t('currency')}</p>
+                        {salePrice && <p className={styles.old}>{price} {t('currency')}</p>}
                     </div>
                     <p className={styles.title}>{title}</p>
                 </div>

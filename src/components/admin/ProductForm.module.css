@@ -1,7 +1,7 @@
 ._ {
     width           : calc(100% - 2rem);
     height          : max-content;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-card);
     padding         : 1rem;
     margin-left     : 1rem;
     margin-right    : 1rem;
@@ -23,7 +23,7 @@
     line-height  : 1.25;
     font-weight  : 700;
     width        : 100%;
-    color        : #5e9923;
+    color        : var(--color-primary);
     margin-bottom: 20px;
 }
 
@@ -43,8 +43,8 @@
 
 .disabled .icon svg,
 .icon.gray svg {
-    color: #c0c0c0;
-    fill : #c0c0c0;
+    color: var(--color-bg);
+    fill : var(--color-bg);
 }
 
 .icon {
@@ -61,35 +61,37 @@
 }
 
 .icon svg {
-    color: #5e9923;
+    color: var(--color-primary);
 }
 
 .input:disabled,
 .textarea:disabled {
-    border-color: #c0c0c0;
+    border-color: var(--color-bg);
     cursor      : not-allowed;
 }
 
 .input::placeholder,
 .textarea::placeholder {
-    color: #c0c0c0;
+    color: var(--color-bg);
 }
 
 .input:focus,
 .textarea:focus {
-    border-color: #4c7c1b;
+    border-color: var(--color-primary-dark);
 }
 
 .cancel {
-    background: #979797 !important;
+    background: var(--color-bg) !important;
+    border-color: var(--color-bg-dark) !important;
+    color: var(--color-text) !important;
 }
 
 .cancel:hover {
-    background: #838383 !important;
+    background: var(--color-bg-dark) !important;
 }
 
 .delete {
-    background : #ff0019 !important;
+    background : var(--color-error) !important;
     padding    : 0 !important;
     margin-left: 1rem;
     height     : 22px !important;
@@ -98,7 +100,7 @@
 }
 
 .delete:hover {
-    background: #ce0015 !important;
+    background: var(--color-error-dark) !important;
 }
 
 .download {
@@ -112,8 +114,8 @@
     font-size       : 1rem;
     padding         : .5rem;
     border-radius   : 0.25rem;
-    border          : 2px solid #5e9923;
-    background-color: #ffffff;
+    border          : 2px solid var(--color-primary);
+    background-color: var(--color-card);
 }
 
 .download span {
@@ -134,7 +136,7 @@
     display         : flex;
     align-items     : center;
     position        : relative;
-    transition      : 0.2s;
+    transition      : var(--transition);
     outline         : none;
     font-size       : .95rem;
     padding-left    : 2.2rem;
@@ -142,8 +144,8 @@
     height          : 2.5rem;
     line-height     : 2.5rem;
     border-radius   : 0.25rem;
-    border          : 2px solid #5e9923;
-    background-color: #ffffff;
+    border          : 2px solid var(--color-primary);
+    background-color: var(--color-card);
 }
 
 .input:disabled,
@@ -171,7 +173,7 @@
 .uploading {
     font-size  : 0.85rem;
     margin-left: 0.5rem;
-    color      : #c0c0c0;
+    color      : var(--color-bg);
 }
 
 .currentImage {
@@ -190,17 +192,17 @@
 }
 
 .err .input {
-    border-color: #ce0015;
+    border-color: var(--color-error-dark);
 }
 
 .error {
-    color           : #ff0019;
+    color           : var(--color-error);
     position        : absolute;
     top             : -8px;
     left            : 40px;
     font-size       : 13px;
     padding         : 0 3px;
-    background-color: #fff;
+    background-color: var(--color-card);
 }
 
 .switcher {
@@ -212,11 +214,11 @@
 
 .lang, .mark {
     background   : #e9e9e9;
-    border       : 1px solid #c0c0c0;
+    border       : 1px solid var(--color-bg);
     border-radius: 4px;
     padding      : 4px 8px;
     cursor       : pointer;
-    transition   : all 0.3s;
+    transition   : var(--transition);
 }
 
 .lang.active {
@@ -224,19 +226,19 @@
 }
 
 .mark svg {
-    color: #c0c0c0;
-    fill: #c0c0c0;
-    transition   : all 0.3s;
+    color: var(--color-bg);
+    fill: var(--color-bg);
+    transition   : var(--transition);
 }
 
 .mark.active {
-    border-color: #5e9923;
-    background: #5e9923;
+    border-color: var(--color-primary);
+    background: var(--color-primary);
 }
 
 .mark.active svg {
-    color: #fff;
-    fill: #fff;
+    color: var(--color-card);
+    fill: var(--color-card);
 }
 
 .btns {
