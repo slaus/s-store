@@ -24,13 +24,13 @@ function textResponse(message, status) {
   return new Response(message, { status });
 }
 
-// GET – получить все товары (сырые данные для админки)
+// GET – получить все товары с сортировкой по order
 export async function GET(req) {
   if (!checkToken(req)) return textResponse('Неавторизовано', 401);
   try {
     const client = await clientPromise;
     const db = client.db();
-    const products = await db.collection('products').find({}).toArray();
+    const products = await db.collection('products').find({}).sort({ order: 1, createdAt: -1 }).toArray();
     const formatted = products.map(p => ({ ...p, _id: p._id.toString() }));
     return jsonResponse(formatted);
   } catch (error) {
@@ -84,7 +84,6 @@ export async function PUT(req) {
     const oldProduct = await getProductBySku(sku);
     if (!oldProduct) return textResponse('Товар не знайдено', 404);
 
-    // Если изображение изменилось, удаляем старое
     if (oldProduct.images?.[0] && newImg && oldProduct.images[0] !== newImg) {
       const oldFileId = oldProduct.images[0].split('/').pop();
       await deleteImage(oldFileId);

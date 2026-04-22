@@ -13,7 +13,8 @@ export async function GET(request) {
 
   try {
     const filters = visibleOnly ? { visible: true } : {};
-    const products = await getProducts(locale, filters, { limit, skip });
+    const options = { limit, skip, sort: { order: 1, createdAt: -1 } };
+    const products = await getProducts(locale, filters, options);
     const withImg = products.map(p => ({
       ...p,
       img: p.images?.[0] || ''

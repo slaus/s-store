@@ -15,7 +15,7 @@
     flex-direction: column;
     z-index: 10;
     background-color: var(--color-card);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 14px 0px, rgba(0, 0, 0, 0.07) 0px 3px 6px 0px;
+    box-shadow: var(--shadow);
     will-change: opacity, transform;
     transform: translateX(0%);
     right: 0px;

@@ -2,36 +2,32 @@
   --color-primary-light: #e6f6ff;
   --color-primary      : #1EB0FA;
   --color-primary-dark : #006ea5;
-  --color-error      : #fa1e1e;
-  --color-error-dark : #da1010;
-  --color-bg-light: #e6e3e3;
-  --color-bg      : #d3d4d6;
-  --color-bg      : #d3d4d6;
-  --color-bg-dark : #bbbbbb;
+  --color-error        : #fa1e1e;
+  --color-error-dark   : #da1010;
+  --color-bg-light     : #e6e3e3;
+  --color-bg           : #d3d4d6;
+  --color-bg-dark      : #bbbbbb;
   --color-warning      : #FAB41E;
   --color-warning-dark : #dd9c11;
-  --color-danger      : #FA711E;
-  --color-danger-dark : #dd5e0f;
-  --color-card      : #fff;
-  --color-text      : #1e1e1e;
-  --transition   : all .3s ease .3s;
+  --color-card         : #fff;
+  --color-text         : #1e1e1e;
+  --transition         : all .3s ease .3s;
+  --shadow             : 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px -1px rgba(0,0,0,.1);
 }
 
 .dark {
   --color-primary-light: #190900;
-  --color-primary: #25efef;
-  --color-primary-dark: #0fc0c0;
-  --color-error      : #FA711E;
-  --color-error-dark : #dd5e0f;
-  --color-bg-light: #26272b;
-  --color-bg: #111316;
-  --color-bg-dark: #5c5c5c;
-  --color-warning: #054be1;
-  --color-warning-dark: #2263ee;
-  --color-danger: #058ee1;
-  --color-danger-dark: #22a1f0;
-  --color-card: #282c31;
-  --color-text: #fdfdfd;
+  --color-primary      : #e768ec;
+  --color-primary-dark : #b449b8;
+  --color-error        : #FA711E;
+  --color-error-dark   : #dd5e0f;
+  --color-bg-light     : #26272b;
+  --color-bg           : #040405;
+  --color-bg-dark      : #5c5c5c;
+  --color-warning      : #054be1;
+  --color-warning-dark : #2263ee;
+  --color-card         : rgb(46, 49, 53);
+  --color-text         : #fdfdfd;
 }
 
 * {
@@ -52,6 +48,11 @@ body {
   background: linear-gradient(to bottom,
       transparent,
       var(--color-bg)) var(--color-bg-light);
+}
+
+body.hidden {
+  overflow: hidden;
+  height  : 100vh;
 }
 
 a {

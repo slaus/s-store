@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import styles from "./SortableRow.module.css";
+import styles from "./sortable-row.module.css";
 import {
   BiEdit,
   BiTrash,

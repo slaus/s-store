@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import styles from "./ProductForm.module.css";
+import styles from "./product-form.module.css";
 import Button from "@/components/ui/Button";
 import { useAlert } from "@/context/AppContext";
 import {
@@ -14,7 +14,6 @@ import {
   BiCategory,
   BiMoneyWithdraw,
 } from "react-icons/bi";
-import SliderCheckbox from "@/components/ui/SliderCheckbox";
 import { useTranslations } from "next-intl";
 import { locales } from "@/config/locales";
 import Tabs from "@/components/ui/Tabs";
@@ -39,8 +38,7 @@ export default function ProductForm({
   const [submitted, setSubmitted] = useState(false);
   const { showAlert } = useAlert();
 
-  // Состояние для выбранного языка в форме
-  const [formLocale, setFormLocale] = useState(locales[0]); // по умолчанию первый язык
+  const [formLocale, setFormLocale] = useState(locales[0]);
 
   useEffect(() => {
     setCheckedNew(formData.isNew);
@@ -69,7 +67,6 @@ export default function ProductForm({
     setSubmitted(true);
 
     let hasError = false;
-    // Проверяем, что для всех языков заполнено название и категория
     for (const locale of locales) {
       if (!formData.title[locale] || formData.title[locale].trim() === "") {
         hasError = true;
@@ -117,7 +114,6 @@ export default function ProductForm({
     setFormData({ ...formData, [field]: value });
   };
 
-  // Переключение языка
   const switchLanguage = (locale) => {
     setFormLocale(locale);
   };
@@ -128,9 +124,7 @@ export default function ProductForm({
         {editingId === "new" ? h("add") : h("edit")}
       </h2>
 
-      {/* Переключатель языков */}
       <div className={styles.switcher}>
-        {/* Чекбоксы */}
         <div className={styles.btns}>
           <button
             className={`${styles.mark} ${checkedVisible ? styles.active : ""}`}
@@ -355,12 +349,7 @@ export default function ProductForm({
             {/* Meta Title */}
             <div className={styles.group}>
               <div className={styles.icon}>
-                <Image
-                  src={`/images/${formLocale}.png`}
-                  alt={formLocale}
-                  width={18}
-                  height={12}
-                />
+                <BiRename size={20} />
               </div>
               <input
                 type="text"
@@ -375,12 +364,7 @@ export default function ProductForm({
             {/* Meta Description */}
             <div className={styles.group}>
               <div className={styles.icon}>
-                <Image
-                  src={`/images/${formLocale}.png`}
-                  alt={formLocale}
-                  width={18}
-                  height={12}
-                />
+                <BiRename size={20} />
               </div>
               <textarea
                 placeholder={`Meta Description (${formLocale.toUpperCase()})`}

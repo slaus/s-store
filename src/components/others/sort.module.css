@@ -47,7 +47,7 @@
   right           : 0;
   background-color: var(--color-card);
   min-width       : 160px;
-  box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow      : var(--shadow);
   z-index         : 1;
 }
 
@@ -57,20 +57,20 @@
 
 .btn {
   background-color: var(--color-card);
-  color          : var(--color-text);
-  padding        : 10px 15px;
-  text-decoration: none;
-  display        : block;
-  width          : 100%;
-  font-size      : 0.85rem;
-  text-align     : left;
-  padding-left   : 35px;
-  position       : relative;
+  color           : var(--color-text);
+  padding         : 10px 15px;
+  text-decoration : none;
+  display         : block;
+  width           : 100%;
+  font-size       : 0.85rem;
+  text-align      : left;
+  padding-left    : 35px;
+  position        : relative;
 }
 
 .btn:hover {
   background-color: var(--color-bg-light);
-  color          : var(--color-text);
+  color           : var(--color-text);
 }
 
 .btn:hover svg {
@@ -79,7 +79,7 @@
 }
 
 ._:hover .dropbtn {
-  background-color: var(--color-primary-dark) !important;
+  background-color: var(--color-primary-dark);
 }
 
 .icon {

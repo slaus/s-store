@@ -25,7 +25,7 @@
     padding         : 0.8rem;
     background-color: var(--color-card);
     position        : relative;
-    box-shadow      : rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    box-shadow      : var(--shadow);
     border-radius   : 0.25rem;
     overflow        : hidden;
     transition      : var(--transition);
@@ -39,8 +39,8 @@
 
 .close {
     position        : absolute;
-    top             : 2rem;
-    right           : 2rem;
+    top             : 1.5rem;
+    right           : 1.5rem;
     outline         : none;
     width           : 40px;
     height          : 40px;
@@ -50,10 +50,21 @@
     border-radius   : 0.25rem;
     transition      : var(--transition);
     flex            : 0 0 auto;
-    background-color: var(--color-card) !important;
+    background-color: var(--color-card);
     z-index         : 1;
     cursor          : pointer;
     border-width    : 0;
+    color: var(--color-text);
+}
+
+.close svg {
+    color: var(--color-text);
+    fill: var(--color-text);
+}
+
+.close:hover svg {
+    color: var(--color-primary);
+    fill: var(--color-primary);
 }
 
 .content {

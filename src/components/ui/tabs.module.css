@@ -28,6 +28,7 @@
     font-size    : 14px;
     transition   : var(--transition);
     margin-right : 4px;
+    color: var(--color-text);
 }
 
 .btn.active {

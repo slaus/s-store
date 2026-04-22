@@ -20,7 +20,7 @@
     width: 100%;
 }
 .hr {
-    border: 1px solid #000;
+    border: 1px solid var(--color-text);
     border-top-style: initial;
     opacity: 0.1;
     margin-top: 20px;

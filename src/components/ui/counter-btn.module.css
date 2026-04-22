@@ -29,24 +29,25 @@
     /* min-width       : 2.4rem; */
     aspect-ratio       : 1/1;
     font-size          : 0.875rem;
-    background-color   : var(--color-primary) !important;
+    background-color   : var(--color-primary);
     color              : var(--color-card);
     padding            : 0px;
     cursor             : pointer;
     border-width       : 0;
+    box-shadow         : var(--shadow);
 }
 
 .btn:hover {
-    background-color: var(--color-primary-dark) !important;
+    background-color: var(--color-primary-dark);
 }
 
 .btn:hover svg {
-    color: var(--color-card) !important;
-    fill: var(--color-card) !important;
+    color: var(--color-card);
+    fill : var(--color-card);
 }
 
 .text {
-    font-size  : 1.1rem;
-    font-weight: 300;
-    color      : #000
+    font-size  : 1rem;
+    font-weight: 600;
+    color      : var(--color-text);
 }

@@ -3,7 +3,6 @@
     background-color: var(--color-card);
     padding-top     : 1.5rem;
     padding-bottom  : 1.5rem;
-    /* box-shadow      : rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; */
     height          : 100px;
     position        : fixed;
     top             : 0px;
@@ -46,6 +45,16 @@
     }
 }
 
+._ button {
+    background: transparent;
+    color: var(--color-text);
+}
+
+._ button svg {
+    color: var(--color-text);
+    fill: var(--color-text);
+}
+
 .input {
     width           : 100%;
     display         : flex;
@@ -61,6 +70,7 @@
     border-radius   : 0.25rem;
     border          : 2px solid var(--color-primary);
     background-color: var(--color-card);
+    color: var(--color-text);
     appearance      : textfield;
     outline-offset  : -2px;
 }
@@ -68,7 +78,7 @@
 .input::placeholder,
 .input:-webkit-input-placeholder,
 .input:-moz-input-placeholder {
-    color: #2d4052;
+    color: var(--color-bg-dark);
 }
 
 .search {
@@ -94,8 +104,21 @@
     border-radius  : 0.25rem;
     transition     : var(--transition);
     flex           : 0 0 auto;
+    background: var(--color-card);
+    color: var(--color-text);
+}
+
+.close svg {
+    color: var(--color-text);
+    fill: var(--color-text);
 }
 
 .close:hover {
-    background-color: rgba(0, 0, 0, 0.06);
+    background: var(--color-bg-light);
+    color: var(--color-primary);
+}
+
+.close:hover svg {
+    color: var(--color-primary);
+    fill: var(--color-primary);
 }

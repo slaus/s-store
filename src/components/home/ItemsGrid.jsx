@@ -22,26 +22,28 @@ const ItemsGrid = () => {
     return <Loading />;
   }
 
+  console.log(items);
+
   const filteredItems = items
     // .filter((item) => (item.visible !== undefined ? item.visible : true))
-    .filter((item) => !selectedCategory || (item.category === selectedCategory))
+    .filter((item) => !selectedCategory || item.category === selectedCategory)
     .filter((item) =>
       item.title.toLowerCase().includes(searchValue.toLowerCase())
     );
 
   const sortItems = (itemsToSort, sortType) => {
     switch (sortType) {
-      case t('asc_id'):
+      case "Зростанням ID":
         return itemsToSort.slice().sort((a, b) => a.id.localeCompare(b.id));
-      case t('desc_id'):
+      case "Спаданням ID":
         return itemsToSort.slice().sort((a, b) => b.id.localeCompare(a.id));
-      case t('asc_name'):
+      case "Назвою (А-Я)":
         return itemsToSort.slice().sort((a, b) => a.title.localeCompare(b.title));
-      case t('desc_name'):
+      case "Назвою (Я-А)":
         return itemsToSort.slice().sort((a, b) => b.title.localeCompare(a.title));
-      case t('asc_price'):
+      case "Ціною (Мін.)":
         return itemsToSort.slice().sort((a, b) => (a.offerPrice || a.price) - (b.offerPrice || b.price));
-      case t('desc_price'):
+      case "Ціною (Макс.)":
         return itemsToSort.slice().sort((a, b) => (b.offerPrice || b.price) - (a.offerPrice || a.price));
       default:
         return itemsToSort;
@@ -49,8 +51,6 @@ const ItemsGrid = () => {
   };
 
   const sortedItems = sortItems(filteredItems, sort);
-
-  console.log(sortedItems);
 
   return (
     <>

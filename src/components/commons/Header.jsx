@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BiMenuAltLeft,
   BiSearch,
@@ -8,7 +8,7 @@ import {
 } from "react-icons/bi";
 import Logo from "@/components/others/Logo";
 import Flex from "@/components/ui/Flex";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { useQtySelectedItems } from "@/context/AppContext";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import { useLocale } from "next-intl";
@@ -29,6 +29,7 @@ const Header = ({
   const { qtySelectedItems } = useQtySelectedItems();
   const router = useRouter();
   const locale = useLocale();
+  const [hidden, setHidden] = useState(false);
 
   const handleShowCart = () => {
     setShowCart(true);
@@ -40,6 +41,21 @@ const Header = ({
 
   const hideShowSidebar = () => {
     setShowSidebar(!showSidebar);
+    if (window.innerWidth <= 767) {
+      hiddenBody(showSidebar);
+    }
+  };
+
+  const hiddenBody = (showSidebar) => {
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+    if (!showSidebar) {
+      document.body.classList.add("hidden");
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      document.body.classList.remove("hidden");
+      document.body.style.paddingRight = "";
+    }
   };
 
   return (
@@ -56,7 +72,10 @@ const Header = ({
             <>
               <LanguageSwitcher />
               <ThemeSwitcher />
-              <Button className={buttons.transparent} onClick={handleShowSearchBar}>
+              <Button
+                className={buttons.transparent}
+                onClick={handleShowSearchBar}
+              >
                 <BiSearch size={28} />
               </Button>
               <Button className={buttons.transparent} onClick={handleShowCart}>

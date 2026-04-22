@@ -8,12 +8,17 @@
     background-color: var(--color-card);
     border-radius   : 8px;
     overflow        : hidden;
-    box-shadow      : rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    box-shadow      : var(--shadow);
 }
 
 ._ th {
     border    : 1px solid var(--color-bg);
     padding   : 10px;
+    font-size: 14px;
+}
+
+._ th:first-child {
+    font-size: 12px;
 }
 
 ._ td {
@@ -36,6 +41,6 @@
     padding: 1rem;
     background-color: var(--color-card);
     position: relative;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    box-shadow: var(--shadow);
     border-radius: 0.25rem;
 }

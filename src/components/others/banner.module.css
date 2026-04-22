@@ -1,14 +1,36 @@
 ._ {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4;
-    background-color: #CBD5E0;
-    overflow: hidden;
-    border-radius: 10px;
-    margin-bottom: 2rem;
+    width           : 100%;
+    height          : auto;
+    aspect-ratio    : 4.2;
+    background-color: var(--color-bg-light);
+    position        : relative;
+    overflow        : hidden;
+    border-radius   : 10px;
+    margin-bottom   : 2rem;
+    box-shadow      : var(--shadow);
 }
+
+@media screen and (max-width: 991px) {
+    ._ {
+        aspect-ratio: 3;
+        margin-bottom   : 1rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    ._ {
+        aspect-ratio: 2;
+    }
+}
+
 .img {
-    width: 100%;
-    height: 100%;
+    position  : absolute;
+    left      : 0;
+    right     : 0;
+    top       : 0;
+    bottom    : 0;
+    margin    : auto;
+    width     : 100%;
+    height    : 100%;
     object-fit: cover;
 }

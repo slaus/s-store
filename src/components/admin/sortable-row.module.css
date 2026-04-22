@@ -34,7 +34,7 @@
     color           : var(--color-card);
 }
 
-.edit:hover svg {
+.edit svg {
     color: var(--color-card);
     fill : var(--color-card);
 }
@@ -53,14 +53,14 @@
     color           : var(--color-card);
 }
 
+.delete svg {
+    color: var(--color-card);
+    fill : var(--color-card);
+}
+
 .delete:hover {
     background-color: var(--color-error-dark);
     color           : var(--color-card);
-}
-
-.delete:hover svg {
-    color: var(--color-card);
-    fill : var(--color-card);
 }
 
 .ok,

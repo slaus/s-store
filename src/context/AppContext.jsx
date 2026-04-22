@@ -156,7 +156,7 @@ export const AppProviders = ({ children }) => {
 
   const loadProducts = useCallback(() => {
     setLoadingItems(true);
-    fetch(`/api/products?lang=${locale}&_=${Date.now()}`, { cache: "no-store" })
+    fetch(`/api/products?lang=${locale}&visible=false&_=${Date.now()}`, { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => {
         setItems(data);

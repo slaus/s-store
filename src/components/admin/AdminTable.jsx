@@ -13,7 +13,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import SortableRow from "./SortableRow";
-import styles from "./AdminTable.module.css";
+import styles from "./admin-table.module.css";
 import { useTranslations } from "next-intl";
 
 export default function AdminTable({ products, onEdit, onDelete, onDragEnd, locale }) {
