@@ -12,7 +12,7 @@ import {
 import { useTranslations } from "next-intl";
 
 const ItemsGrid = () => {
-  const t = useTranslations('product');
+  const t = useTranslations("product");
   const { items, loadingItems } = useItems();
   const { sort } = useSort();
   const { selectedCategory } = useSelectedCategory();
@@ -22,29 +22,45 @@ const ItemsGrid = () => {
     return <Loading />;
   }
 
-  console.log(items);
+  // console.log(items);
 
   const filteredItems = items
     // .filter((item) => (item.visible !== undefined ? item.visible : true))
     .filter((item) => !selectedCategory || item.category === selectedCategory)
     .filter((item) =>
-      item.title.toLowerCase().includes(searchValue.toLowerCase())
+      item.title.toLowerCase().includes(searchValue.toLowerCase()),
     );
 
   const sortItems = (itemsToSort, sortType) => {
     switch (sortType) {
       case "Зростанням ID":
-        return itemsToSort.slice().sort((a, b) => a.id.localeCompare(b.id));
+        return itemsToSort
+          .slice()
+          .sort((a, b) => (a.sku || "").localeCompare(b.sku || ""));
       case "Спаданням ID":
-        return itemsToSort.slice().sort((a, b) => b.id.localeCompare(a.id));
+        return itemsToSort
+          .slice()
+          .sort((a, b) => (b.sku || "").localeCompare(a.sku || ""));
       case "Назвою (А-Я)":
-        return itemsToSort.slice().sort((a, b) => a.title.localeCompare(b.title));
+        return itemsToSort
+          .slice()
+          .sort((a, b) => a.title.localeCompare(b.title));
       case "Назвою (Я-А)":
-        return itemsToSort.slice().sort((a, b) => b.title.localeCompare(a.title));
+        return itemsToSort
+          .slice()
+          .sort((a, b) => b.title.localeCompare(a.title));
       case "Ціною (Мін.)":
-        return itemsToSort.slice().sort((a, b) => (a.offerPrice || a.price) - (b.offerPrice || b.price));
+        return itemsToSort
+          .slice()
+          .sort(
+            (a, b) => (a.offerPrice || a.price) - (b.offerPrice || b.price),
+          );
       case "Ціною (Макс.)":
-        return itemsToSort.slice().sort((a, b) => (b.offerPrice || b.price) - (a.offerPrice || a.price));
+        return itemsToSort
+          .slice()
+          .sort(
+            (a, b) => (b.offerPrice || b.price) - (a.offerPrice || a.price),
+          );
       default:
         return itemsToSort;
     }
@@ -62,9 +78,9 @@ const ItemsGrid = () => {
         </div>
       ) : (
         <div className={styles.error}>
-          {t.rich('not_found', {
+          {t.rich("not_found", {
             search: searchValue,
-            b: (chunks) => <b style={{margin: '0 5px'}}>{chunks}</b>
+            b: (chunks) => <b style={{ margin: "0 5px" }}>{chunks}</b>,
           })}
         </div>
       )}

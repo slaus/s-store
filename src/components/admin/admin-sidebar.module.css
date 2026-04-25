@@ -1,0 +1,115 @@
+._ {
+    width              : 0;
+    /* background-color: var(--color-card); */
+    position           : fixed;
+    transform          : translateX(280px);
+    transition         : var(--transition);
+    top                : 104px;
+    padding-top        : 1.25rem;
+    padding-bottom     : 1.25rem;
+    float              : left;
+    /* height          : 100%; */
+    overflow           : hidden;
+    opacity            : 0;
+    z-index            : 0;
+}
+
+@media screen and (max-width: 991px) {
+    ._ {
+        padding-top   : .75rem;
+        padding-bottom: .75rem;
+    }
+}
+
+._.open {
+    transform: translateX(0px);
+    width    : 280px;
+    opacity  : 1;
+    z-index  : 3;
+}
+
+@media screen and (max-width: 767px) {
+    ._.open {
+        width: calc(100% - 30px);
+    }
+}
+
+
+.radiogroup {
+    display         : flex;
+    flex-direction  : column;
+    gap             : 5px;
+    background-color: var(--color-card);
+    border-radius   : 10px;
+    padding         : 10px;
+    overflow        : hidden;
+    box-shadow      : var(--shadow);
+}
+
+.btn {
+    border-radius   : 0;
+    width           : 100%;
+    display         : flex;
+    appearance      : none;
+    align-items     : center;
+    justify-content : center;
+    transition      : var(--transition);
+    user-select     : none;
+    position        : relative;
+    white-space     : nowrap;
+    line-height     : 1.2;
+    outline         : none;
+    height          : 40px;
+    width           : 100%;
+    background-color: var(--color-card);
+    color           : var(--color-text);
+    border          : 0;
+    padding         : 2px 10px;
+    border-radius   : 5px;
+}
+
+.btn.active {
+    background-color: var(--color-primary);
+    color           : var(--color-card);
+}
+
+.btn:hover:not(.active) {
+    background-color: var(--color-bg-light);
+}
+
+.btn:hover:not(.active) svg {
+    color: var(--color-text);
+    fill : var(--color-text);
+}
+
+.btn.active svg {
+    color: var(--color-card);
+    fill : var(--color-card);
+}
+
+.item {
+    display       : flex;
+    align-items   : center;
+    width         : 100%;
+    gap           : 20px;
+    font-size     : 1rem;
+    font-weight     : 600;
+    text-transform: inherit;
+}
+
+.item svg {
+    width : 18px;
+    height: 18px;
+}
+
+.overlay {
+    position        : fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    left            : 0px;
+    top             : 0px;
+    width           : 100vw;
+    height          : 100vh;
+    z-index         : 2;
+    opacity         : 1;
+    transition      : var(--transition);
+}

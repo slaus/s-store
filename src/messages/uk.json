@@ -42,7 +42,7 @@
         "removed": "Товар видалено з кошика!"
     },
     "admin": {
-        "title": "Адмінка товарів",
+        "title": "Адмінка",
         "no_product_title": "На жаль, товарів не знайдено.",
         "no_product": "Додайте свій перший товар у ваш інтернет-магазин.",
         "no_sort": "Не вдалося зберегти порядок товарів",
@@ -69,7 +69,24 @@
         "seo": "SEO",
         "general": "Загальне",
         "desc": "Опис",
-        "images": "Зображення"
+        "images": "Зображення",
+        "products": "Товари",
+        "categories": "Категорії",
+        "settings": "Налаштування"
+    },
+    "settings": {
+        "site_name": "Назва сайту",
+        "site_description": "Опис сайту",
+        "site_keywords": "Ключові слова",
+        "meta_title": "SEO заголовок",
+        "meta_description": "SEO опис",
+        "logo_url": "URL логотипа",
+        "favicon_url": "URL favicon",
+        "contact_email": "Email для зв'язку",
+        "social_links": "Посилання на соцмережі (JSON)",
+        "save": "Зберегти",
+        "save_error": "Помилка збереження",
+        "settings_error": "Неможливо завантажити налаштування"
     },
     "form": {
         "currency": "грн.",

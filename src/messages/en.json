@@ -42,7 +42,7 @@
     "removed": "Product removed from cart!"
   },
   "admin": {
-    "title": "Product admin",
+    "title": "Admin",
     "no_product_title": "Sorry, no products found.",
     "no_product": "Add your first product to your online store.",
     "no_sort": "Unable to save product order",
@@ -69,7 +69,24 @@
     "seo": "SEO",
     "general": "General",
     "desc": "Description",
-    "images": "Images"
+    "images": "Images",
+    "products": "Products",
+    "categories": "Categories",
+    "settings": "Setting"
+  },
+  "settings": {
+    "site_name": "Site name",
+    "site_description": "Site description",
+    "site_keywords": "Keywords",
+    "meta_title": "SEO title",
+    "meta_description": "SEO description",
+    "logo_url": "Logo URL",
+    "favicon_url": "Favicon URL",
+    "contact_email": "Contact email",
+    "social_links": "Social links (JSON)",
+    "save": "Save",
+    "save_error": "Save error",
+    "settings_error": "Unable to load settings"
   },
   "form": {
     "currency": "uah.",

@@ -1,0 +1,258 @@
+._ {
+    width: 100%;
+    height: max-content;
+    padding: 0.8rem;
+    background-color: var(--color-card);
+    position: relative;
+    border-radius: 10px;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+@media screen and (max-width: 767px) {
+    ._ {
+        max-width   : 500px;
+        margin-left : auto;
+        margin-right: auto;
+        order       : 2;
+    }
+}
+
+.title {
+    font-size    : 1.25rem;
+    line-height  : 1.25;
+    font-weight  : 700;
+    width        : 100%;
+    color        : var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.actions {
+    display   : flex;
+    gap       : 1rem;
+    margin-top: 1rem;
+}
+
+.checkbox {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    margin-top     : 1.5rem;
+    gap            : 10px;
+}
+
+.disabled .icon svg,
+.icon.gray svg {
+    color: var(--color-bg-dark);
+    fill : var(--color-bg-dark);
+}
+
+.icon {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    position       : absolute;
+    height         : 2.5rem;
+    width          : 2.5rem;
+    font-size      : 1rem;
+    top            : 0px;
+    z-index        : 1;
+    left           : 0px;
+}
+
+.icon svg {
+    color: var(--color-primary);
+}
+
+.input:disabled,
+.textarea:disabled {
+    border-color: var(--color-bg);
+    cursor      : not-allowed;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: var(--color-bg-dark);
+}
+
+.input:focus,
+.textarea:focus {
+    border-color: var(--color-primary-dark);
+}
+
+.cancel {
+    background: var(--color-bg);
+    border-color: var(--color-bg-dark);
+    color: var(--color-text);
+}
+
+.cancel:hover {
+    background: var(--color-bg-dark);
+}
+
+.delete {
+    background : var(--color-error);
+    padding    : 0;
+    margin-left: 1rem;
+    height     : 22px;
+    width      : 22px;
+    min-width  : 22px;
+}
+
+.delete:hover {
+    background: var(--color-error-dark);
+}
+
+.download {
+    width           : 100%;
+    display         : flex;
+    align-items     : center;
+    flex-direction  : column;
+    justify-content : space-between;
+    gap             : 5px;
+    outline         : none;
+    font-size       : 1rem;
+    padding         : .5rem;
+    border-radius   : 0.25rem;
+    border          : 2px solid var(--color-primary);
+    background-color: var(--color-card);
+}
+
+.download span {
+    font-size  : .68rem;
+    line-height: .75rem;
+}
+
+.group {
+    display   : flex;
+    position  : relative;
+    margin-top: 1rem;
+    position  : relative;
+}
+
+.input,
+.textarea {
+    width           : 100%;
+    display         : flex;
+    align-items     : center;
+    position        : relative;
+    transition      : var(--transition);
+    outline         : none;
+    font-size       : .95rem;
+    padding-left    : 2.2rem;
+    padding-right   : 1rem;
+    height          : 2.5rem;
+    line-height     : 2.5rem;
+    border-radius   : 0.25rem;
+    border          : 2px solid var(--color-primary);
+    background-color: var(--color-card);
+    color: var(--color-text);
+}
+
+.input:disabled,
+.textarea:disabled {
+    background-color: var(--color-card);
+    color: var(--color-bg-dark);
+    border-color: var(--color-bg-dark);
+    cursor          : not-allowed;
+}
+
+.textarea {
+    font-family: 'Inter', 'Inter Fallback';
+    height     : calc(100px + 1.5rem);
+    line-height: 115%;
+    padding    : .5rem .5rem .5rem 2.2rem;
+}
+
+.label {
+    font-weight: 500;
+}
+
+.fileInput {
+    width    : 100%;
+    font-size: .75rem;
+}
+
+.uploading {
+    font-size  : 0.85rem;
+    margin-left: 0.5rem;
+    color      : var(--color-bg);
+}
+
+.currentImage {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    flex-wrap      : nowrap;
+    flex           : 1;
+    font-size      : .75rem;
+    margin-top     : 1rem;
+    gap            : 5px;
+}
+
+.currentImage+.currentImage {
+    margin-top: .2rem;
+}
+
+.err .input {
+    border-color: var(--color-error-dark);
+}
+
+.error {
+    color           : var(--color-error);
+    position        : absolute;
+    top             : -8px;
+    left            : 40px;
+    font-size       : 13px;
+    padding         : 0 3px;
+    background-color: var(--color-card);
+}
+
+.switcher {
+    display        : flex;
+    gap            : 5px;
+    margin-bottom  : 20px;
+    justify-content: flex-end;
+}
+
+.lang, .mark {
+    background   : var(--color-bg-light);
+    width: 40px;
+    height: 40px;
+    border       : 1px solid var(--color-bg-light);
+    border-radius: 50%;
+    padding      : 4px 8px;
+    cursor       : pointer;
+    transition   : var(--transition);
+    color: var(--color-text);
+}
+
+.lang:hover, .mark:hover {
+    background   : var(--color-bg);
+}
+
+.lang.active {
+    display: none;
+}
+
+.mark svg {
+    color: var(--color-bg-dark);
+    fill: var(--color-bg-dark);
+    transition   : var(--transition);
+}
+
+.mark.active {
+    background: var(--color-primary);
+}
+
+.mark.active svg {
+    color: var(--color-card);
+    fill: var(--color-card);
+}
+
+.btns {
+    display    : flex;
+    align-items: center;
+    gap        : 5px;
+    margin-right: auto;
+}

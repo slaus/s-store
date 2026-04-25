@@ -25,6 +25,7 @@ const Header = ({
   setShowSearchBar,
   showSidebar,
   setShowSidebar,
+  setShowAdminSidebar,
 }) => {
   const { qtySelectedItems } = useQtySelectedItems();
   const router = useRouter();
@@ -68,23 +69,30 @@ const Header = ({
           </a>
         </Flex>
         <Flex>
-          {page === "home" ? (
+          <LanguageSwitcher />
+          <ThemeSwitcher />
+          {page === "home" || page === "product" ? (
             <>
-              <LanguageSwitcher />
-              <ThemeSwitcher />
-              <Button
-                className={buttons.transparent}
-                onClick={handleShowSearchBar}
-              >
-                <BiSearch size={28} />
-              </Button>
+              {page !== "product" && (
+                <Button
+                  className={buttons.transparent}
+                  onClick={handleShowSearchBar}
+                >
+                  <BiSearch size={28} />
+                </Button>
+              )}
               <Button className={buttons.transparent} onClick={handleShowCart}>
                 <BiShoppingBag size={26} />
                 <div className={buttons.qty}>{qtySelectedItems}</div>
               </Button>
-              <Button className={buttons.transparent} onClick={hideShowSidebar}>
-                <BiMenuAltLeft size={29} />
-              </Button>
+              {page === "product" && (
+                <Button
+                  className={buttons.transparent}
+                  onClick={() => router.push(`/${locale}`)}
+                >
+                  <BiStoreAlt size={26} />
+                </Button>
+              )}
             </>
           ) : (
             <Button
@@ -92,6 +100,11 @@ const Header = ({
               onClick={() => router.push(`/${locale}`)}
             >
               <BiStoreAlt size={26} />
+            </Button>
+          )}
+          {page !== "product" && (
+            <Button className={buttons.transparent} onClick={page === "admin" ? () => setShowAdminSidebar(prev => !prev) : hideShowSidebar}>
+              <BiMenuAltLeft size={29} />
             </Button>
           )}
         </Flex>

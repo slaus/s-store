@@ -8,13 +8,13 @@ import Banner from '../others/Banner';
 
 const MainContainer = ({showSidebar}) => {
     return (
-        <main className={`${showSidebar ? styles._ : styles._ + " " + styles.full}`}>
+        <div className={`${showSidebar ? styles._ : styles._ + " " + styles.full}`}>
             <Banner/>
             <Bread/>
             <ClientOnly fallback={<Loading/>}>
                 <ItemsGrid/>
             </ClientOnly>
-        </main>
+        </div>
     );
 };
 

@@ -4,10 +4,10 @@
     box-sizing: border-box;
     width     : 100%;
     position  : relative;
+    min-height: calc(100vh - 190px);
 }
 
 ._ h1 {
-    margin-top   : 120px;
     text-align   : center;
     margin-bottom: 30px;
     color        : var(--color-text);

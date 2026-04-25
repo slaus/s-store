@@ -24,7 +24,7 @@ export async function GET() {
     { _id: 'main' },
     {
       $setOnInsert: {
-        siteName: { uk: 'Мій магазин', en: 'My store' },
+        siteName: { uk: '', en: '' },
         description: { uk: '', en: '' },
         keywords: { uk: [], en: [] },
         metaTitle: { uk: '', en: '' },
