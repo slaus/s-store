@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./sort.module.css";
+import sortDropdown from "@styles/Sort.module.css";
 import { BiChevronDown, BiCheck } from "react-icons/bi"; 
 import { useItemsSort, useSort } from '@/context/AppContext';
 import { useTranslations } from 'next-intl';
@@ -14,14 +14,14 @@ const Sort = () => {
     }
 
     return (
-        <div className={styles._}>
+        <div className={sortDropdown._}>
             {t('sort')}
-            <button className={styles.dropbtn}>{sort} <BiChevronDown /></button>
-            <div className={styles.content}>
+            <button className={sortDropdown.dropbtn}>{sort} <BiChevronDown /></button>
+            <div className={sortDropdown.content}>
                 {itemsSort.map((option) => (
-                    <button className={styles.btn} value={option} key={option} onClick={() => selectSortMethod(option)}>
+                    <button className={sortDropdown.btn} value={option} key={option} onClick={() => selectSortMethod(option)}>
                         {option === sort &&
-                            <BiCheck className={styles.icon} fontSize={20} />
+                            <BiCheck className={sortDropdown.icon} fontSize={20} />
                         }
                         {option}
                     </button>

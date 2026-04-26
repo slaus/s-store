@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import styles from "@/components/ui/slider-checkbox.module.css";
+import checkbox from "@styles/SliderCheckbox.module.css";
 
 const SliderCheckbox = ({checked, toggleChecked}) => {
   return (
-    <div className={`${styles.slider} ${checked ? styles.checked : ''}`}
+    <div className={`${checkbox.slider} ${checked ? checkbox.checked : ''}`}
       onClick={toggleChecked}
     >
-      <div className={styles.circle}></div>
+      <div className={checkbox.circle}></div>
     </div>
   );
 };

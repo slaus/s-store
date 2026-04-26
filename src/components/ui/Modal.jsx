@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from "./modal.module.css";
 import { IoCloseOutline } from "react-icons/io5";
+import modal from "@styles/Modal.module.css";
 
 const Modal = ({ setIsModalOpen, children }) => {
     const closeModal = () => {
@@ -8,12 +8,12 @@ const Modal = ({ setIsModalOpen, children }) => {
     }
 
     return (
-        <div className={styles._}>
-            <div className={styles.modal}>
-                <button className={styles.close} onClick={closeModal}>
+        <div className={modal._}>
+            <div className={modal.modal}>
+                <button className={modal.close} onClick={closeModal}>
                     <IoCloseOutline size={36} />
                 </button>
-                <div className={styles.content}>
+                <div className={modal.content}>
                     {children}
                 </div>
             </div>

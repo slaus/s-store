@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from '@/components/ui/flex.module.css';
+import flex from '@styles/Flex.module.css';
 
 const FlexCol = ({children, className}) => {
     return (
-        <div className={`${className ? styles._ + " " + styles.col + " " + className : styles._+ " " + styles.col}`}>
+        <div className={`${className ? flex._ + " " + flex.col + " " + className : flex._+ " " + flex.col}`}>
             {children}
         </div>
     );

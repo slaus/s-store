@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./cart.module.css";
+import cart from "@styles/Cart.module.css";
 import { IoCloseOutline } from "react-icons/io5";
 import Overlay from '../others/Overlay';
 import CartList from './CartList';
@@ -18,11 +18,11 @@ const Cart = ({ setShowCart }) => {
 
     return (
         <Overlay setShowCart={setShowCart}>
-            <div className={styles._}>
-                <section className={styles.block}>
-                    <div className={styles.head}>
-                        <h2 className={styles.title}>{t('shoping_cart')}</h2>
-                        <button className={styles.close} onClick={hideCart}>
+            <div className={cart._}>
+                <section className={cart.block}>
+                    <div className={cart.head}>
+                        <h2 className={cart.title}>{t('shoping_cart')}</h2>
+                        <button className={cart.close} onClick={hideCart}>
                             <IoCloseOutline size={34} />
                         </button>
                     </div>

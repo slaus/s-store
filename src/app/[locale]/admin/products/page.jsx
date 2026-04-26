@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter, useParams } from "next/navigation";
 import { arrayMove } from "@dnd-kit/sortable";
-import styles from "./page.module.css";
 import Loading from "@/components/ui/Loading";
 import Modal from "@/components/ui/Modal";
 import Overlay from "@/components/others/Overlay";

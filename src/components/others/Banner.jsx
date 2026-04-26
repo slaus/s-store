@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from "./banner.module.css";
+import banner from "@styles/Banner.module.css";
 
 const Banner = () => {
     return (
-        <div className={styles._}>
-            <img className={styles.img} src="/images/banner-bg.webp" />
+        <div className={banner._}>
+            <img className={banner.img} src="/images/banner-bg.webp" />
         </div>
     );
 };

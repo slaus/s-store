@@ -1,0 +1,12 @@
+._ {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 22px;
+    gap: 1rem;
+    background: var(--color-card);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}

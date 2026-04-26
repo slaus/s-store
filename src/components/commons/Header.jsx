@@ -14,8 +14,8 @@ import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import { useLocale } from "next-intl";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import Button from "@/components/ui/Button";
-import styles from "./header.module.css";
-import buttons from "@/components/ui/button.module.css";
+import header from "@styles/Header.module.css";
+import buttons from "@styles/Button.module.css";
 
 const phone = process.env.NEXT_PUBLIC_PHONE;
 
@@ -60,11 +60,11 @@ const Header = ({
   };
 
   return (
-    <header className={styles._}>
-      <div className={styles.block}>
+    <header className={header._}>
+      <div className={header.block}>
         <Flex className="w-100">
           <Logo />
-          <a className={styles.phone} href={`tel:${phone}`}>
+          <a className={header.phone} href={`tel:${phone}`}>
             {phone}
           </a>
         </Flex>

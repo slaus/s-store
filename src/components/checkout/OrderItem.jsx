@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "@/components/checkout/order-item.module.css";
+import orderItem from "@styles/OrderItem.module.css";
 import { useTranslations } from 'next-intl';
 
 const OrderItem = ({ item }) => {
@@ -9,11 +9,11 @@ const OrderItem = ({ item }) => {
     const itemTotal = (offerPrice ? offerPrice * qty : price * qty).toFixed(0);
 
     return (
-        <div className={styles._}>
+        <div className={orderItem._}>
             <span><b>{qty}</b></span>
             <span>x</span>
             <p>{title}</p>
-            <p className={styles.total}>{itemTotal} {t('currency')}</p>
+            <p className={orderItem.total}>{itemTotal} {t('currency')}</p>
         </div>
     );
 };

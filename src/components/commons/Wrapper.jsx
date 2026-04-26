@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from "./wrapper.module.css";
+import wrapper from "@styles/Wrapper.module.css";
 
 const Wrapper = ({children}) => {
     return (
-        <div className={styles._}>
+        <div className={wrapper._}>
             {children}
         </div>
     );

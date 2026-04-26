@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "@/components/checkout/order-details.module.css";
+import orderDetails from "@styles/OrderDetails.module.css";
 import { useOrderDetails, useDelivery, useDeliveryFee } from '@/context/AppContext';
 import OrderItem from '@/components/checkout/OrderItem';
 import { useTranslations } from 'next-intl';
@@ -16,29 +16,29 @@ const OrderDetails = () => {
     // console.log(cartItems, subTotal, shippingCost, total);
 
     return (
-        <div className={styles._}>
-            <h3 className={styles.title}>{t('order')}</h3>
+        <div className={orderDetails._}>
+            <h3 className={orderDetails.title}>{t('order')}</h3>
             <div>
                 {Object.values(cartItems).map((item) => (
                     <OrderItem key={item.sku} item={item} />
                 ))}
             </div>
-            <hr className={styles.hr} />
+            <hr className={orderDetails.hr} />
             <div>
-                <div className={styles.item}>
+                <div className={orderDetails.item}>
                     <p>{t('subtotal')}</p>
-                    <p className={styles.subtotal}>{subTotal} {t('currency')}</p>
+                    <p className={orderDetails.subtotal}>{subTotal} {t('currency')}</p>
                 </div>
                 {withDelivery &&
-                    <div className={styles.item}>
+                    <div className={orderDetails.item}>
                         <p>{t('delivery')}</p>
-                        <p className={styles.subtotal}>{withDelivery ? shippingCost : "0"} {t('currency')}</p>
+                        <p className={orderDetails.subtotal}>{withDelivery ? shippingCost : "0"} {t('currency')}</p>
                     </div>
                 }
 
-                <div className={styles.item}>
+                <div className={orderDetails.item}>
                     <p><b>{t('total')}</b></p>
-                    <p className={styles.total}>{total} {t('currency')}</p>
+                    <p className={orderDetails.total}>{total} {t('currency')}</p>
                 </div>
             </div>
         </div>

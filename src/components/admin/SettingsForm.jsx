@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { locales } from "@/config/locales";
 import Button from "@/components/ui/Button";
-import styles from "./settings-form.module.css"; // берём стили из ProductForm
+import settingsForm from "@styles/SettingsForm.module.css";
 import Image from "next/image";
 
 export default function SettingsForm({ initialData, onSave, token }) {
@@ -60,15 +60,15 @@ export default function SettingsForm({ initialData, onSave, token }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles._}>
-      <div className={styles.switcher}>
-        <div className={styles.btns}></div>
+    <form onSubmit={handleSubmit} className={settingsForm._}>
+      <div className={settingsForm.switcher}>
+        <div className={settingsForm.btns}></div>
         {locales.map((locale) => (
           <button
             key={locale}
             type="button"
             onClick={() => switchLanguage(locale)}
-            className={`${styles.lang} ${formLocale === locale ? styles.active : ""}`}
+            className={`${settingsForm.lang} ${formLocale === locale ? settingsForm.active : ""}`}
           >
             <Image
               src={`/images/${locale}.png`}
@@ -80,14 +80,14 @@ export default function SettingsForm({ initialData, onSave, token }) {
         ))}
       </div>
 
-      <div className={styles.group}>
-        <div className={styles.icon}>
+      <div className={settingsForm.group}>
+        <div className={settingsForm.icon}>
           <span>🏷️</span>
         </div>
         <input
           type="text"
           placeholder={`${t("site_name")} (${formLocale.toUpperCase()})`}
-          className={styles.input}
+          className={settingsForm.input}
           value={formData.siteName?.[formLocale] || ""}
           onChange={(e) =>
             handleMultilangChange("siteName", formLocale, e.target.value)
@@ -95,13 +95,13 @@ export default function SettingsForm({ initialData, onSave, token }) {
         />
       </div>
 
-      <div className={styles.group}>
-        <div className={styles.icon}>
+      <div className={settingsForm.group}>
+        <div className={settingsForm.icon}>
           <span>📝</span>
         </div>
         <textarea
           placeholder={`${t("site_description")} (${formLocale.toUpperCase()})`}
-          className={styles.textarea}
+          className={settingsForm.textarea}
           rows="2"
           value={formData.description?.[formLocale] || ""}
           onChange={(e) =>
@@ -110,14 +110,14 @@ export default function SettingsForm({ initialData, onSave, token }) {
         />
       </div>
 
-      <div className={styles.group}>
-        <div className={styles.icon}>
+      <div className={settingsForm.group}>
+        <div className={settingsForm.icon}>
           <span>🔑</span>
         </div>
         <input
           type="text"
           placeholder={`${t("site_keywords")} (${formLocale.toUpperCase()}) (через запятую)`}
-          className={styles.input}
+          className={settingsForm.input}
           value={formData.keywords?.[formLocale]?.join(", ") || ""}
           onChange={(e) =>
             handleMultilangChange(
@@ -129,14 +129,14 @@ export default function SettingsForm({ initialData, onSave, token }) {
         />
       </div>
 
-      <div className={styles.group}>
-        <div className={styles.icon}>
+      <div className={settingsForm.group}>
+        <div className={settingsForm.icon}>
           <span>📌</span>
         </div>
         <input
           type="text"
           placeholder={`Meta Title (${formLocale.toUpperCase()})`}
-          className={styles.input}
+          className={settingsForm.input}
           value={formData.metaTitle?.[formLocale] || ""}
           onChange={(e) =>
             handleMultilangChange("metaTitle", formLocale, e.target.value)
@@ -144,13 +144,13 @@ export default function SettingsForm({ initialData, onSave, token }) {
         />
       </div>
 
-      <div className={styles.group}>
-        <div className={styles.icon}>
+      <div className={settingsForm.group}>
+        <div className={settingsForm.icon}>
           <span>📄</span>
         </div>
         <textarea
           placeholder={`Meta Description (${formLocale.toUpperCase()})`}
-          className={styles.textarea}
+          className={settingsForm.textarea}
           rows="2"
           value={formData.metaDescription?.[formLocale] || ""}
           onChange={(e) =>
@@ -159,52 +159,52 @@ export default function SettingsForm({ initialData, onSave, token }) {
         />
       </div>
 
-      <div className={styles.group}>
-        <div className={styles.icon}>
+      <div className={settingsForm.group}>
+        <div className={settingsForm.icon}>
           <span>🖼️</span>
         </div>
         <input
           type="text"
           placeholder={t("logo_url")}
-          className={styles.input}
+          className={settingsForm.input}
           value={formData.logoUrl || ""}
           onChange={(e) => handleSimpleChange("logoUrl", e.target.value)}
         />
       </div>
 
-      <div className={styles.group}>
-        <div className={styles.icon}>
+      <div className={settingsForm.group}>
+        <div className={settingsForm.icon}>
           <span>⭐</span>
         </div>
         <input
           type="text"
           placeholder={t("favicon_url")}
-          className={styles.input}
+          className={settingsForm.input}
           value={formData.faviconUrl || ""}
           onChange={(e) => handleSimpleChange("faviconUrl", e.target.value)}
         />
       </div>
 
-      <div className={styles.group}>
-        <div className={styles.icon}>
+      <div className={settingsForm.group}>
+        <div className={settingsForm.icon}>
           <span>📧</span>
         </div>
         <input
           type="email"
           placeholder={t("contact_email")}
-          className={styles.input}
+          className={settingsForm.input}
           value={formData.contactEmail || ""}
           onChange={(e) => handleSimpleChange("contactEmail", e.target.value)}
         />
       </div>
 
-      <div className={styles.group}>
-        <div className={styles.icon}>
+      <div className={settingsForm.group}>
+        <div className={settingsForm.icon}>
           <span>🔗</span>
         </div>
         <textarea
           placeholder={t("social_links") + " (JSON)"}
-          className={styles.textarea}
+          className={settingsForm.textarea}
           rows="3"
           value={JSON.stringify(formData.socialLinks || {}, null, 2)}
           onChange={(e) => {
@@ -216,9 +216,9 @@ export default function SettingsForm({ initialData, onSave, token }) {
         />
       </div>
 
-      {saved && <div className={styles.success}>✅ {t("saved")}</div>}
+      {saved && <div className={settingsForm.success}>✅ {t("saved")}</div>}
 
-      <div className={styles.actions}>
+      <div className={settingsForm.actions}>
         <Button type="submit" disabled={loading}>
           {loading ? t("saving") : t("save")}
         </Button>

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import styles from "./product-form.module.css";
+import productForm from "@styles/ProductForm.module.css";
 import Button from "@/components/ui/Button";
 import { useAlert } from "@/context/AppContext";
 import {
@@ -119,21 +119,21 @@ export default function ProductForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles._}>
-      <h2 className={styles.title}>
+    <form onSubmit={handleSubmit} className={productForm._}>
+      <h2 className={productForm.title}>
         {editingId === "new" ? h("add") : h("edit")}
       </h2>
 
-      <div className={styles.switcher}>
-        <div className={styles.btns}>
+      <div className={productForm.switcher}>
+        <div className={productForm.btns}>
           <button
-            className={`${styles.mark} ${checkedVisible ? styles.active : ""}`}
+            className={`${productForm.mark} ${checkedVisible ? productForm.active : ""}`}
             onClick={toggleVisible}
           >
             <BiShow size={20} title={h("show")} />
           </button>
           <button
-            className={`${styles.mark} ${checkedNew ? styles.active : ""}`}
+            className={`${productForm.mark} ${checkedNew ? productForm.active : ""}`}
             onClick={toggleNew}
           >
             <BiBookmarks size={20} title={h("new")} />
@@ -144,7 +144,7 @@ export default function ProductForm({
             key={locale}
             type="button"
             onClick={() => switchLanguage(locale)}
-            className={`${styles.lang} ${formLocale === locale ? styles.active : ""}`}
+            className={`${productForm.lang} ${formLocale === locale ? productForm.active : ""}`}
           >
             <Image
               src={`/images/${locale}.png`}
@@ -169,10 +169,10 @@ export default function ProductForm({
           <div>
             {/* SKU */}
             <div
-              className={`${styles.group} ${submitted && editingId === "new" && (!formData.sku || formData.sku.trim() === "") ? styles.err : ""}`}
+              className={`${productForm.group} ${submitted && editingId === "new" && (!formData.sku || formData.sku.trim() === "") ? productForm.err : ""}`}
             >
               <div
-                className={`${styles.icon} ${editingId !== "new" ? styles.gray : ""}`}
+                className={`${productForm.icon} ${editingId !== "new" ? productForm.gray : ""}`}
               >
                 <BiIdCard size={20} />
               </div>
@@ -180,7 +180,7 @@ export default function ProductForm({
                 type="text"
                 name="sku"
                 placeholder={f("item_id")}
-                className={styles.input}
+                className={productForm.input}
                 value={formData.sku}
                 onChange={(e) => handleSimpleChange("sku", e.target.value)}
                 disabled={editingId !== "new"}
@@ -189,15 +189,15 @@ export default function ProductForm({
 
             {/* Название товара (только для выбранного языка) */}
             <div
-              className={`${styles.group} ${submitted && (!formData.title[formLocale] || formData.title[formLocale].trim() === "") ? styles.err : ""}`}
+              className={`${productForm.group} ${submitted && (!formData.title[formLocale] || formData.title[formLocale].trim() === "") ? productForm.err : ""}`}
             >
-              <div className={styles.icon}>
+              <div className={productForm.icon}>
                 <BiRename size={20} />
               </div>
               <input
                 type="text"
                 placeholder={`${f("item_name")} (${formLocale.toUpperCase()})`}
-                className={styles.input}
+                className={productForm.input}
                 value={formData.title[formLocale] || ""}
                 onChange={(e) =>
                   handleMultilangChange("title", formLocale, e.target.value)
@@ -206,7 +206,7 @@ export default function ProductForm({
               {submitted &&
                 (!formData.title[formLocale] ||
                   formData.title[formLocale].trim() === "") && (
-                  <p className={styles.error}>
+                  <p className={productForm.error}>
                     {f("item_name_error")} ({formLocale})
                   </p>
                 )}
@@ -214,15 +214,15 @@ export default function ProductForm({
 
             {/* Категория (только для выбранного языка) */}
             <div
-              className={`${styles.group} ${submitted && (!formData.category?.[formLocale] || formData.category[formLocale].trim() === "") ? styles.err : ""}`}
+              className={`${productForm.group} ${submitted && (!formData.category?.[formLocale] || formData.category[formLocale].trim() === "") ? productForm.err : ""}`}
             >
-              <div className={styles.icon}>
+              <div className={productForm.icon}>
                 <BiCategory size={20} />
               </div>
               <input
                 type="text"
                 placeholder={`${f("item_category")} (${formLocale.toUpperCase()})`}
-                className={styles.input}
+                className={productForm.input}
                 value={formData.category?.[formLocale] || ""}
                 onChange={(e) =>
                   handleMultilangChange("category", formLocale, e.target.value)
@@ -231,7 +231,7 @@ export default function ProductForm({
               {submitted &&
                 (!formData.category?.[formLocale] ||
                   formData.category[formLocale].trim() === "") && (
-                  <p className={styles.error}>
+                  <p className={productForm.error}>
                     {f("item_category_error")} ({formLocale})
                   </p>
                 )}
@@ -242,15 +242,15 @@ export default function ProductForm({
           <div>
             {/* Цена и акция (общие) */}
             <div
-              className={`${styles.group} ${submitted && (formData.price === undefined || formData.price === "" || formData.price <= 0) ? styles.err : ""}`}
+              className={`${productForm.group} ${submitted && (formData.price === undefined || formData.price === "" || formData.price <= 0) ? productForm.err : ""}`}
             >
-              <div className={styles.icon}>
+              <div className={productForm.icon}>
                 <BiMoney size={20} />
               </div>
               <input
                 type="number"
                 placeholder={`${f("item_price")} (${f("currency")})`}
-                className={styles.input}
+                className={productForm.input}
                 value={formData.price === 0 ? "" : formData.price}
                 onChange={(e) =>
                   handleSimpleChange(
@@ -263,20 +263,20 @@ export default function ProductForm({
                 (formData.price === undefined ||
                   formData.price === "" ||
                   formData.price <= 0) && (
-                  <p className={styles.error}>{f("item_price_error")}</p>
+                  <p className={productForm.error}>{f("item_price_error")}</p>
                 )}
             </div>
 
             <div
-              className={`${styles.group} ${formData.salePrice && formData.price && formData.salePrice > formData.price ? styles.err : ""}`}
+              className={`${productForm.group} ${formData.salePrice && formData.price && formData.salePrice > formData.price ? productForm.err : ""}`}
             >
-              <div className={styles.icon}>
+              <div className={productForm.icon}>
                 <BiMoneyWithdraw size={20} />
               </div>
               <input
                 type="number"
                 placeholder={`${f("item_offer")} (${f("currency")})`}
-                className={styles.input}
+                className={productForm.input}
                 value={formData.salePrice || ""}
                 onChange={(e) =>
                   handleSimpleChange(
@@ -288,18 +288,18 @@ export default function ProductForm({
               {formData.salePrice &&
                 formData.price &&
                 formData.salePrice > formData.price && (
-                  <p className={styles.error}>{f("item_offer_error")}</p>
+                  <p className={productForm.error}>{f("item_offer_error")}</p>
                 )}
             </div>
 
             {/* Описание для выбранного языка */}
-            <div className={styles.group}>
-              <div className={styles.icon}>
+            <div className={productForm.group}>
+              <div className={productForm.icon}>
                 <BiRename size={20} />
               </div>
               <textarea
                 placeholder={`${f("item_desc")} (${formLocale.toUpperCase()})`}
-                className={styles.textarea}
+                className={productForm.textarea}
                 rows="3"
                 value={formData.description?.[formLocale] || ""}
                 onChange={(e) =>
@@ -315,28 +315,28 @@ export default function ProductForm({
 
           {/* Images */}
           <div>
-            <div className={styles.group}>
-              <div className={styles.download}>
+            <div className={productForm.group}>
+              <div className={productForm.download}>
                 <input
                   type="file"
                   accept="image/*"
                   onChange={onImageUpload}
                   disabled={uploading}
-                  className={styles.fileInput}
+                  className={productForm.fileInput}
                 />
                 {uploading && (
-                  <span className={styles.uploading}>{t("loading")}</span>
+                  <span className={productForm.uploading}>{t("loading")}</span>
                 )}
               </div>
             </div>
             {formData.img && (
-              <div className={styles.currentImage}>
+              <div className={productForm.currentImage}>
                 <span>{formData.img}</span>
                 <Button
                   title={f("delete_photo")}
                   type="button"
                   onClick={() => handleSimpleChange("img", "")}
-                  className={styles.delete}
+                  className={productForm.delete}
                 >
                   <BiTrash size={18} />
                 </Button>
@@ -347,14 +347,14 @@ export default function ProductForm({
           {/* SEO */}
           <div>
             {/* Meta Title */}
-            <div className={styles.group}>
-              <div className={styles.icon}>
+            <div className={productForm.group}>
+              <div className={productForm.icon}>
                 <BiRename size={20} />
               </div>
               <input
                 type="text"
                 placeholder={`Meta Title (${formLocale.toUpperCase()})`}
-                className={styles.input}
+                className={productForm.input}
                 value={formData.metaTitle?.[formLocale] || ""}
                 onChange={(e) =>
                   handleMultilangChange("metaTitle", formLocale, e.target.value)
@@ -362,13 +362,13 @@ export default function ProductForm({
               />
             </div>
             {/* Meta Description */}
-            <div className={styles.group}>
-              <div className={styles.icon}>
+            <div className={productForm.group}>
+              <div className={productForm.icon}>
                 <BiRename size={20} />
               </div>
               <textarea
                 placeholder={`Meta Description (${formLocale.toUpperCase()})`}
-                className={styles.textarea}
+                className={productForm.textarea}
                 rows="2"
                 value={formData.metaDescription?.[formLocale] || ""}
                 onChange={(e) =>
@@ -384,11 +384,11 @@ export default function ProductForm({
         </Tabs.Container>
       </Tabs>
 
-      <div className={styles.actions}>
+      <div className={productForm.actions}>
         <Button type="submit" disabled={loading}>
           <BiSave size={20} /> {f("save")}
         </Button>
-        <Button type="button" onClick={onCancel} className={styles.cancel}>
+        <Button type="button" onClick={onCancel} className={productForm.cancel}>
           {f("cancel")}
         </Button>
       </div>

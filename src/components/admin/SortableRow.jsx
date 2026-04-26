@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import styles from "./sortable-row.module.css";
+import sortableRow from "@styles/SortableRow.module.css";
 import {
   BiEdit,
   BiTrash,
@@ -51,37 +51,37 @@ export default function SortableRow({ product, onEdit, onDelete, locale }) {
   return (
     <>
       <tr ref={setNodeRef} style={style}>
-        <td className={styles.dragHandle} {...attributes} {...listeners}>⋮⋮</td>
-        <td className={`${styles.cell} ${!isVisible ? styles.hide : ""}`}>{product.sku}</td>
-        <td className={`${styles.cell} ${product.isNew ? styles.ok : ""} ${!isVisible ? styles.hide : ""}`}>
+        <td className={sortableRow.dragHandle} {...attributes} {...listeners}>⋮⋮</td>
+        <td className={`${sortableRow.cell} ${!isVisible ? sortableRow.hide : ""}`}>{product.sku}</td>
+        <td className={`${sortableRow.cell} ${product.isNew ? sortableRow.ok : ""} ${!isVisible ? sortableRow.hide : ""}`}>
           {title}
         </td>
-        <td className={`${styles.cell} ${product.isNew ? styles.ok : ""} ${!isVisible ? styles.hide : ""}`}>{product.price}</td>
-        <td className={`${styles.cell} ${product.salePrice ? styles.action : ""}`}>
+        <td className={`${sortableRow.cell} ${product.isNew ? sortableRow.ok : ""} ${!isVisible ? sortableRow.hide : ""}`}>{product.price}</td>
+        <td className={`${sortableRow.cell} ${product.salePrice ? sortableRow.action : ""}`}>
           {product.salePrice ? `${product.salePrice}` : ""}
         </td>
-        <td className={`${styles.cell} ${!isVisible ? styles.hide : ""}`}>
-          {product.isNew ? <BiBookmarks className={styles.ok} size={24} /> : ""}
+        <td className={`${sortableRow.cell} ${!isVisible ? sortableRow.hide : ""}`}>
+          {product.isNew ? <BiBookmarks className={sortableRow.ok} size={24} /> : ""}
         </td>
-        <td className={styles.cell}>
-          {isVisible ? <BiShow className={styles.ok} size={20} /> : <BiHide className={styles.hide} size={20} />}
+        <td className={sortableRow.cell}>
+          {isVisible ? <BiShow className={sortableRow.ok} size={20} /> : <BiHide className={sortableRow.hide} size={20} />}
         </td>
-        <td className={`${styles.cell} ${!isVisible ? styles.hide : ""}`}>
+        <td className={`${sortableRow.cell} ${!isVisible ? sortableRow.hide : ""}`}>
           {category}
         </td>
-        <td className={`${styles.cell} ${!isVisible ? styles.hide : ""}`}>
+        <td className={`${sortableRow.cell} ${!isVisible ? sortableRow.hide : ""}`}>
           {product.images?.[0] && (
             <BiImage
-              className={styles.img}
+              className={sortableRow.img}
               size={24}
               onClick={() => product.images?.[0] && openModal()}
             />
           )}
         </td>
-        <td className={styles.cell}>
-          <a className={styles.edit} onClick={() => onEdit(product)}><BiEdit size={18} /></a>
+        <td className={sortableRow.cell}>
+          <a className={sortableRow.edit} onClick={() => onEdit(product)}><BiEdit size={18} /></a>
           <a
-            className={styles.delete}
+            className={sortableRow.delete}
             onClick={async () => {
               const success = await onDelete(product.sku);
               if (success) {

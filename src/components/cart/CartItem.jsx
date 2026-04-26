@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./cart-item.module.css";
+import cartItem from "@styles/CartItem.module.css";
 import { IoCloseOutline } from "react-icons/io5";
 import CounterBtn from "../ui/CounterBtn";
 import { useGoodsInCart, useRefreshCart, useAlert } from "@/context/AppContext";
@@ -23,20 +23,20 @@ const CartItem = ({ item }) => {
 
   return (
     <>
-      <div className={styles._}>
-        <div className={styles.img}>
-          <img alt={title} src={img || '/images/no-photo.jpg'} className={styles.pict} />
+      <div className={cartItem._}>
+        <div className={cartItem.img}>
+          <img alt={title} src={img || '/images/no-photo.jpg'} className={cartItem.pict} />
         </div>
-        <div className={styles.block}>
-          <p className={styles.title}>{title}</p>
-          <p className={styles.price}>{t('item_price')} {offerPrice || price} {t('currency')}</p>
-          <div className={styles.btns}>
+        <div className={cartItem.block}>
+          <p className={cartItem.title}>{title}</p>
+          <p className={cartItem.price}>{t('item_price')} {offerPrice || price} {t('currency')}</p>
+          <div className={cartItem.btns}>
             <CounterBtn type="cart" item={item} />
           </div>
         </div>
-        <p className={styles.total}>{itemTotal} {t('currency')}</p>
+        <p className={cartItem.total}>{itemTotal} {t('currency')}</p>
         <button
-          className={styles.delete}
+          className={cartItem.delete}
           onClick={removeItemFromCart}
         >
           <IoCloseOutline size={20} />

@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from "./main.module.css";
+import main from "@styles/Main.module.css";
 
 const Main = ({children}) => {
     return (
-        <main className={styles._}>
+        <main className={main._}>
             {children}
         </main>
     );

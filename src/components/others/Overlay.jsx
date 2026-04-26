@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from "./overlay.module.css";
+import overlay from "@styles/Overlay.module.css";
 
 const Overlay = ({children}) => {
     return (
-        <div className={styles._}>{children}</div>
+        <div className={overlay._}>{children}</div>
     );
 };
 

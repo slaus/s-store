@@ -6,7 +6,7 @@ import Main from "@/components/commons/Main";
 import Footer from "@/components/commons/Footer";
 import Alert from "@/components/ui/Alert";
 import AdminSidebar from "@/components/admin/AdminSidebar";
-import styles from './layout.module.css';
+import adminLayout from '@styles/AdminLayout.module.css';
 
 export default function AdminLayout({ children }) {
   const [showAdminSidebar, setShowAdminSidebar] = useState(false);
@@ -53,7 +53,7 @@ export default function AdminLayout({ children }) {
       <Wrapper>
         <AdminSidebar showAdminSidebar={showAdminSidebar} setShowAdminSidebar={setShowAdminSidebar} mobile={mobile} />
         <Main>
-          <div className={`${showAdminSidebar ? styles._ : styles._ + " " + styles.full}`}>{children}</div>
+          <div className={`${showAdminSidebar ? adminLayout._ : adminLayout._ + " " + adminLayout.full}`}>{children}</div>
         </Main>
       </Wrapper>
       <Footer />

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./sidebar.module.css";
+import sidebar from "@styles/Sidebar.module.css";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { useItems, useSelectedCategory } from '@/context/AppContext';
 import { useTranslations } from 'next-intl';
@@ -26,14 +26,14 @@ const Sidebar = ({ showSidebar, mobile, setShowSidebar }) => {
 
     return (
         <>
-            <aside className={`${showSidebar ? styles._ + " " + styles.open : styles._}`}>
-                <div className={styles.radiogroup}>
+            <aside className={`${showSidebar ? sidebar._ + " " + sidebar.open : sidebar._}`}>
+                <div className={sidebar.radiogroup}>
                     <button
                         type="button"
-                        className={`${selectedCategory === '' ? styles.btn + " " + styles.active : styles.btn}`}
+                        className={`${selectedCategory === '' ? sidebar.btn + " " + sidebar.active : sidebar.btn}`}
                         onClick={handleShowAll}
                     >
-                        <div className={styles.item}>
+                        <div className={sidebar.item}>
                             {selectedCategory === '' ? <BiPlus size={26} /> : <BiMinus size={26} />}
                             {t('all')}
                         </div>
@@ -42,11 +42,11 @@ const Sidebar = ({ showSidebar, mobile, setShowSidebar }) => {
                     {uniqueCategories.map((category, index) => (
                         <button
                             type="button"
-                            className={`${selectedCategory === category ? styles.btn + " " + styles.active : styles.btn}`}
+                            className={`${selectedCategory === category ? sidebar.btn + " " + sidebar.active : sidebar.btn}`}
                             key={index}
                             onClick={() => handleClick(category)}
                         >
-                            <div className={styles.item}>
+                            <div className={sidebar.item}>
                                 {selectedCategory === category ? <BiPlus size={26} /> : <BiMinus size={26} />}
                                 {category}
                             </div>
@@ -54,7 +54,7 @@ const Sidebar = ({ showSidebar, mobile, setShowSidebar }) => {
                     ))}
                 </div>
             </aside>
-            {mobile && showSidebar && <div className={styles.overlay} onClick={() => setShowSidebar(false)}></div>}
+            {mobile && showSidebar && <div className={sidebar.overlay} onClick={() => setShowSidebar(false)}></div>}
         </>
     );
 };

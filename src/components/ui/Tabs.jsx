@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./tabs.module.css";
+import tabs from "@styles/Tabs.module.css";
 
 const TabsContext = React.createContext();
 
@@ -8,7 +8,7 @@ const Tabs = ({ children, defaultIndex = 0 }) => {
   const [activeIndex, setActiveIndex] = useState(defaultIndex);
   return (
     <TabsContext.Provider value={{ activeIndex, setActiveIndex }}>
-      <div className={styles._}>{children}</div>
+      <div className={tabs._}>{children}</div>
     </TabsContext.Provider>
   );
 };
@@ -16,12 +16,12 @@ const Tabs = ({ children, defaultIndex = 0 }) => {
 const Nav = ({ children }) => {
   const { activeIndex, setActiveIndex } = React.useContext(TabsContext);
   return (
-    <div className={styles.nav}>
+    <div className={tabs.nav}>
       {React.Children.map(children, (child, index) => (
         <button
           key={index}
           type="button"
-          className={`${styles.btn} ${activeIndex === index ? styles.active : ""}`}
+          className={`${tabs.btn} ${activeIndex === index ? tabs.active : ""}`}
           onClick={() => setActiveIndex(index)}
         >
           {child.props.label || child}
@@ -34,7 +34,7 @@ const Nav = ({ children }) => {
 const Container = ({ children }) => {
   const { activeIndex } = React.useContext(TabsContext);
   return (
-    <div className={styles.container}>
+    <div className={tabs.container}>
       {React.Children.toArray(children)[activeIndex]}
     </div>
   );

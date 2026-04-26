@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./alert.module.css";
+import popup from "@styles/Alert.module.css";
 import { useAlert } from "@/context/AppContext";
 
 const Alert = () => {
@@ -7,7 +7,7 @@ const Alert = () => {
 
   if (!alert) return null;
 
-  const alertClass = `${styles._} ${styles[`${alert.type}`]}`;
+  const alertClass = `${popup._} ${popup[`${alert.type}`]}`;
 
   return (
     <div className={alertClass}>

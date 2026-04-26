@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "@/components/checkout/checkout-form.module.css";
+import checkoutForm from "@styles/CheckoutForm.module.css";
 import {
   BiUser,
   BiPhone,
@@ -87,101 +87,101 @@ const CheckoutForm = () => {
 
   return (
     <>
-      <div className={styles._}>
-        <h3 className={styles.title}>{t('your_data')}</h3>
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.delivery}>
-            <div className={styles.label}>{t('is_delivery')}</div>
+      <div className={checkoutForm._}>
+        <h3 className={checkoutForm.title}>{t('your_data')}</h3>
+        <form className={checkoutForm.form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={checkoutForm.delivery}>
+            <div className={checkoutForm.label}>{t('is_delivery')}</div>
             <SliderCheckbox checked={checked} toggleChecked={toggleChecked} />
           </div>
 
-          <div className={`${styles.group} ${errors?.name ? styles.err : ""} ${cartItems.length === 0 ? styles.disabled : ""}`}>
-            <div className={styles.icon}>
+          <div className={`${checkoutForm.group} ${errors?.name ? checkoutForm.err : ""} ${cartItems.length === 0 ? checkoutForm.disabled : ""}`}>
+            <div className={checkoutForm.icon}>
               <BiUser size={20} />
             </div>
             <input
               type="text"
               placeholder={t('name')}
-              className={styles.input}
+              className={checkoutForm.input}
               disabled={cartItems.length === 0}
               {...register("name", validations.name)}
             />
-            {errors?.name && <p className={styles.error}>{errors.name.message}</p>}
+            {errors?.name && <p className={checkoutForm.error}>{errors.name.message}</p>}
           </div>
 
-          <div className={`${styles.group} ${errors?.phone ? styles.err : ""} ${cartItems.length === 0 ? styles.disabled : ""}`}>
-            <div className={styles.icon}>
+          <div className={`${checkoutForm.group} ${errors?.phone ? checkoutForm.err : ""} ${cartItems.length === 0 ? checkoutForm.disabled : ""}`}>
+            <div className={checkoutForm.icon}>
               <BiPhone size={20} />
             </div>
             <input
               type="tel"
               placeholder="+380XXXXXXXXX"
-              className={styles.input}
+              className={checkoutForm.input}
               disabled={cartItems.length === 0}
               value={phoneDisplay}
               onChange={handlePhoneChange}
               onFocus={handlePhoneFocus}
               onBlur={handlePhoneBlur}
             />
-            {errors?.phone && <p className={styles.error}>{errors.phone.message}</p>}
+            {errors?.phone && <p className={checkoutForm.error}>{errors.phone.message}</p>}
           </div>
 
           {delivery && (
             <>
-              <div className={`${styles.group} ${errors?.address ? styles.err : ""}`}>
-                <div className={styles.icon}>
+              <div className={`${checkoutForm.group} ${errors?.address ? checkoutForm.err : ""}`}>
+                <div className={checkoutForm.icon}>
                   <BiMap size={20} />
                 </div>
                 <input
                   type="text"
                   placeholder={t('stock')}
-                  className={styles.input}
+                  className={checkoutForm.input}
                   {...register("address", validations.address)}
                 />
-                {errors?.address && <p className={styles.error}>{errors.address.message}</p>}
+                {errors?.address && <p className={checkoutForm.error}>{errors.address.message}</p>}
               </div>
-              <div className={`${styles.group} ${errors?.city ? styles.err : ""}`}>
-                <div className={styles.icon}>
+              <div className={`${checkoutForm.group} ${errors?.city ? checkoutForm.err : ""}`}>
+                <div className={checkoutForm.icon}>
                   <BiMapAlt size={20} />
                 </div>
                 <input
                   type="text"
                   placeholder={t('city')}
-                  className={styles.input}
+                  className={checkoutForm.input}
                   {...register("city", validations.city)}
                 />
-                {errors?.city && <p className={styles.error}>{errors.city.message}</p>}
+                {errors?.city && <p className={checkoutForm.error}>{errors.city.message}</p>}
               </div>
-              <div className={`${styles.group} ${errors?.schedule ? styles.err : ""}`}>
-                <div className={styles.icon}>
+              <div className={`${checkoutForm.group} ${errors?.schedule ? checkoutForm.err : ""}`}>
+                <div className={checkoutForm.icon}>
                   <BiAnchor size={20} />
                 </div>
                 <input
                   type="text"
                   placeholder={t('area')}
-                  className={styles.input}
+                  className={checkoutForm.input}
                   {...register("schedule", validations.schedule)}
                 />
-                {errors?.schedule && <p className={styles.error}>{errors.schedule.message}</p>}
+                {errors?.schedule && <p className={checkoutForm.error}>{errors.schedule.message}</p>}
               </div>
             </>
           )}
 
-          <div className={`${styles.group} ${errors?.comment ? styles.err : ""} ${cartItems.length === 0 ? styles.disabled : ""}`}>
-            <div className={styles.icon}>
+          <div className={`${checkoutForm.group} ${errors?.comment ? checkoutForm.err : ""} ${cartItems.length === 0 ? checkoutForm.disabled : ""}`}>
+            <div className={checkoutForm.icon}>
               <BiMessage size={20} />
             </div>
             <input
               type="text"
               placeholder={t('comment')}
-              className={styles.input}
+              className={checkoutForm.input}
               disabled={cartItems.length === 0}
               {...register("comment", validations.comment)}
             />
-            {errors?.comment && <p className={styles.error}>{errors.comment.message}</p>}
+            {errors?.comment && <p className={checkoutForm.error}>{errors.comment.message}</p>}
           </div>
 
-          <button type="submit" className={styles.confirm} disabled={cartItems.length === 0}>
+          <button type="submit" className={checkoutForm.confirm} disabled={cartItems.length === 0}>
             {t('checkout')}
           </button>
         </form>

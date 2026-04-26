@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./items-grid.module.css";
+import itemsGrid from "@styles/ItemsGrid.module.css";
 import ItemsCard from "./ItemCard";
 import Loading from "@/components/ui/Loading";
 import {
@@ -71,13 +71,13 @@ const ItemsGrid = () => {
   return (
     <>
       {sortedItems.length > 0 ? (
-        <div className={styles._}>
+        <div className={itemsGrid._}>
           {sortedItems.map((item) => (
             <ItemsCard item={item} key={item.sku} />
           ))}
         </div>
       ) : (
-        <div className={styles.error}>
+        <div className={itemsGrid.error}>
           {t.rich("not_found", {
             search: searchValue,
             b: (chunks) => <b style={{ margin: "0 5px" }}>{chunks}</b>,

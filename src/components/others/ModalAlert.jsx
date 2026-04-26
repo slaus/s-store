@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Button from "@/components/ui/Button";
-import styles from "./modal.module.css";
+import modalAlert from "@styles/ModalAlert.module.css";
 import { sendTelegramOrder } from '../../utils/helpers';
 import { useOrderDetails, useReset } from '@/context/AppContext';
 
@@ -23,11 +23,11 @@ const ModalAlert = ({ setModal }) => {
   };
 
   return (
-    <div className={styles._}>
-      <h3 className={styles.header}>{t('agree')}</h3>
-      <div className={styles.desc}>{t('agree_desc')}</div>
-      <div className={styles.footer}>
-        <Button className={styles.btn} onClick={onConfirm}>
+    <div className={modalAlert._}>
+      <h3 className={modalAlert.header}>{t('agree')}</h3>
+      <div className={modalAlert.desc}>{t('agree_desc')}</div>
+      <div className={modalAlert.footer}>
+        <Button className={modalAlert.btn} onClick={onConfirm}>
           {t('yes')}
         </Button>
       </div>

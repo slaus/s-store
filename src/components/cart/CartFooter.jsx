@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from "./cart-footer.module.css";
-import { useRouter } from 'next/navigation'; // стандартный роутер Next.js
+import cartFooter from "@styles/CartFooter.module.css";
+import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useCartTotal } from '@/context/AppContext';
 
@@ -15,11 +15,11 @@ const CartFooter = ({ goodsInCart }) => {
     };
 
     return (
-        <div className={styles._}>
+        <div className={cartFooter._}>
             {cartTotal > 0 && (
-                <p className={styles.total}>
+                <p className={cartFooter.total}>
                     {t('subtotal')} 
-                    <span className={styles.sum}>
+                    <span className={cartFooter.sum}>
                         {cartTotal.toFixed(2)} {t('currency')}
                     </span>
                 </p>
@@ -27,7 +27,7 @@ const CartFooter = ({ goodsInCart }) => {
             <button
                 onClick={handleCheckout}
                 type="button"
-                className={`${cartTotal === 0 ? styles.btn + " " + styles.disable : styles.btn}`}
+                className={`${cartTotal === 0 ? cartFooter.btn + " " + cartFooter.disable : cartFooter.btn}`}
                 disabled={cartTotal === 0}
             >
                 {t('checkout')}

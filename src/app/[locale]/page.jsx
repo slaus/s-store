@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import styles from "./page.module.css";
+import page from "@styles/Page.module.css";
 import Header from "@/components/commons/Header";
 import Sidebar from "@/components/commons/Sidebar";
 import Main from "@/components/commons/Main";
@@ -19,13 +19,13 @@ export default function Home() {
 
   useEffect(() => {
     if (showCart) {
-      document.body.classList.add(styles.open);
+      document.body.classList.add(page.open);
     } else {
-      document.body.classList.remove(styles.open);
+      document.body.classList.remove(page.open);
     }
 
     return () => {
-      document.body.classList.remove(styles.open);
+      document.body.classList.remove(page.open);
     };
   }, [showCart]);
 
@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <>
-      <div className={styles.main}>
+      <div className={page.main}>
         <Header
           page="home"
           setShowCart={setShowCart}

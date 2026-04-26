@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import SettingsForm from "@/components/admin/SettingsForm";
 import Loading from "@/components/ui/Loading";
 import { useTranslations } from "next-intl";
+import setting from '@styles/SettingsPage.module.css';
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -34,7 +35,7 @@ export default function SettingsPage() {
         <Loading />
       ) : (
         !settings ? (
-          <div>{t('settings_error')}</div>
+          <div className={setting._}>{t('settings_error')}</div>
         ) : (
           <SettingsForm initialData={settings} onSave={() => {}} token={token} />
         )

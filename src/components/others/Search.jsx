@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./search.module.css";
+import search from "@styles/Search.module.css";
 import { BiSearch } from "react-icons/bi";
 import { IoCloseOutline } from "react-icons/io5";
 import { useSearch } from "@/context/AppContext";
@@ -30,24 +30,24 @@ const Search = ({ showSearchBar, setShowSearchBar }) => {
   };
 
   return (
-    <div className={`${styles._} ${showSearchBar ? styles.show : ""}`}>
-      <div className={styles.block}>
-        <div className={styles.div}></div>
-        <form className={styles.form} onSubmit={handleSubmit}>
+    <div className={`${search._} ${showSearchBar ? search.show : ""}`}>
+      <div className={search.block}>
+        <div className={search.div}></div>
+        <form className={search.form} onSubmit={handleSubmit}>
           <input
             onChange={handleChange}
             type="search"
             placeholder={t('search')}
-            className={styles.input}
+            className={search.input}
             value={searchValue}
           />
-          <div className={styles.search}>
+          <div className={search.search}>
             <button>
               <BiSearch size={30} />
             </button>
           </div>
         </form>
-        <button className={styles.close} onClick={hideSearchBar}>
+        <button className={search.close} onClick={hideSearchBar}>
           <IoCloseOutline size={36} />
         </button>
       </div>

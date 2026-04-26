@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useSearchParams, useParams } from "next/navigation";
-import styles from "./admin-sidebar.module.css";
+import adminSidebar from "@styles/AdminSidebar.module.css";
 import { useTranslations } from "next-intl";
 
 const AdminSidebar = ({ showAdminSidebar, setShowAdminSidebar, mobile }) => {
@@ -25,22 +25,22 @@ const AdminSidebar = ({ showAdminSidebar, setShowAdminSidebar, mobile }) => {
 
   return (
     <>
-      <aside className={`${styles._} ${showAdminSidebar ? styles.open : ""}`}>
-        <div className={styles.radiogroup}>
+      <aside className={`${adminSidebar._} ${showAdminSidebar ? adminSidebar.open : ""}`}>
+        <div className={adminSidebar.radiogroup}>
           {menuItems.map((item) => (
             <Link
               key={item.path}
               href={`/${locale}/admin/${item.path}?token=${token}`}
-              className={`${isActive(item.path) ? styles.btn + " " + styles.active : styles.btn}`}
+              className={`${isActive(item.path) ? adminSidebar.btn + " " + adminSidebar.active : adminSidebar.btn}`}
               onClick={() => mobile && setShowAdminSidebar(false)}
             >
-              <div className={styles.item}>{item.label}</div>
+              <div className={adminSidebar.item}>{item.label}</div>
             </Link>
           ))}
         </div>
       </aside>
       {mobile && showAdminSidebar && (
-        <div className={styles.overlay} onClick={() => setShowAdminSidebar(false)}></div>
+        <div className={adminSidebar.overlay} onClick={() => setShowAdminSidebar(false)}></div>
       )}
     </>
   );

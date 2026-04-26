@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import styles from "./page.module.css";
+import page from "@styles/ProductPage.module.css";
 import Header from "@/components/commons/Header";
 import Main from "@/components/commons/Main";
 import Footer from "@/components/commons/Footer";
@@ -8,7 +8,7 @@ import Alert from "@/components/ui/Alert";
 import Cart from "@/components/cart/Cart";
 import Wrapper from "@/components/commons/Wrapper";
 import CounterBtn from "@/components/ui/CounterBtn";
-import card from "@/components/home/item-card.module.css";
+import card from "@styles/ItemCard.module.css";
 import { useIsInCart } from "@/context/AppContext";
 import Breadcrumb from "@/components/others/Breadcrumb";
 
@@ -44,7 +44,7 @@ export default function ProductPageClient({ product, locale, t }) {
 
   return (
     <>
-      <div className={styles.main}>
+      <div className={page.main}>
         <Header
           page="product"
           setShowCart={setShowCart}
@@ -55,36 +55,36 @@ export default function ProductPageClient({ product, locale, t }) {
 
         <Wrapper>
           <Main>
-            <div className={styles._}>
-              <div className={styles.bread}>
+            <div className={page._}>
+              <div className={page.bread}>
                 <Breadcrumb page="product" productName={title} />
               </div>
-              <div className={styles.item}>
-                <div className={styles.img}>
+              <div className={page.item}>
+                <div className={page.img}>
                   {(salePrice || isNew) && (
-                    <div className={styles.action}>
+                    <div className={page.action}>
                       {salePrice && (
-                        <div className={styles.sale}>{t.discount}</div>
+                        <div className={page.sale}>{t.discount}</div>
                       )}
-                      {isNew && <div className={styles.new}>{t.new}</div>}
+                      {isNew && <div className={page.new}>{t.new}</div>}
                     </div>
                   )}
                   <img alt={title} title={title} src={imgUrl} />
                 </div>
-                <div className={styles.text}>
-                  <h2 className={styles.title}>{title}</h2>
-                  <div className={styles.prices}>
-                    <p className={styles.price}>
+                <div className={page.text}>
+                  <h2 className={page.title}>{title}</h2>
+                  <div className={page.prices}>
+                    <p className={page.price}>
                       {salePrice || price} {t.currency}
                     </p>
                     {salePrice && (
-                      <p className={styles.old}>
+                      <p className={page.old}>
                         {price} {t.currency}
                       </p>
                     )}
                   </div>
-                  <p className={styles.desc}>{description}</p>
-                  <div className={styles.buy}>
+                  <p className={page.desc}>{description}</p>
+                  <div className={page.buy}>
                     <div className={card.btns}>
                       {visible ? (
                         <CounterBtn item={product} counter={quantityInCart} />

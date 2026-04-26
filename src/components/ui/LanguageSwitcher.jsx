@@ -2,7 +2,7 @@
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { locales } from '@/config/locales';
-import styles from '@/components/ui/button.module.css';
+import btn from '@styles/Button.module.css';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
 
@@ -32,7 +32,7 @@ export default function LanguageSwitcher() {
           <Button
             key={locale}
             onClick={() => switchLanguage(locale)}
-            className={styles.transparent}
+            className={btn.transparent}
           >
             <Image
               src={`/images/${locale}.png`}

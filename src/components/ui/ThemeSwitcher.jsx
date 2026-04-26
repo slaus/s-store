@@ -2,7 +2,7 @@
 import { useTheme } from "@/context/ThemeContext";
 import { BiSun, BiMoon } from "react-icons/bi";
 import Button from "@/components/ui/Button";
-import styles from "@/components/ui/button.module.css"
+import btn from "@styles/Button.module.css"
 
 export default function ThemeSwitcher() {
   const { theme, toggleTheme } = useTheme();
@@ -10,7 +10,7 @@ export default function ThemeSwitcher() {
   return (
     <Button
       onClick={toggleTheme}
-      className={styles.transparent}
+      className={btn.transparent}
       aria-label="Theme Switcher"
     >
       {theme === "light" ? <BiMoon size={24} /> : <BiSun size={24} />}

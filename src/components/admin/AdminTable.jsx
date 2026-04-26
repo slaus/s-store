@@ -13,7 +13,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import SortableRow from "./SortableRow";
-import styles from "./admin-table.module.css";
+import adminTable from "@styles/AdminTable.module.css";
 import { useTranslations } from "next-intl";
 
 export default function AdminTable({ products, onEdit, onDelete, onDragEnd, locale }) {
@@ -41,12 +41,12 @@ export default function AdminTable({ products, onEdit, onDelete, onDragEnd, loca
         strategy={verticalListSortingStrategy}
       >
         {validProducts?.length === 0 ? (
-          <div className={styles.error}>
+          <div className={adminTable.error}>
             <h3>{t("no_product_title")}</h3>
             <p>{t("no_product")}</p>
           </div>
         ) : (
-          <table className={styles._}>
+          <table className={adminTable._}>
             <thead>
               <tr>
                 <th>🟰</th>
